@@ -1,0 +1,161 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "id": "9bebf253-7913-4d7a-8ebc-f10463803baa",
+      "metadata": {},
+      "source": "## Semantic Search with SingleStoreDB and OpenAI!\n\nIn this notebook, we will demonstrate an example of conducting semantic search on SingleStoreDB with SQL! Unlike traditional keyword-based search methods, semantic search algorithms take into account the relationships between words and their meanings, enabling them to deliver more accurate and relevant results – even when search terms are vague or ambiguous. \n\nSingleStoreDB’s built-in parallelization and Intel SIMD-based vector processing takes care of the heavy lifting involved in processing vector data. This allows your to run your ML algorithms right in your database extremely efficiently with just 2 lines of SQL!\n\n\nIn this example, we use Open AI embeddings API to create embeddings for our dataset and run semantic_search using dot_product vector matching function!"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "358d1eb0-a0dd-423d-86ea-0d131abe4169",
+      "metadata": {},
+      "source": "### Step 1: Create a workspace in your workspace group – S00 is enough.\n\n### Step 2: Create a Database named semantic_search using the SQL command below:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "af5e02fb-e15b-4c85-ac69-a40dd974cd88",
+      "metadata": {
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\ncreate database semantic_search"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "fc70ad5a-acd0-416c-9572-ba72a33dfb19",
+      "metadata": {},
+      "source": "### Step 3: In this notebook, select the newly created semantic_search database from the dropdown box above"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "8124ab1c-7f17-47bc-9f8a-c7bd5a33a426",
+      "metadata": {},
+      "source": "### Step 4: Install and Import the following libraries into your python kernel\nWe will use OpenAI embeddings API and will need to import the relevant dependencies accordingly. "
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "af6146b2-a044-4dd8-b020-e3d8c1f91aba",
+      "metadata": {},
+      "outputs": [],
+      "source": "!pip3 install openai matplotlib plotly pandas scipy scikit-learn requests\nimport os\nimport openai\nimport json\nfrom openai.embeddings_utils import get_embedding\nimport requests"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "f80d23bc-7e98-4ac8-b2a0-7a737e4010e5",
+      "metadata": {},
+      "source": "### Step 5: Create an OpenAI account and get API connection details.\nTo vectorize and embed the employee reviews and query strings, we leverage OpenAI's embeddings API. To use this API, you will need an API key, which you can get [here](https://platform.openai.com/account/api-keys). You'll need to add a payment method to actually get vector embeddings using the API, though the charges are minimal for a small example like we present here. Once you have your key, you can add it to your environment variables as OPENAI_API_KEY."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "id": "4fcf95d5-212a-4614-9b38-c68d239ba4d8",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# Note: You will have to update your notebook's firewall settings to include *.*.openai.com in order to get embedddings from OpenAI APIS."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "a463c0fd-c747-4605-a728-c22a2fa17cfb",
+      "metadata": {},
+      "outputs": [],
+      "source": "os.environ[\"OPENAI_API_KEY\"] = '<Your OPEN_API_KEY>'\nopenai.api_key = os.getenv(\"OPENAI_API_KEY\")"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "17fb3aad-e3a8-4a2a-985c-64f0c94431b8",
+      "metadata": {},
+      "source": "### Step 6: Create a new table in your database called reviews"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "e3af3810-0ce5-432b-a879-4eaa16524d38",
+      "metadata": {},
+      "outputs": [],
+      "source": "%%sql\nCREATE TABLE reviews (date_review VARCHAR(255), job_title VARCHAR(255), location varchar(255), review TEXT);"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "db124797-a11c-4a97-9f58-b337c50014e3",
+      "metadata": {},
+      "source": "### Step 7: Import our sample data into your table!\nThis dataset has 15 reviews left by anonymous employees of a firm"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "227c2fcf-2dc8-4ed2-92f1-5a28667bf3d3",
+      "metadata": {},
+      "outputs": [],
+      "source": "url = 'https://raw.githubusercontent.com/singlestore-labs/singlestoredb-samples/main/Tutorials/ai-powered-semantic-search/hr_sample_data.sql'\nresponse = requests.get(url)\nsql_script = response.text\nnew_array = sql_script.split('\\n')\nfor i in new_array:\n  if (i != ''):\n    %sql {i}"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "8188ccb2-d5cf-48b5-8c9f-8b3858c18ae7",
+      "metadata": {},
+      "source": "### Step 8: Create vector embeddings for each entry in your SingleStoreDB database and add a new column in your database with the associated embeddings. \n\nTo embed the reviews in our SingleStoreDB database, we iterate through each row in the table, make a call to OpenAI’s embeddings API with the text in the reviews field and update the new column called embeddings for each entry. "
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "419a690a-810c-4c80-b7ea-fd25cf1d5e80",
+      "metadata": {},
+      "outputs": [],
+      "source": "%sql ALTER TABLE reviews ADD embeddings blob;\nreviews = %sql SELECT review FROM reviews;\nfor i in reviews:\n    review_embedding = json.dumps(get_embedding(\n       i[0],\n       engine=\"text-embedding-ada-002\"))\n    review_embedding = review_embedding.replace(', ', ',')\n    %sql UPDATE reviews SET embeddings = JSON_ARRAY_PACK('{review_embedding}') WHERE review='{i[0]}';"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "e34e62fb-7690-4a31-a874-ff7856d16cc7",
+      "metadata": {},
+      "source": "### Step 9: Run the semantic search algorithm with just 1 line of SQL\nWe will utilize SingleStoreDB's distributed architecture to efficiently compute the dot product of the input string (stored in searchstring) with each entry in the database and return the top 5  reviews with the highest dot product score. Each vector is normalized to length 1, hence the dot product function essentially computes the cosine similarity between two vectors – an appropriate nearness metric. SingleStoreDB makes this extremely fast because it compiles queries to machine code and runs dot_product using SIMD instructions."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "08bd6b1c-9731-4062-9b9a-a5e1a1d8efa3",
+      "metadata": {
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "searchstring = input(\"Please enter a search string: \")\nsearch_embedding = json.dumps(get_embedding(searchstring, engine=\"text-embedding-ada-002\")) \nsearch_embedding = search_embedding.replace(', ', ',')\nresults = %sql SELECT review, DOT_PRODUCT(embeddings, JSON_ARRAY_PACK('{search_embedding}')) AS Score FROM reviews ORDER BY Score DESC LIMIT 5;\ni = 0\nfor res in results:\n    i = i + 1\n    print(i, \": \", res[0], \"Score: \", res[1])"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "0e91592f-4856-4cab-b15e-23585f551ab3",
+      "metadata": {},
+      "outputs": [],
+      "source": "%%sql\nDrop table reviews"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.10.9"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

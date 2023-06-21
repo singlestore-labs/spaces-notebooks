@@ -1,0 +1,272 @@
+{
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": 2,
+      "id": "7690dc5e-93f4-477d-87b2-db35da95fb65",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "!pip install openai --quiet"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "62bd45fa-daac-4d71-ab76-be014ddd3a32",
+      "metadata": {},
+      "source": "## First let's talk directly to ChatGPT and try and get back a response"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 4,
+      "id": "9c4378f4-02d4-4c19-a512-f3eed0a9cb88",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import openai\n\n# models\nEMBEDDING_MODEL = \"text-embedding-ada-002\"\nGPT_MODEL = \"gpt-3.5-turbo\""
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 6,
+      "id": "244f1d45-db89-489e-aad0-153a652d59f6",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "openai.api_key = 'ENTER YOUR OPEN AI KEY'\n\nresponse = openai.ChatCompletion.create(\n  model=GPT_MODEL,\n  messages=[\n        {\"role\": \"system\", \"content\": \"You are a helpful assistant.\"},\n        {\"role\": \"user\", \"content\": \"Who won the gold medal for curling in Olymics 2022?\"},\n    ]\n)\n\nprint(response['choices'][0]['message']['content'])"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "d287b813-2885-4b22-a431-03c6b4eab058",
+      "metadata": {},
+      "source": "# Get the data about Winter Olympics and provide the information to ChatGPT as context"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "682326b6-a475-4d79-828d-951780a6fb96",
+      "metadata": {},
+      "source": "## Setup"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 7,
+      "id": "b5ef7c8a-7ab0-473d-b944-8cdbfe4918d8",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "!pip install matplotlib --quiet\n!pip install plotly.express --quiet\n!pip install scikit-learn --quiet\n!pip install tabulate --quiet\n!pip install tiktoken --quiet\n!pip install wget --quiet"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 8,
+      "id": "a01f2552-cde3-49a4-8205-72b8fa8260c1",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import pandas as pd\nimport os\nimport wget\nimport ast"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "5f7aee40-4774-4ef1-b700-a83f9fed4fbb",
+      "metadata": {},
+      "source": "## Step 1 - Grab the data from CSV and prepare it"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 9,
+      "id": "bef09ede-40b1-40f3-9966-f68d4b025fbd",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# download pre-chunked text and pre-computed embeddings\n# this file is ~200 MB, so may take a minute depending on your connection speed\nembeddings_path = \"https://cdn.openai.com/API/examples/data/winter_olympics_2022.csv\"\nfile_path = \"winter_olympics_2022.csv\"\n\nif not os.path.exists(file_path):\n    wget.download(embeddings_path, file_path)\n    print(\"File downloaded successfully.\")\nelse:\n    print(\"File already exists in the local file system.\")"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 10,
+      "id": "6e0669bf-9070-42bd-a561-f6729f9203a6",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "df = pd.read_csv(\n    \"winter_olympics_2022.csv\"\n)\n\n# convert embeddings from CSV str type back to list type\ndf['embedding'] = df['embedding'].apply(ast.literal_eval)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 13,
+      "id": "e084417a-8db5-476f-a6e1-6f4e53797afd",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "df"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 14,
+      "id": "bcf14e64-982e-465b-8e2b-6239650b2f51",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "df.info(show_counts=True)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "cb523f8c-78b2-4a75-be15-52d29fac0fff",
+      "metadata": {},
+      "source": "## Step 2 - Set up SingleStore DB"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 16,
+      "id": "ca33b770-95f9-47ae-9509-5dd98c331037",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Create the database\nDROP DATABASE IF EXISTS winter_wikipedia;\nCREATE DATABASE IF NOT EXISTS winter_wikipedia;"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 19,
+      "id": "011afdb9-cbd4-42af-8121-a8928d5c8432",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Make sure to pick winter_wikipedia as the default database for that notebook\nUSE winter_wikipedia;\nCREATE TABLE IF NOT EXISTS winter_olympics_2022 (\n    id INT PRIMARY KEY,\n    text TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,\n    embedding BLOB\n);"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "6b7ab530-4f55-482f-8e4c-475df06fe9b3",
+      "metadata": {},
+      "source": "## Step 3 - Populate the Table with our dataframe df and use JSON_ARRAY_PACK to compact it"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 21,
+      "id": "b8722e7e-211e-44a6-b512-eee1719c2879",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from sqlalchemy import *\n\ndb_connection = create_engine(connection_url)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 22,
+      "id": "3d9deb53-1d23-4e75-b28e-6531b662d5e7",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "def insert_records(\n    df: pd.DataFrame,\n    table_name: str,\n    batch_size: int = 1000\n):\n\n    stmt = f\"\"\"\n        INSERT INTO {table_name} (\n            id,\n            text,\n            embedding\n        )\n        VALUES (\n            %s,\n            %s,\n            JSON_ARRAY_PACK_F64(%s)\n        )\n    \"\"\".format(table_name=table_name)\n    \n    record_arr = df.to_records(index=True)\n    \n    for i in range(0, len(record_arr), batch_size):\n        batch = record_arr[i:i+batch_size]\n        values = [(row[0], row[1], str(row[2])) for row in batch]\n        db_connection.execute(stmt, values)\n    return\n\ninsert_records(df, \"winter_olympics_2022\")"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "c4d4602c-bfec-4819-904b-4d376b920e44",
+      "metadata": {},
+      "source": "## Step 4 - Do a semantic search with the same question from above and use the response to send to OpenAI again"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 23,
+      "id": "e8560501-ff5e-4727-8d07-99f2173a3d62",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from openai.embeddings_utils import get_embedding\n\ndef strings_ranked_by_relatedness(\n    query: str,\n    df: pd.DataFrame,\n    table_name: str,\n    relatedness_fn=lambda x, y: 1 - spatial.distance.cosine(x, y),\n    top_n: int = 100\n) -> tuple:\n    \"\"\"Returns a list of strings and relatednesses, sorted from most related to least.\"\"\"\n\n    # Get the embedding of the query.\n    query_embedding_response = get_embedding(query, EMBEDDING_MODEL)\n\n    # Create the SQL statement.\n    stmt = f\"\"\"\n        SELECT\n            text,\n            DOT_PRODUCT_F64(JSON_ARRAY_PACK_F64(%s), embedding) AS score\n        FROM {table_name}\n        ORDER BY score DESC\n        LIMIT %s\n    \"\"\".format(table_name=table_name)\n\n    # Execute the SQL statement.\n    results = db_connection.execute(stmt, [str(query_embedding_response), top_n])\n\n    strings = []\n    relatednesses = []\n\n    for row in results:\n        strings.append(row[0])\n        relatednesses.append(row[1])\n\n    # Return the results.\n    return strings[:top_n], relatednesses[:top_n]"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 24,
+      "id": "a1b27188-409c-4e43-8065-5448f40e1986",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from tabulate import tabulate\n\nstrings, relatednesses = strings_ranked_by_relatedness(\n    \"curling gold medal\",\n    df,\n    \"winter_olympics_2022\",\n    top_n=5\n)\n\nfor string, relatedness in zip(strings, relatednesses):\n    print(f\"{relatedness=:.3f}\")\n    print(tabulate([[string]], headers=['Result'], tablefmt='fancy_grid'))"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 25,
+      "id": "ce7411d2-6f3c-408b-996b-2ec34cad5d7d",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import tiktoken\n\ndef num_tokens(text: str, model: str = GPT_MODEL) -> int:\n    \"\"\"Return the number of tokens in a string.\"\"\"\n    encoding = tiktoken.encoding_for_model(model)\n    return len(encoding.encode(text))\n\n\ndef query_message(\n    query: str,\n    df: pd.DataFrame,\n    model: str,\n    token_budget: int\n) -> str:\n    \"\"\"Return a message for GPT, with relevant source texts pulled from SingleStoreDB.\"\"\"\n    strings, relatednesses = strings_ranked_by_relatedness(query, df, \"winter_olympics_2022\")\n    introduction = 'Use the below articles on the 2022 Winter Olympics to answer the subsequent question. If the answer cannot be found in the articles, write \"I could not find an answer.\"'\n    question = f\"\\n\\nQuestion: {query}\"\n    message = introduction\n    for string in strings:\n        next_article = f'\\n\\nWikipedia article section:\\n\"\"\"\\n{string}\\n\"\"\"'\n        if (\n            num_tokens(message + next_article + question, model=model)\n            > token_budget\n        ):\n            break\n        else:\n            message += next_article\n    return message + question\n\n\ndef ask(\n    query: str,\n    df: pd.DataFrame = df,\n    model: str = GPT_MODEL,\n    token_budget: int = 4096 - 500,\n    print_message: bool = False,\n) -> str:\n    \"\"\"Answers a query using GPT and a table of relevant texts and embeddings in SingleStoreDB.\"\"\"\n    message = query_message(query, df, model=model, token_budget=token_budget)\n    if print_message:\n        print(message)\n    messages = [\n        {\"role\": \"system\", \"content\": \"You answer questions about the 2022 Winter Olympics.\"},\n        {\"role\": \"user\", \"content\": message},\n    ]\n    response = openai.ChatCompletion.create(\n        model=model,\n        messages=messages,\n        temperature=0\n    )\n    response_message = response[\"choices\"][0][\"message\"][\"content\"]\n    return response_message"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 26,
+      "id": "46a21d10-88bb-4cfb-b68d-b4a5b12ba1f4",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from pprint import pprint\n\nanswer = ask('Who won the gold medal for curling in Olymics 2022?')\n\npprint(answer)"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.10.9"
+    },
+    "singlestore_connection": {}
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

@@ -1,0 +1,368 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "id": "7e127046-57ff-4259-88eb-94596d9b4c6c",
+      "metadata": {},
+      "source": "# How to use a SingleStoreDB"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "680677eb-d3b7-460a-8ac2-94e9a68c8f43",
+      "metadata": {},
+      "source": "### Developing with a SingleStoreDB notebook\nPrototyping applications or analyzing datasets using notebooks in SingleStoreDB Cloud follows the same general principles as developing with a Jupyter Notebook. SingleStoreDB Cloud supports internal and external datasources. Internal datasources are databases that exist within your workspace. An external datasource could be an AWS S3 bucket for example. In this Notebook we cover:\n\n1. Connecting to a SingleStoreDB instance\n2. Connecting to an External Datasource through Firewall Settings\n3. Using SQL in a cell\n4. Using Python in a cell\n5. Using both SQL & Python\n6. Installing Libraries\n7. Using Magic Commands \n\n*To learn more about working with SingleStoreDB notebooks check out our [docs](https://docs.singlestore.com/managed-service/en/developer-resources/notebooks.html)!*"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "cb310396-93ad-4c04-b64d-9601b8a202bc",
+      "metadata": {},
+      "source": "#### 1. Connecting to a SingleStoreDB Datasource\nOnce you select a workspace, you can access all of the databases attached to that workspace. You cannot connect to databases that are not attached to the workspace you are using."
+    },
+    {
+      "cell_type": "markdown",
+      "id": "a643de5c-fec4-4b36-8d8b-bc1337bd1a3f",
+      "metadata": {},
+      "source": "First select a workspace and the database **information_schema**"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "8c502a67-9e8e-43b8-8bc6-41df4d5835da",
+      "metadata": {},
+      "source": "<img src=https://raw.githubusercontent.com/singlestore-labs/notebook-picture/main/Select%20Workspace%20and%20Database.png width=\"300\">"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 15,
+      "id": "146c9641-23ec-4570-8466-14d2880c66f0",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nSELECT * FROM users\nlimit 3;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "8cb9cb0f-c301-4cef-9f19-e86db0e52f73",
+      "metadata": {},
+      "source": "When running SQL commands directly against a different database, you can specify the database in your SQL query:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 16,
+      "id": "22b88c07-c956-4a77-944d-4aac485c1514",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nUSE information_schema;\nSELECT * FROM users\nlimit 3;"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 17,
+      "id": "8ab697a9-3b41-4f92-8b88-65717d7a4202",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nSELECT * FROM information_schema.users\nlimit 3;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "3aff8361-669b-474d-a45a-6345de985757",
+      "metadata": {},
+      "source": "#### Connecting with Python"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "c21cdbb8-c77e-4e31-a584-ff922620fb58",
+      "metadata": {},
+      "source": "You can also connect to your SingleStoreDB datasource using Python and sqlalchemy.\n\nWe predefine the connection string through local variables based on the database you have selected above."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 33,
+      "id": "3e2781f6-626d-4f0d-a5bb-828537c9e6e1",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from sqlalchemy import *\ndb_connection = create_engine(connection_url)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "1cae1a31-08c6-44b4-99c8-0d0a1b8b5ff8",
+      "metadata": {},
+      "source": "You can also define the url string with sub-variables:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 19,
+      "id": "93f26bcd-d07d-48a9-9f7a-edc2f9431c09",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "database_name = 'information_schema'\nconnection_url2 = \"mysql+pymysql://\"+connection_user+\":\"+connection_password+\"@\"+connection_host+\":\"+connection_port+\"/\"+database_name+\"?ssl_cipher=HIGH\"\ndb_connection2 = create_engine(connection_url2)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "2dbc2854-2396-49e0-ae9f-5e68cc1e316c",
+      "metadata": {},
+      "source": "Using db_connection, we can run our queries. "
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 30,
+      "id": "cb22f3b0-547a-471b-80d3-213b38f41121",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "query1 = 'SELECT * FROM users limit 3;'\nresult = db_connection2.execute(query1)\nfor i in result:\n    print(i)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "1a15dcbc-4a03-49c2-ae18-130d97fb03e9",
+      "metadata": {},
+      "source": "#### 2. Connecting to an External Datasource\nYou can securely connect to external endpoints from your SingleStoreDB notebooks. By default, connections are limited to SingleStoreDB databases; however, you can enable and disable connections to other external endpoints via the allowlist. To add or remove endpoints from the allowlist:\n\n1. In the left navigation, select Notebooks.\n2. Select the Firewall tab in the main window.\n3. Select Edit to add new endpoints:\n\n<img src=https://raw.githubusercontent.com/singlestore-labs/notebook-picture/main/New%20Endpoints.png width=\"300\">\n\n4. In the Edit Allowlist dialog, you can add a Fully Qualified Domain Name (FQDN) or select from a list of suggested FQDNs (for example `pypi.org` or `github.com`). You can provide wildcard access to an endpoint by using the `*` character. For example, to access an AWS S3 endpoints, you can use the following syntax:  `*.s3.*.amazonaws.com`\n5. Select Save.\n\n<img src=https://raw.githubusercontent.com/singlestore-labs/notebook-picture/main/Connect%20to%20an%20External%20Datasource.png width=\"500\">"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "3eed3310-621f-4c37-9db4-a992980a4f46",
+      "metadata": {},
+      "source": "#### 3. Using SQL\nThe default language for SingleStoreDB Cloud notebooks is Python 3. To change a cell's language to SQL, use the SQL magic command:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 25,
+      "id": "d82fc6bf-b786-4956-a056-851e746f97b8",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nUSE information_schema;\nSELECT * FROM users\nlimit 3;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "eb91c21c-1ce6-4e31-95d1-a981dea630c7",
+      "metadata": {},
+      "source": "By default, the results are displayed as a table. We can also use the output from a calculation in another cell by saving it in a variable (result1) in the cell below."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 26,
+      "id": "0a6341cd-0328-4d8a-8158-72aff97b77de",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql result1 <<\nUSE information_schema;\nSELECT * FROM users\nlimit 3;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "91cf2054-d223-4013-8867-2f4a9494978a",
+      "metadata": {},
+      "source": "The variable result1 can be used in other cells. Below we convert it into a dataframe!"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 27,
+      "id": "5e436bc0-4843-4d0c-b64c-3470d963f29a",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import pandas as pd\ndf = pd.DataFrame(result1)\ndisplay(df)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "360b2dc0-038e-4311-a5c3-b497b8feaf57",
+      "metadata": {},
+      "source": "#### 4. Using Python in a cell\nBy default, Python3 is the language for cells. See the [Python documentation](https://docs.python.org/3/index.html) for more information about using Python. In the cell below we query the database using python and display the results using a pandas dataframe!"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 34,
+      "id": "e0085cca-2278-4904-94aa-4e46da840b66",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import pandas as pd\nquery1 = 'SELECT * FROM users limit 3;'\nresult = db_connection.execute(query1)\ndata = []\nfor i in result:\n    data.append(i)\ndf = pd.DataFrame(data)\ndf.columns = ['USER', 'HOST', 'TYPE', 'CONNECTIONS', 'IS_DELETED', 'LAST_UPDATED', 'DEFAULT_RESOURCE_POOL', 'IS_LOCAL', 'CREATED', 'PASSWORD_UPDATED', 'EFFECTIVE_FAILED_LOGIN_ATTEMPTS', 'EFFECTIVE_PASSWORD_LOCK_TIME', 'ACCOUNT_STATUS', 'PASSWORD_EXPIRATION']\ndisplay(df)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "afb80434-583d-4171-a95b-694ed14bbd98",
+      "metadata": {},
+      "source": "#### 5. Using both SQL & Python in a cell\nWe can use a single line of SQL within a python cell using a single %sql. Below we combine SQL and python in the same cell to display the result from our SQL query into a dataframe"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 35,
+      "id": "d79f9268-7c76-47cf-bee7-577ce07ae85d",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "result = %sql USE information_schema; SELECT * FROM users limit 3;\ndf = pd.DataFrame(result)\ndisplay(df)"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "2b9a3995-32df-4931-8aff-44bcd2db5908",
+      "metadata": {},
+      "source": "#### 6. Preinstalled Libraries\nBy default, a SingleStoreDB notebook has preinstalled libraries. Run the cell below to see what libraries are already installed!"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 36,
+      "id": "abee048d-f18a-4a35-8eae-c8f92939230a",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "!pip list"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "bbc061e3-acb3-40cc-be84-ada979aaa1a5",
+      "metadata": {},
+      "source": "Our notebooks support libraries available from https://pypi.org/. Run the cell below to install the [Kaggle open dataset library](https://pypi.org/project/opendatasets/)."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 37,
+      "id": "e17e1322-33df-4e2f-97fe-9815df235b40",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "!pip3 install opendatasets"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "9c6684da-af62-42bc-9481-b53c75f64b5e",
+      "metadata": {},
+      "source": "You can even upgrade versions of a preinstalled library. Run the cell below to get the new version of plotly."
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 38,
+      "id": "5a989a0f-6334-42d9-a75e-a04d09bccbec",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "!pip3 install plotly --upgrade"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "20e28455-6279-42c4-bd63-f67e6f8bba39",
+      "metadata": {},
+      "source": "Once you have a library is installed, you can import library components and add an alias:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 39,
+      "id": "278e5f8a-c16a-482a-8a3a-9d3f2a9db318",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import opendatasets as od"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "8d69cb4d-58ea-40ae-83db-03ff489d8676",
+      "metadata": {},
+      "source": "#### 7. Magic Commands\nMagic commands in Jupyter Notebook are special commands that allow you to perform various tasks that are not part of the standard Python language. \n- Line Magic commands are prefixed by '%' and operate on a single line of input. \n- Cell magic commands are prefixed by '%%\" and operate on multiple lines of input. \n\nYou can see the support magic commands by running the cell below:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 40,
+      "id": "785de230-d267-4268-b5d0-4369aa822b01",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%lsmagic"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "46de569d-f679-4726-8de6-8dc0a78af3eb",
+      "metadata": {},
+      "source": "For information about the full list of available magic commands run the cell below:"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 41,
+      "id": "b413bb30-0e9f-4484-8d3e-e7bc724a0c13",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%quickref"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "0ea02e78-b1e2-4cb4-a6d7-d813fdcb2759",
+      "metadata": {},
+      "source": "#### Learn more about SingleStoreDB notebooks [here](https://docs.singlestore.com/managed-service/en/developer-resources/notebooks.html) and get started with your first notebook!"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.10.9"
+    },
+    "singlestore_connection": {}
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

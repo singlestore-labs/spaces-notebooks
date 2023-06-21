@@ -1,0 +1,394 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "id": "7ed6450d-8003-47b8-9d31-4ffa221906ae",
+      "metadata": {},
+      "source": "# Movie Recommendation\n\n*Source*: [Full MovieLens 25M Dataset](https://grouplens.org/datasets/movielens/25m/)\n\nThis notebook demonstrates how SingleStoreDB helps you build a simple Movie Recommender System.\n\n<img src=https://raw.githubusercontent.com/singlestore-labs/notebook-picture/main/database_tables.png width=\"1000\">"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "4fc72c97-8ba9-462b-b241-ae2ff4e7531c",
+      "metadata": {
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# Import the library for vectorizing the data (Up to 2 minutes)\n!pip install sentence-transformers"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "5c9049cb-88b8-411a-b926-2517bd44859e",
+      "metadata": {},
+      "source": "## Data Ingestion"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 153,
+      "id": "fd83f672-5ef5-4a8e-9e7a-267dd19815f7",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Create the database\ndrop database if exists movie_recommender;\ncreate database movie_recommender;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "d6c75b9a-7a1f-44fe-9e25-f67f75c0d11f",
+      "metadata": {},
+      "source": "**Make sure to select movie_recommender as the default database**"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 157,
+      "id": "f6e6f6d6-87c0-4cf8-9d21-72edf3416e8d",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Import the tags\nCREATE TABLE IF NOT EXISTS tags (\n  `userId` bigint(20) NULL,\n  `movieId` bigint(20) NULL,\n  `tag` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL,\n  `timestamp` bigint(20) NULL\n);\nCREATE PIPELINE tags\nAS LOAD DATA S3 'studiotutorials/movielens/tags.csv'\nCONFIG '{\\\"region\\\":\\\"us-east-1\\\", \\\"disable_gunzip\\\": false}'\nBATCH_INTERVAL 2500\nMAX_PARTITIONS_PER_BATCH 1\nDISABLE OUT_OF_ORDER OPTIMIZATION\nDISABLE OFFSETS METADATA GC\nSKIP DUPLICATE KEY ERRORS\nINTO TABLE `tags`\nFIELDS TERMINATED BY ',' ENCLOSED BY '\"' ESCAPED BY '\\\\'\nLINES TERMINATED BY '\\r\\n'\nNULL DEFINED BY ''\nIGNORE 1 LINES\n(userId,movieId,tag,timestamp);\nstart pipeline tags;"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 158,
+      "id": "4c55da7c-fc1e-446c-aa9d-52ee3b085d97",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Import the ratings\nCREATE TABLE IF NOT EXISTS ratings (\n  userId bigint(20) DEFAULT NULL,\n  movieId bigint(20) DEFAULT NULL,\n  rating double DEFAULT NULL,\n  timestamp bigint(20) DEFAULT NULL\n);\nCREATE PIPELINE ratings\nAS LOAD DATA S3 'studiotutorials/movielens/ratings.csv'\nCONFIG '{\\\"region\\\":\\\"us-east-1\\\", \\\"disable_gunzip\\\": false}'\nBATCH_INTERVAL 2500\nMAX_PARTITIONS_PER_BATCH 1\nDISABLE OUT_OF_ORDER OPTIMIZATION\nDISABLE OFFSETS METADATA GC\nSKIP DUPLICATE KEY ERRORS\nINTO TABLE `ratings`\nFIELDS TERMINATED BY ',' ENCLOSED BY '\"' ESCAPED BY '\\\\'\nLINES TERMINATED BY '\\r\\n'\nNULL DEFINED BY ''\nIGNORE 1 LINES\n(userId,movieId,rating,timestamp);\nstart pipeline ratings;"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 159,
+      "id": "fba97ca5-3673-4ce8-b6f7-3214f6205bd9",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Import the movies\nCREATE TABLE movies (\n  movieId bigint(20) DEFAULT NULL,\n  title text CHARACTER SET utf8 COLLATE utf8_general_ci,\n  genres text CHARACTER SET utf8 COLLATE utf8_general_ci,\n    FULLTEXT(title)\n);\nCREATE PIPELINE movies\nAS LOAD DATA S3 'studiotutorials/movielens/movies.csv'\nCONFIG '{\\\"region\\\":\\\"us-east-1\\\", \\\"disable_gunzip\\\": false}'\nBATCH_INTERVAL 2500\nMAX_PARTITIONS_PER_BATCH 1\nDISABLE OUT_OF_ORDER OPTIMIZATION\nDISABLE OFFSETS METADATA GC\nSKIP DUPLICATE KEY ERRORS\nINTO TABLE `movies`\nFIELDS TERMINATED BY ',' ENCLOSED BY '\"' ESCAPED BY '\\\\'\nLINES TERMINATED BY '\\r\\n'\nNULL DEFINED BY ''\nIGNORE 1 LINES\n(movieId,title,genres);\nstart pipeline movies;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "6e41ed09-2cc3-4fb7-90da-077a04111417",
+      "metadata": {},
+      "source": "### Check that all the data has been loaded\nThere should be 25m rows for ratings, 62k for movies and 1m for tags"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 162,
+      "id": "cf4c1d0f-8de2-42ea-ab33-7dadbde74855",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nselect count(*) as count_rows from ratings\nUNION ALL\nselect count(*) as count_rows from movies\nUNION ALL\nselect count(*) as count_rows from tags"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "0fb4162d-a55a-4926-9ce0-500d5909e3a2",
+      "metadata": {},
+      "source": "### Concatenate Tags and Movies tables with concatenated tags"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 163,
+      "id": "17be3378-28ea-4487-9177-a266d0998a08",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nCREATE TABLE movies_with_tags AS\nSELECT \n  m.movieId, \n  m.title, \n  m.genres,\n  GROUP_CONCAT(t.tag SEPARATOR ',') AS all_tags\nFROM movies m\nleft JOIN tags t ON m.movieId = t.movieId\nGROUP BY m.movieId, m.title, m.genres;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "767ace41-c4d2-46ca-842f-a220c755ad11",
+      "metadata": {},
+      "source": "#### 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊 Done with Data Ingestion 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "f4f2be44-5c5d-4113-9b9e-55bfa89d5d5b",
+      "metadata": {},
+      "source": "## Vectorize data"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "204c4a32-bafd-45d7-928e-3ec1083b4b58",
+      "metadata": {
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from sentence_transformers import SentenceTransformer\nmodel = SentenceTransformer('flax-sentence-embeddings/all_datasets_v3_mpnet-base')"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "id": "920798f0-55b6-4f2d-ba36-7f94e750f684",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql result <<\n-- Import movies_with_tags into a dataframe\nselect * from movies_with_tags"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 7,
+      "id": "01d5cf58-65eb-4676-90b9-0d5a9253fd34",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import pandas as pd\n# Use the SQL output in a dataframe\ndf = pd.DataFrame(result)\n# Curate the special characters\ndf['title'] = df['title'].str.replace('\"', '', regex=True)\ndf['all_tags'] = df['all_tags'].str.replace('\"', '', regex=True)\ndf['all_tags'] = df['all_tags'].str.replace(r'[\"\\']', '', regex=True)\n# Convert from dataframe to list\nall_titles = df.values.tolist()"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 22,
+      "id": "de9b96b6-0fb3-47f9-8186-b5e6cee330a4",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# Check the first row of the list\nall_titles[0]"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 22,
+      "id": "a1d9b7f5-409c-4053-a724-39747ce663b8",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# Concatenate Title and Tags\nall_title_type_column = [row[1] + '-' + str(row[3]) if row[1] is not None else row[1] for row in all_titles]"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "efd8aaa2-feaf-43ce-9f72-f5161d781f00",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# create the embeddings for Title & Tag (~3 minutes)\n# Remove [:3000] if you want to vectorize all rows (~60 minutes)\nall_embeddings = model.encode(all_title_type_column[:3000])\nall_embeddings.shape"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 37,
+      "id": "54b0546d-0e22-4fde-a903-18c714bdd21d",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# Combine now into one list the vector and the initial list\n# Remember the list will be only 3,000 elements\ncombined_data = [(embedding,) + tuple(row) for embedding, row in zip(all_embeddings, all_titles)]"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "f482feed-edd4-4489-8ab4-cdd5803515f3",
+      "metadata": {
+        "execution": {},
+        "tags": []
+      },
+      "source": "## Insert the data into SingleStore"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 188,
+      "id": "46c50550-5961-45df-ace8-65d7b91edc42",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "from sqlalchemy import *\ndb_connection = create_engine(connection_url)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 39,
+      "id": "32f4d535-8ea6-47a9-9fd3-5215a23f72e3",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nDROP TABLE IF EXISTS movie_with_tags_with_vectors;\nCREATE TABLE IF NOT EXISTS movie_with_tags_with_vectors (\n  movieId bigint(20) DEFAULT NULL,\n  title text CHARACTER SET utf8 COLLATE utf8_general_ci,\n  genres text CHARACTER SET utf8 COLLATE utf8_general_ci,\n  all_tags longtext CHARACTER SET utf8mb4,\n  vector blob\n)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 40,
+      "id": "4cbf8232-7738-49fa-be00-1e7a5f1882b3",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "# some rows might encounter errors due to unsupported characters\nimport json\nfor i in range(len(combined_data)):\n    try:\n        ndarray_to_list = combined_data[i][0].tolist()\n        json_vector = json.dumps(ndarray_to_list)\n        sql_query = 'INSERT INTO movie_with_tags_with_vectors (movieId, title, genres, all_tags,vector) VALUES (\"{}\",\"{}\",\"{}\",\"{}\",json_array_pack(\"{}\"))'.format(combined_data[i][1],combined_data[i][2],combined_data[i][3],combined_data[i][4],json_vector)\n        db_connection.execute(sql_query)\n    except Exception as e:\n        print(\"Error inserting row {}: {}\".format(i, e))\n        continue"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "836a6c50-8bb1-492d-8665-90dce03f4553",
+      "metadata": {},
+      "source": "#### 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊 Done with Vectorization 🎉🎊🎉🎊🎉🎊🎉🎊🎉🎊"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "192353be-db56-4cec-8d6e-a258532c6dd9",
+      "metadata": {},
+      "source": "## Marrying Search ❤️ Semantic Search ❤️ Analytics"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "edd2d5e9-b4ad-4d10-b638-eabeaaad4846",
+      "metadata": {},
+      "source": "### Build autocomplete search"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 41,
+      "id": "eca42fb8-2591-472b-a607-85c5fb3d5f63",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- This is en experimentation we started with to render a full text search\nWITH queryouter AS (\n                SELECT DISTINCT(title), movieId, MATCH(title) AGAINST ('Pocahontas*') as relevance\n                FROM movies\n                WHERE MATCH(title) AGAINST ('Pocahontas*')\n                ORDER BY relevance DESC\n                LIMIT 10)\nSELECT title, movieId FROM queryouter;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "9f4d78ba-a0ad-4a4c-98e7-f06ce1281ed1",
+      "metadata": {},
+      "source": "### Create user favorite movie tables"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 42,
+      "id": "45a78f0a-c6bd-423b-bc5e-df641c78f48e",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- We need to store the movie choice in a table\nCREATE ROWSTORE TABLE IF NOT EXISTS user_choice (\n  userid text CHARACTER SET utf8 COLLATE utf8_general_ci,\n  title text CHARACTER SET utf8 COLLATE utf8_general_ci,\n  ts datetime DEFAULT NULL,\n  KEY userid (userid)\n)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 44,
+      "id": "98ca4b36-3aa0-43d9-8e9f-ffb9f08e9b72",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\n-- Enter dummy data for testing purposed\nINSERT INTO user_choice (userid, title, ts)\nVALUES ('user1', 'Zone 39 (1997)', '2022-01-01 00:00:00'),\n       ('user1', 'Star Trek II: The Wrath of Khan (1982)', '2022-01-01 00:00:00'),\n       ('user1', 'Giver, The (2014)', '2022-01-01 00:00:00');"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "cbe64201-0260-43be-87c0-20616c34ce59",
+      "metadata": {},
+      "source": "### Build semantic search for a movie recommendation"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 45,
+      "id": "c2368b35-e2cd-4a7c-82a5-565cabc73f90",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "%%sql\nWITH\n    table_match AS (\n        SELECT\n            m.title,\n            m.movieId,\n            m.vector\n        FROM\n            user_choice t\n            INNER JOIN movie_with_tags_with_vectors m ON m.title = t.title\n        WHERE\n            userid = 'user1'\n    ),\n    movie_pairs AS (\n        SELECT\n            m1.movieId AS movieId1,\n            m1.title AS title1,\n            m2.movieId AS movieId2,\n            m2.title AS title2,\n            DOT_PRODUCT(m1.vector, m2.vector) AS similarity\n        FROM\n            table_match m1\n            CROSS JOIN movie_with_tags_with_vectors m2\n        WHERE\n            m1.movieId != m2.movieId\n            AND NOT EXISTS (\n                SELECT\n                    1\n                FROM\n                    user_choice uc\n                WHERE\n                    uc.userid = 'user1'\n                    AND uc.title = m2.title\n            )\n    ),\n    movie_match AS (\n        SELECT\n            movieId1,\n            title1,\n            movieId2,\n            title2,\n            similarity\n        FROM\n            movie_pairs\n        ORDER BY\n            similarity DESC\n    ),\n    distinct_count AS (\n        SELECT DISTINCT\n            movieId2,\n            title2 AS Title,\n            ROUND(AVG(similarity), 4) AS Rating_Match\n        FROM\n            movie_match\n        GROUP BY\n            movieId2,\n            title2\n        ORDER BY\n            Rating_Match DESC\n    ),\n    average_ratings AS (\n        SELECT\n            movieId,\n            AVG(rating) AS Avg_Rating\n        FROM\n            ratings\n        GROUP BY\n            movieId\n    )\nSELECT\n    dc.Title,\n    dc.Rating_Match as 'Match Score',\n    ROUND(ar.Avg_Rating, 1) AS 'Average User Rating'\nFROM\n    distinct_count dc\n    JOIN average_ratings ar ON dc.movieId2 = ar.movieId\nORDER BY\n    dc.Rating_Match DESC\nLIMIT\n    5;"
+    },
+    {
+      "cell_type": "markdown",
+      "id": "3a9efa4a-1a38-49f3-ba6d-a00b6c90e2b0",
+      "metadata": {},
+      "source": "# What are you looking for?"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 186,
+      "id": "87547d68-e1c9-4fd8-946f-6b378c9b36f2",
+      "metadata": {
+        "execution": {},
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "import json\nquery_sentence = \"I want see a French comedy movie\"\nxq = model.encode(query_sentence).tolist()\nsearch_embedding = json.dumps(xq)"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "3b70a678-4829-4456-8946-d1dcbf46c98b",
+      "metadata": {
+        "tags": [],
+        "trusted": true
+      },
+      "outputs": [],
+      "source": "sql_query = (\"SELECT title, genres, DOT_PRODUCT(vector, JSON_ARRAY_PACK(%s)) AS Score FROM movie_with_tags_with_vectors tv \"\n             \"order by Score DESC \"\n             \"limit 10\")\nresults = db_connection.execute(sql_query, (search_embedding,)).fetchall()\n\noutput_list = []\nfor res in results:\n    output_list.append({\n        'title': res[0],\n        'genres': res[1],\n        'score': res[2]\n    })\n\nfor i, res in enumerate(output_list):\n    print(i+1, \": \", res['title'],res['genres'],\"Score: \", res['score'])"
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "id": "9baad871-27da-49b1-89b7-1bc7afb7f5f1",
+      "metadata": {},
+      "outputs": [],
+      "source": ""
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3 (ipykernel)",
+      "language": "python",
+      "name": "python3"
+    },
+    "language_info": {
+      "codemirror_mode": {
+        "name": "ipython",
+        "version": 3
+      },
+      "file_extension": ".py",
+      "mimetype": "text/x-python",
+      "name": "python",
+      "nbconvert_exporter": "python",
+      "pygments_lexer": "ipython3",
+      "version": "3.10.9"
+    },
+    "singlestore_connection": {}
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
