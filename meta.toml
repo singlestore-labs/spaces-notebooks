@@ -7,3 +7,14 @@ authors = [
 [meta.urls]
 homepage = "https://singlestore.com"
 documentation = "https://docs.singlestore.com"
+
+[samples]
+display = [
+    "Getting Started with Notebooks",
+    "Notebook Basics",
+    "Image Matching with SQL",
+    "Movie Recommendation",
+    "Semantic Search with OpenAI QA",
+    "Semantic Search with OpenAI Embedding Creation",
+    "Atlas & Kai for Mongo Side-by-Side",
+]
