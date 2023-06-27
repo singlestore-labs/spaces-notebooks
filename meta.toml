@@ -1,0 +1,9 @@
+[meta]
+authors = [
+    {name="Tim Green", email="tgreen@singlestore.com"},
+    {name="Kevin Smith", email="ksmith@singlestore.com"},
+]
+
+[meta.urls]
+homepage = "https://singlestore.com"
+documentation = "https://docs.singlestore.com"
