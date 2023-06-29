@@ -10,7 +10,8 @@ from zipfile import ZipFile
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
-        description='package sample notebooks for use in the managed service portal',
+        description='package sample notebooks for use in '
+                    'the managed service portal',
     )
 
     parser.add_argument(
@@ -40,7 +41,8 @@ if __name__ == '__main__':
             )
             if not os.path.isfile(path):
                 print(
-                    f'error: `.ipynb` file does not exist at {path}', file=sys.stderr,
+                    f'error: `.ipynb` file does not exist at {path}',
+                    file=sys.stderr,
                 )
                 sys.exit(1)
             files.append((path, f'{i + 1:02} - {os.path.basename(path)}.json'))
