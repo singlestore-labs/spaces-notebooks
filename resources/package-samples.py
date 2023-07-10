@@ -35,17 +35,41 @@ if __name__ == '__main__':
         meta = tomllib.load(f)
         files = []
         for i, name in enumerate(meta['samples']['display']):
+
+            # Verify the notebook file exists
             path = os.path.join(
                 args.notebooks_directory,
-                name, name + '.ipynb',
+                name, 'notebook.ipynb',
             )
             if not os.path.isfile(path):
                 print(
-                    f'error: `.ipynb` file does not exist at {path}',
+                    f'error: notebook file does not exist at {path}',
                     file=sys.stderr,
                 )
                 sys.exit(1)
-            files.append((path, f'{i + 1:02} - {os.path.basename(path)}.json'))
+
+            # Verify the metadata file exists
+            meta_path = os.path.join(
+                args.notebooks_directory,
+                name, 'meta.toml',
+            )
+            if not os.path.isfile(meta_path):
+                print(
+                    f'error: metadata file does not exist at {meta_path}',
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+
+            with open(meta_path, 'rb') as meta_toml:
+                nb_meta = tomllib.load(meta_toml)
+
+            try:
+                files.append(
+                    (path, f'{i + 1:02} - {nb_meta["meta"]["title"]}.json'),
+                )
+            except Exception:
+                print(path, ' =>\n    ', nb_meta)
+                raise
 
     with ZipFile(args.outfile, 'w') as out:
         for path, name in files:

@@ -10,11 +10,11 @@ documentation = "https://docs.singlestore.com"
 
 [samples]
 display = [
-    "Getting Started with Notebooks",
-    "Notebook Basics",
-    "Image Matching with SQL",
-    "Movie Recommendation",
-    "Semantic Search with OpenAI QA",
-    "Semantic Search with OpenAI Embedding Creation",
-    "Atlas & Kai for Mongo Side-by-Side",
+    "getting-started-with-notebooks",
+    "notebook-basics",
+    "image-matching-with-sql",
+    "movie-recommendation",
+    "semantic-search-with-openai-qa",
+    "semantic-search-with-openai-embedding-creation",
+    "atlas-and-kai-for-mongo",
 ]
