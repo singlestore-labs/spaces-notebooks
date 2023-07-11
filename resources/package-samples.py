@@ -1,10 +1,26 @@
 #!/usr/bin/env python3
 """Package sample notebooks for use in the managed service portal."""
 import argparse
+import json
 import os
 import sys
 import tomllib
 from zipfile import ZipFile
+
+
+def clear_outputs(path: str) -> str:
+    """Remove outputs from notebook at path."""
+    with open(path, 'r') as infile:
+        nb = json.loads(infile.read())
+        for cell in nb['cells']:
+            if 'metadata' in cell:
+                cell['metadata']['execution'] = {}
+            if 'outputs' in cell:
+                cell['outputs'] = []
+            if 'metadata' in nb:
+                if 'singlestore_connection' in nb['metadata']:
+                    nb['metadata']['singlestore_connection'] = {}
+        return json.dumps(nb, indent=2)
 
 
 if __name__ == '__main__':
@@ -74,4 +90,4 @@ if __name__ == '__main__':
     with ZipFile(args.outfile, 'w') as out:
         for path, name in files:
             print(path, ' => ', name)
-            out.write(path, arcname=name)
+            out.writestr(name, clear_outputs(path))
