@@ -81,7 +81,10 @@ if __name__ == '__main__':
 
             try:
                 files.append(
-                    (path, f'{i + 1:02} - {nb_meta["meta"]["title"]}.json'),
+                    (
+                        path,
+                        f'{i + 1:02} - {nb_meta["meta"]["title"]}.ipynb.json',
+                    ),
                 )
             except Exception:
                 print(path, ' =>\n    ', nb_meta)
