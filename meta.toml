@@ -16,5 +16,5 @@ display = [
     "movie-recommendation",
     "semantic-search-with-openai-qa",
     "semantic-search-with-openai-embedding-creation",
-    "atlas-and-kai-for-mongo",
+    "atlas-and-kai",
 ]
