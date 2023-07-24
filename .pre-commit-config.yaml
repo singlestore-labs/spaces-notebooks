@@ -16,7 +16,6 @@ repos:
     rev: 5.0.4
     hooks:
     -   id: flake8
-        exclude: singlestoredb/clients/pymysqlsv/
         additional_dependencies: [flake8-typing-imports==1.12.0]
 -   repo: https://github.com/pre-commit/mirrors-autopep8
     rev: v1.6.0
@@ -49,3 +48,9 @@ repos:
         language: system
         files: \.ipynb$
         exclude: notebooks/notebook-style-guide/notebook.ipynb
+    -   id: toml-check
+        name: toml-check
+        entry: resources/toml-check.py
+        language: system
+        files: \.toml$
+        exclude: ^meta.toml

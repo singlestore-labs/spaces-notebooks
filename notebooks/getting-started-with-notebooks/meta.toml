@@ -1,4 +1,9 @@
 [meta]
 title="Getting Started with Notebooks"
-description=""
-tags=[]
+description="""\
+    SingleStore Notebooks with an AI Copilot (SQrL) for data prototyping, \
+    visualization and analysis. \
+    """
+icon="notes"
+tags=["beginner", "sqrl"]
+destinations=["spaces"]

@@ -1,4 +1,8 @@
 [meta]
 title="Mongo Atlas & SingleStore Kai"
-description=""
+description="""\
+    Run your MongoDB queries on SingleStore Kai with no code change. \
+    """
+icon="database"
 tags=["mongodb", "kai"]
+destinations=["spaces"]

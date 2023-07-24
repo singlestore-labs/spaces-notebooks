@@ -1,4 +1,8 @@
 [meta]
 title="Semantic Search with OpenAI Embedding Creation"
-description=""
-tags=["openai"]
+description="""\
+    Generate embeddings and run semantic search in your database in SQL. \
+    """
+icon="chart-network"
+tags=["openai", "vectordb", "genai"]
+destinations=["spaces"]

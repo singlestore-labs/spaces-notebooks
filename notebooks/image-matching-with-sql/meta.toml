@@ -1,4 +1,8 @@
 [meta]
 title="Image Matching with SQL"
-description=""
-tags=[]
+description="""\
+    Facial recognition using dot_product function on vectors stored in SingleStoreDB. \
+    """
+icon="face-viewfinder"
+tags=["vectordb", "genai", "facenet"]
+destinations=["spaces"]

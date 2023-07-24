@@ -1,4 +1,8 @@
 [meta]
 title="Semantic Search with OpenAI QA"
-description=""
-tags=["openai"]
+description="""\
+    Provide context to chatGPT using data stored in SingleStoreDB. \
+    """
+icon="crystal-ball"
+tags=["openai", "vectordb", "openai"]
+destinations=["spaces"]

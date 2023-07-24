@@ -1,4 +1,8 @@
 [meta]
 title="Launch Open-Source Apps with LangChain"
-description=""
-tags=[]
+description="""\
+    LangChain connector to use SingleStoreDB as your vector database for your apps. \
+    """
+icon=""
+tags=["vectordb", "genai", "langchain"]
+destinations=[]
