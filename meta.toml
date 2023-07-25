@@ -12,6 +12,7 @@ documentation = "https://docs.singlestore.com"
 display = [
     "getting-started-with-notebooks",
     "notebook-basics",
+    "getting-started-with-dataframes",
     "image-matching-with-sql",
     "movie-recommendation",
     "semantic-search-with-openai-qa",
