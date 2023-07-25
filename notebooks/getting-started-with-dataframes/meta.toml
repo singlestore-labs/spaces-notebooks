@@ -1,0 +1,9 @@
+[meta]
+title="Getting Started with DataFrames in SingleStoreDB"
+description="""\
+    Data in SingleStoreDB can be queried and modified using a
+    familiar DataFrame syntax in addition to SQL.
+    """
+icon="browser"
+tags=["beginner", "dataframe"]
+destinations=["spaces"]
