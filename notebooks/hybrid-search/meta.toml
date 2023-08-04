@@ -1,4 +1,9 @@
 [meta]
 title="Hybrid Search"
-description="Hybrid search combines keyword search with semantic search, aiming to provide more accurate results."
-tags=[]
+description="""\
+    Hybrid search combines keyword search with semantic search,
+    aiming to provide more accurate results.
+    """
+tags=["openai"]
+icon="vector-circle"
+destinations=["spaces"]
