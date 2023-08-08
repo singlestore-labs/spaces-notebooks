@@ -1,0 +1,9 @@
+[meta]
+title="Semantic Search with Hugging Face Models and Datasets"
+description="""\
+    Use Hugging Face to create embeddings and run semantic search \
+    using dot product in SingleStoreDB. \
+    """
+icon="chart-network"
+tags=["huggingface", "vectordb"]
+destinations=["spaces"]
