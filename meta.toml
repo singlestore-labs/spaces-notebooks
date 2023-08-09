@@ -15,6 +15,7 @@ display = [
     "getting-started-with-dataframes",
     "image-matching-with-sql",
     "movie-recommendation",
+    "semantic-search-with-hugging-face",
     "semantic-search-with-openai-qa",
     "semantic-search-with-openai-embedding-creation",
     "atlas-and-kai",
