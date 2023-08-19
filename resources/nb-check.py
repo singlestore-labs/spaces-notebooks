@@ -177,10 +177,10 @@ for f in sys.argv[1:]:
 
     # Add header cell
     header = NOTEBOOK_HEADER.format(
-            background_color=background_color,
-            icon_name=icon_name,
-            title=title,
-        )
+        background_color=background_color,
+        icon_name=icon_name,
+        title=title,
+    )
     cells.insert(0, new_markdown_cell(header_id, header))
 
     # Add footer cell
