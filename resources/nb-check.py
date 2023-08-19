@@ -80,7 +80,7 @@ def new_markdown_cell(cell_id: str, content: str) -> dict[str, Any]:
     ----------
     cell_id : str
         The UUID to use for the cell ID
-    content : list[str]
+    content : str
         The list of strings that make up the cell contents
 
     Returns
@@ -170,13 +170,11 @@ for f in sys.argv[1:]:
         error(f'missing title in {toml_path}')
 
     # Add header cell
-    header = [
-        x.format(
+    header = NOTEBOOK_HEADER.format(
             background_color=background_color,
             icon_name=icon_name,
             title=title,
-        ) for x in NOTEBOOK_HEADER
-    ]
+        )
     cells.insert(0, new_markdown_cell(header_id, header))
 
     # Add footer cell
