@@ -9,22 +9,9 @@ import uuid
 from typing import Any
 
 
-NOTEBOOK_HEADER = [
-    '<div id="singlestore-header" style="display: flex; background-color: {background_color}; padding: 5px;">\n',
-    '    <div id="icon-image" style="width: 90px; height: 90px;">\n',
-    '        <img width="100%" height="100%" src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/header-icons/{icon_name}.png" />\n',
-    '    </div>\n',
-    '    <div id="text" style="padding: 5px; margin-left: 10px;">\n',
-    '        <div id="badge" style="display: inline-block; background-color: rgba(0, 0, 0, 0.15); border-radius: 4px; padding: 4px 8px; align-items: center; margin-top: 6px; margin-bottom: -2px; font-size: 80%">SingleStore Notebooks</div>\n',
-    '        <h1 style="font-weight: 500; margin: 8px 0 0 4px;">{title}</h1>\n',
-    '    </div>\n',
-    '</div>',
-]
+NOTEBOOK_HEADER = '<div id="singlestore-header" style="display: flex; background-color: {background_color}; padding: 5px;">\n    <div id="icon-image" style="width: 90px; height: 90px;">\n        <img width="100%" height="100%" src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/header-icons/{icon_name}.png" />\n    </div>\n    <div id="text" style="padding: 5px; margin-left: 10px;">\n        <div id="badge" style="display: inline-block; background-color: rgba(0, 0, 0, 0.15); border-radius: 4px; padding: 4px 8px; align-items: center; margin-top: 6px; margin-bottom: -2px; font-size: 80%">SingleStore Notebooks</div>\n        <h1 style="font-weight: 500; margin: 8px 0 0 4px;">{title}</h1>\n    </div>\n</div>'
 
-NOTEBOOK_FOOTER = [
-    '<div id="singlestore-footer" style="background-color: rgba(194, 193, 199, 0.25); height:2px; margin-bottom:10px"></div>\n',
-    '<div><img src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-grey.png" style="padding: 0px; margin: 0px; height: 24px"/></div>',
-]
+NOTEBOOK_FOOTER = '<div id="singlestore-footer" style="background-color: rgba(194, 193, 199, 0.25); height:2px; margin-bottom:10px"></div>\n<div><img src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-grey.png" style="padding: 0px; margin: 0px; height: 24px"/></div>'
 
 ICON_COLORS = {
     'arrow-up-right-dots': 'rgba(255, 167, 103, 0.25)',
