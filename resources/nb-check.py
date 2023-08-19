@@ -72,7 +72,7 @@ def error(msg: str) -> None:
     sys.exit(1)
 
 
-def new_markdown_cell(cell_id: str, content: list[str]) -> dict[str, Any]:
+def new_markdown_cell(cell_id: str, content: str) -> dict[str, Any]:
     """
     Construct a markdown cell for a notebook.
 
