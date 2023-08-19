@@ -123,7 +123,13 @@ for f in sys.argv[1:]:
     # Clear out execution metadata and cell output
     for cell in cells:
         if 'metadata' in cell:
-            cell['metadata'] = {}
+            clean_metadata = {}
+            if 'language' in cell['metadata']:
+                clean_metadata['language'] = cell['metadata']['language']
+            if 'output_variable' in cell['metadata']:
+                clean_metadata['output_variable'] = cell['metadata']['output_variable']
+
+            cell['metadata'] = clean_metadata
         if 'outputs' in cell:
             cell['outputs'] = []
         if 'execution_count' in cell:
