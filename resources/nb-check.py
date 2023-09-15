@@ -133,14 +133,12 @@ for f in sys.argv[1:]:
 
     cells = nb.get('cells', [])
 
-    # Clear out execution metadata and cell output
-    for cell in cells:
-        if 'metadata' in cell:
-            cell['metadata'] = {}
-        if 'outputs' in cell:
-            cell['outputs'] = []
-        if 'execution_count' in cell:
-            cell['execution_count'] = None
+    # Remove metadata and outputs
+#   for i, cell in enumerate(cells):
+#       if 'metadata' in cell:
+#           cell['metadata'] = {}
+#       if 'outputs' in cell:
+#           cell['outputs'] = []
 
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1
@@ -194,6 +192,13 @@ for f in sys.argv[1:]:
 
     # Add footer cell
     cells.append(new_markdown_cell(footer_id, NOTEBOOK_FOOTER))
+
+    # Ensure sequential execution counts
+    code_idx = 1
+    for cell in cells:
+        if cell.get('cell_type', '') == 'code':
+            cell['execution_count'] = code_idx
+            code_idx += 1
 
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))

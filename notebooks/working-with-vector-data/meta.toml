@@ -1,0 +1,9 @@
+[meta]
+title="Working with Vector Data"
+description="""\
+    This example demonstrates the various ways to upload and download
+    vector data from SingleStoreDB using Python.
+    """
+icon="browser"
+tags=["beginner", "vectordb"]
+destinations=["spaces"]
