@@ -134,11 +134,11 @@ for f in sys.argv[1:]:
     cells = nb.get('cells', [])
 
     # Remove metadata and outputs
-#   for i, cell in enumerate(cells):
-#       if 'metadata' in cell:
-#           cell['metadata'] = {}
-#       if 'outputs' in cell:
-#           cell['outputs'] = []
+    for i, cell in enumerate(cells):
+        if 'metadata' in cell:
+            cell['metadata'] = {}
+        if 'outputs' in cell:
+            cell['outputs'] = []
 
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1
@@ -166,6 +166,17 @@ for f in sys.argv[1:]:
         if 'id="singlestore-footer"' in source:
             footer_cell = cells.pop(-1)
             footer_id = footer_cell.get('id', footer_id)
+
+    # Convert source lists to a string
+    for cell in cells:
+        source = cell.get('source', [])
+        if isinstance(source, list):
+            source = ''.join(source)
+        source = [x.rstrip() + '\n' for x in source.rstrip().split('\n')]
+        source[-1] = source[-1].rstrip()
+        if source == ['']:
+            source = []
+        cell['source'] = source
 
     # Prepare parameter substitutions for header
     try:
