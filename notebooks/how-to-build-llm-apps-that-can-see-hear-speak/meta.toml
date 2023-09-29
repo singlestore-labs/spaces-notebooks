@@ -4,5 +4,5 @@ description="""\
     Using OpenAI to build a an app that can take images, audio, and text data to generate output
     """
 icon="chart-network"
-tags=["Advanced", "OpenAI", "genAI"]
+tags=["advanced", "openai", "genai"]
 destinations=["spaces"]
