@@ -1,0 +1,8 @@
+[meta]
+title="How to Build LLM Apps that can See Hear Speak"
+description="""\
+    Using OpenAI to build a an app that can take images, audio, and text data to generate output
+    """
+icon="chart-network"
+tags=["Advanced", "OpenAI", "genAI"]
+destinations=["spaces"]
