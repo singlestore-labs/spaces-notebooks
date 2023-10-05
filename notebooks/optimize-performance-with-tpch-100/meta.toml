@@ -1,0 +1,12 @@
+[meta]
+title="Learn how to Optimize Performance with TPCH 100"
+description="This notebook will help you understand how you can take advantage of SingleStoreDB distributed capability using TPCH-100. We recommend using a S2 or S4 workspace to see the difference in performance.
+If you come from single node database, this is an important step to follow to scale your performance linearly as your data grows.
+
+You will see two areas:
+*) Ingesting data using pipeline at a super fast speed (You will use a real-time embedded dashboard)
+*) Compare query performance with an unoptimized database and an optimized database
+"
+icon="database"
+tags=["performance", "benchmark", "tpch", "benchmark", "shardkey", "ingest"]
+destinations=["spaces"]
