@@ -1,10 +1,6 @@
 [meta]
 title="Load JSON files with Pipeline from S3"
-description="""\
-    This notebook will help you load JSON files from a public open
-    AWS S3 bucket. You will see two modes:
-        *) where you map the JSON elements to columns in a relational table
-        *) where you just ingest all documents ito a JSON column. In that mode we also show how you can use persisted computed column for extracting JSON fields
+description="""\This notebook will help you load JSON files from a public open AWS S3 bucket. You will see two modes:
 """
 icon="chart-network"
 tags=["pipeline", "json", "s3"]
