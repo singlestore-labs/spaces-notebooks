@@ -1,0 +1,8 @@
+[meta]
+title="Build a GenAI app with SingleStoreDB and Google Vertex AI"
+description="""\
+    Learn how to build a GenAI app with Google Vertex AI models and SingleStore as the vector database
+    """
+tags=["google", "vertex", "genai", "vectordb"]
+icon="crystal-ball"
+destinations=["spaces"]
