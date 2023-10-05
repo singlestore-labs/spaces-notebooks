@@ -1,0 +1,8 @@
+[meta]
+title="Build a GenAI app with SingleStoreDB and LlamaIndex"
+description="""\
+    Learn how to build a GenAI app with LlamaIndex and SingleStore as the vector database
+    """
+tags=["llamaindex", "genai", "vectordb"]
+icon="crystal-ball"
+destinations=["spaces"]
