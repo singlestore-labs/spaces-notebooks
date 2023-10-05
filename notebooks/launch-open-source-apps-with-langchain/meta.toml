@@ -5,4 +5,4 @@ description="""\
     """
 icon="vector-circle"
 tags=["vectordb", "genai", "langchain"]
-destinations=[]
+destinations=["spaces"]
