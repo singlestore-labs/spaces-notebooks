@@ -35,12 +35,12 @@ tags=["mongodb", "kai"]
 
 The CI pipeline in this repo runs a bunch of validation checks and code reformatting with pre-commit checks. If you don't install those checks in your clone of the repo, the code will likely never pass. To install the pre-commit tool in your clone run the following from your clone directory. This will force the checks before you can push.
 
-```python
+```bash
 pip3 install pre-commit
 pre-commit install
 ```
 
 The checks run automatically when you attempt to commit, but you can run them manually as well with the following:
-```python
+```bash
 pre-commit run --all-files
 ```
