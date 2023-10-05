@@ -1,7 +1,8 @@
 [meta]
 title="Load JSON files with Pipeline from S3"
-description="""\This notebook will help you load JSON files from a public open AWS S3 bucket. You will see two modes:
-"""
+description="""\
+    This notebook will help you load JSON files from a public open AWS S3 bucket.
+    """
 icon="chart-network"
 tags=["pipeline", "json", "s3"]
 destinations=["spaces"]
