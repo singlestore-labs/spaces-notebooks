@@ -167,8 +167,9 @@ for f in sys.argv[1:]:
             footer_cell = cells.pop(-1)
             footer_id = footer_cell.get('id', footer_id)
 
-    # Convert source lists to a string
     for cell in cells:
+
+        # Convert source lists to a string
         source = cell.get('source', [])
         if isinstance(source, list):
             source = ''.join(source)
@@ -177,6 +178,10 @@ for f in sys.argv[1:]:
         if source == ['']:
             source = []
         cell['source'] = source
+
+        # Remove "attachments": null (not sure how they get in there)
+        if 'attachments' in cell and cell['attachments'] is None:
+            cell['attachments'] = {}
 
     # Prepare parameter substitutions for header
     try:
