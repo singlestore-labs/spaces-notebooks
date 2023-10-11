@@ -38,6 +38,9 @@ for f in sys.argv[1:]:
     if [re.sub(r'[^a-z0-9]', r'', x) for x in tags] != tags:
         error(f'Tags can only contain letters and numbers ({tags}) in {f}')
 
+    if len(tags) != len(set(tags)):
+        error(f'Duplicate tag found ({tags}) in {f}')
+
     # Currently only "spaces" is allowed in destinations
     destinations = meta.get('destinations', [])
 
