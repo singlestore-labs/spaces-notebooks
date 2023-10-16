@@ -1,6 +1,5 @@
 [meta]
-title="Part 3 or Real-time threat Detection - Integrate with Kafka, run and visualize Threat Detection on incoming logs.
-This notebook requires adjustments to work out of the box."
+title="Part 3 or Real-time threat Detection - Integrate with Kafka, run and visualize Threat Detection on incoming logs. This notebook requires adjustments to work out of the box."
 icon="browser"
 tags=["iot", "cybersecurity", "training", "vectordb", "kafka", "pipeline", "realtime"]
 destinations=["spaces"]
