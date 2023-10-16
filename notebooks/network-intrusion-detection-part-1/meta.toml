@@ -1,0 +1,8 @@
+[meta]
+title="Part 1 or Real-time threat Detection - This notebook demonstrates the application of SingleStoreDB's similarity search to create a system 
+for identifying infrequent occurrences, a common requirement in fields such as cybersecurity 
+and fraud detection where only a small percentage of events are potentially malicious.
+"
+icon="browser"
+tags=["iot", "cybersecurity", "training", "vectordb"]
+destinations=["spaces"]
