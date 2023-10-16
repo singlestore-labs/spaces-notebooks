@@ -1,6 +1,8 @@
 [meta]
-title="Part 2 or Real-time threat Detection - Validate the accuracy of the threat detection model with a test dataset
-"
+title="IT Threat Detection, Part 2"
+description="""\
+    Part 2 or Real-time threat Detection - Validate the accuracy of the
+    threat detection model with a test dataset"""
 icon="browser"
 tags=["iot", "cybersecurity", "training", "vectordb"]
 destinations=["spaces"]
