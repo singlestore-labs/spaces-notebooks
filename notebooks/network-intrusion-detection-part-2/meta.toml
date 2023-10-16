@@ -1,5 +1,6 @@
 [meta]
-title="Part 2 or Real-time threat Detection - Validate the accuracy of the threat detection model with a test dataset"
+title="Real-time threat Detection - Part 2" 
+description="In this notebook we will validate the accuracy of the threat detection model with a test dataset"
 icon="browser"
 tags=["iot", "cybersecurity", "training", "vectordb"]
 destinations=["spaces"]
