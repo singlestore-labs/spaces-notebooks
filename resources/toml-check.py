@@ -35,8 +35,8 @@ for f in sys.argv[1:]:
     if [x.lower() for x in tags] != tags:
         error(f'Tags must be in all lower-case ({tags}) in {f}')
 
-    if [re.sub(r'[^a-z]', r'', x) for x in tags] != tags:
-        error(f'Tags can only contain letters ({tags}) in {f}')
+    if [re.sub(r'[^a-z0-9]', r'', x) for x in tags] != tags:
+        error(f'Tags can only contain letters and numbers ({tags}) in {f}')
 
     # Currently only "spaces" is allowed in destinations
     destinations = meta.get('destinations', [])
