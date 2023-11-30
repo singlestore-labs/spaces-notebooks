@@ -1,0 +1,8 @@
+[meta]
+title="Automatically warm up your disk after resuming workspace"
+description="""\
+    Runs through the queries to bring data residing in object storage onto disk for a specified database. \
+    """
+icon="database"
+tags=["automation"]
+destinations=["spaces"]
