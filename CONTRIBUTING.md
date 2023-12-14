@@ -20,6 +20,7 @@ Your `meta.toml` file should have a `[meta]` section with the following keys:
 - title: string
 - description: string (optional)
 - tags: string[] (optional)
+- icon: string. See full list of icon names on: https://github.com/singlestore-labs/spaces-notebooks/tree/master/common/images/header-icons
 
 Example:
 
