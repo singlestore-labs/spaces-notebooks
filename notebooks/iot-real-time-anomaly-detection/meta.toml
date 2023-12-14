@@ -1,0 +1,4 @@
+[meta]
+title="Real Time Anomaly Detection in IOT Sensor Data"
+description="Showcasing high-speed data ingestion and vector matching to find anomalies"
+tags=["pipelines", "vectors","iot","anomaly"]
