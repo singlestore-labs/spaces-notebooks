@@ -1,0 +1,4 @@
+[meta]
+title="Working with Timeseries data in Singlestore"
+description="SingleStore offers robust timeseries analytics functions, including interpolation methods can be implemented like linear interpolation for estimating missing values in timeseries datasets."
+tags=["timeseries", "multimodelsupport"]
