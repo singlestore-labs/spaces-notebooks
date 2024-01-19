@@ -1,0 +1,8 @@
+[meta]
+title="Real Time Recommendation Engine"
+description="""\
+We demonstrate how to build and host a real-time recommendation engine for free with SingleStore. The notebook also leverages our new SingleStore Job Service to ensure that the latest data is ingested and used in providing recommendations.\
+    """
+icon="crystal-ball"
+tags=["openai", "vercel", "realtime", "vectordb"]
+destinations=["spaces"]
