@@ -39,6 +39,7 @@ ICON_COLORS = {
     'chart-network': 'rgba(210, 255, 153, 0.25)',
     'chart-scatter': 'rgba(124, 195, 235, 0.25)',
     'clouds': 'rgba(124, 195, 235, 0.25)',
+    'confluent-logo': 'rgba(124, 195, 235, 0.25)',
     'crystal-ball': 'rgba(255, 167, 103, 0.25)',
     'database': 'rgba(235, 249, 245, 0.25)',
     'dollar-circle': 'rgba(255, 167, 103, 0.25)',
