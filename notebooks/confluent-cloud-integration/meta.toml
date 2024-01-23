@@ -1,7 +1,7 @@
 [meta]
 title = "Ingest data from Confluent Cloud (Kafka)"
 description = """
-    Provides step-by-step guidance on seamlessly ingesting data from Confluent Cloud (Kafka) to SingleStore Database using a robust pipeline. """
+    A step-by-step guide on seamlessly ingesting data from Confluent Cloud (Kafka) into your SingleStoreDB database using a robust pipeline. """
 icon = "database"
 tags = ["confluent", "training", "kafka", "pipeline", "realtime"]
 destinations = ["spaces"]
