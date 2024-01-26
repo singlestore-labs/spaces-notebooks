@@ -4,6 +4,6 @@ description="""\
     Hybrid search combines keyword search with semantic search,
     aiming to provide more accurate results.
     """
-tags=["openai"]
+tags=["starter", "openai", "genai", "vectordb"]
 icon="vector-circle"
 destinations=["spaces"]
