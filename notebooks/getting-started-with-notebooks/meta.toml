@@ -5,5 +5,5 @@ description="""\
     visualization and analysis. \
     """
 icon="notes"
-tags=["beginner", "sqrl"]
+tags=["starter", "python", "sqrl"]
 destinations=["spaces"]

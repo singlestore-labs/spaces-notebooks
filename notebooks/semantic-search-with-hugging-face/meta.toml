@@ -5,5 +5,5 @@ description="""\
     using dot product in SingleStoreDB. \
     """
 icon="chart-network"
-tags=["huggingface", "vectordb"]
+tags=["starter", "vectordb", "huggingface"]
 destinations=["spaces"]

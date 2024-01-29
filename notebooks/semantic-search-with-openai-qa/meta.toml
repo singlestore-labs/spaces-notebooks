@@ -4,5 +4,5 @@ description="""\
     Provide context to chatGPT using data stored in SingleStoreDB. \
     """
 icon="crystal-ball"
-tags=["openai", "vectordb"]
+tags=["starter", "openai", "vectordb", "genai"]
 destinations=["spaces"]

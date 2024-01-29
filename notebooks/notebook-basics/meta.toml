@@ -4,5 +4,5 @@ description="""\
     Foundational guide to notebooks with essential tips and tricks. \
     """
 icon="notes"
-tags=["beginner"]
+tags=["starter", "python", "dataframes"]
 destinations=["spaces"]

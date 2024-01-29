@@ -4,5 +4,5 @@ description="""\
     Run your MongoDB queries on SingleStore Kai with no code change. \
     """
 icon="database"
-tags=["mongodb", "kai"]
+tags=["starter", "mongo", "kai"]
 destinations=["spaces"]
