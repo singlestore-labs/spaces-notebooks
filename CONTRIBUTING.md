@@ -10,15 +10,23 @@ First, you should check whether this notebook can be run using a Free Shared Tie
 If your database can be run using the Free Shared Tier (Starter Worksapce), you must:
 1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/mongo-atlas-single-store-kai/). You should explicitly state that this notebook can run on both the Starter and Standard Workspaces. 
 2. Add "starter" to the tags in the meta.toml file below
-3. Use the following syntax when creating OR dropping your database. NOTE: When you create a Starter Workspace, a database is already being created for it. The only way you can drop that database linked to the Starter Workspace is by terminating the Workspace altogether. 
+3. Use the following syntax when creating OR dropping your database. NOTE: When you create a Starter Workspace, a database is already being created for it. The only way you can drop that database linked to the Starter Workspace is by terminating the Workspace altogether.
 
 ```python
 shared_tier_check = %sql show variables like 'is_shared_tier'
-
 if not shared_tier_check or shared_tier_check[0][1] == 'OFF':
+    %sql DROP DATABASE IF EXISTS your_database_name;
     %sql CREATE DATABASE your_database_name
-    %sql DROP DATABASE your_database_name
 ```
+
+4. At the end of the notebook, you should do the same check when cleaning up any databases created.
+
+```python
+shared_tier_check = %sql show variables like 'is_shared_tier'
+if not shared_tier_check or shared_tier_check[0][1] == 'OFF':
+    %sql DROP DATABASE IF EXISTS your_database_name;
+```
+
 
 If your database can only be run using Standard workspaces, you must:
 1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/ingest-data-from-confluent-cloud-kafka/). You should explicitly state that this notebook can run only on Standard Workspaces. 
