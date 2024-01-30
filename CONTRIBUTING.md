@@ -5,10 +5,10 @@ First, please fork this repo and commit your changes to forked repo. From there 
 
 ## Key Requirements
 
-First, you should check whether this notebook can be run using a Free Shared Tier instance. This is ideal for scenarios requiring few tables (<10), pipelines (<10) and less than 1GB of compressed storage. See the [limitations](https://docs.singlestore.com/cloud/getting-started-with-singlestoredb-cloud/shared-edition) to determine if your notebook can be run on a Free Shared Tier database. 
+First, you should check whether this notebook can be run using a Free Shared Tier instance. This is ideal for scenarios requiring few tables (<10), pipelines (<10) and less than 1GB of compressed storage. See the [limitations](https://docs.singlestore.com/cloud/getting-started-with-singlestoredb-cloud/shared-edition) to determine if your notebook can be run on a Free Shared Tier database.
 
 If your database can be run using the Free Shared Tier (Starter Worksapce), you must:
-1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/mongo-atlas-single-store-kai/). You should explicitly state that this notebook can run on both the Starter and Standard Workspaces. 
+1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/mongo-atlas-single-store-kai/). You should explicitly state that this notebook can run on both the Starter and Standard Workspaces.
 2. Add "starter" to the tags in the meta.toml file below
 3. Use the following syntax when creating OR dropping your database. NOTE: When you create a Starter Workspace, a database is already being created for it. The only way you can drop that database linked to the Starter Workspace is by terminating the Workspace altogether.
 
@@ -29,8 +29,8 @@ if not shared_tier_check or shared_tier_check[0][1] == 'OFF':
 
 
 If your database can only be run using Standard workspaces, you must:
-1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/ingest-data-from-confluent-cloud-kafka/). You should explicitly state that this notebook can run only on Standard Workspaces. 
-2. Add "advanced" to the tags in the meta.toml file below
+1. Mention this using a Markdown cell at the top of the notebook. See [example](https://www.singlestore.com/spaces/ingest-data-from-confluent-cloud-kafka/). You should explicitly state that this notebook can run only on Standard Workspaces.
+2. Add "advanced" to the tags in the meta.toml file below.
 
 
 
