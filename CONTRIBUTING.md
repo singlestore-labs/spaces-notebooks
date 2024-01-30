@@ -68,7 +68,7 @@ icon="database"
 
 The CI pipeline in this repo runs a bunch of validation checks and code reformatting with pre-commit checks. If you don't install those checks in your clone of the repo, the code will likely never pass. To install the pre-commit tool in your clone run the following from your clone directory. This will force the checks before you can push.
 
-You will need to develop your notebooks using Python 3.11. By default, Notebooks developed on SingleStore will be using this version of Python. This is required for the pre-commit checks to run
+You will need to develop your notebooks using Python 3.11 or higher. By default, Notebooks developed on SingleStore will be using this version of Python. This is required for the pre-commit checks to run
 
 ```bash
 pip3 install pre-commit
