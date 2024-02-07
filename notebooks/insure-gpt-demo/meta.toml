@@ -1,0 +1,5 @@
+[meta]
+title="InsureGPT: OpenAI and SingleStore for Insurance"
+description="Creating an insurance analysis with OpenAI and vectorizing the results into SingleStore."
+tags=["openai", "langchain"]
+icon="database"
