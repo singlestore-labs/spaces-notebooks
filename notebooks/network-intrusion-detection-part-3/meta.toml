@@ -5,5 +5,5 @@ description="""
     and visualize Threat Detection on incoming logs.
     This notebook requires adjustments to work out of the box."""
 icon="browser"
-tags=["iot", "cybersecurity", "training", "vectordb", "kafka", "pipeline", "realtime"]
+tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
 destinations=["spaces"]

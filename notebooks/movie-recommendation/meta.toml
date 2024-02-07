@@ -4,5 +4,5 @@ description="""\
     Movie recommendation engine using vectors stored in SingleStore to find your next watch. \
     """
 icon="camera-movie"
-tags=["vectordb", "genai", "openai"]
+tags=["advanced", "vectordb", "genai", "openai"]
 destinations=["spaces"]
