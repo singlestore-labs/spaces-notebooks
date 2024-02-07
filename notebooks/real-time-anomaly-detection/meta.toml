@@ -1,0 +1,8 @@
+[meta]
+title="Real-Time Anomaly Detection"
+description="""\
+    Real-time anomaly detection in IoT sensor data, harnessing the robust capabilities of SingleStoreDB and advanced analytical techniques. \
+    """
+icon="chart-scatter"
+tags=["vectordb", "realtime"]
+destinations=["spaces"]
