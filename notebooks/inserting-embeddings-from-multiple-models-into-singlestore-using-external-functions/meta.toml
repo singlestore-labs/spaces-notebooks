@@ -1,0 +1,8 @@
+[meta]
+title="Inserting embeddings from multiple models into SingleStore Using External Functions"
+description="""\
+    Discover the power of SingleStoreDB's external functions to dynamically fetch and store vector embeddings from leading AI models into your database. This demo highlights leveraging SingleStore's robust vector data type and external functions for efficient management and analysis of machine learning embeddings.\
+    """
+icon="vector-circle"
+tags=["vectordb", "genai", "openai", "rag", "huggingface"]
+destinations=["spaces"]
