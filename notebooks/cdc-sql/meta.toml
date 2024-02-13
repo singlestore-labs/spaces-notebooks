@@ -1,0 +1,7 @@
+[meta]
+title = "Ingest data from MONGODB® to SingleStore using SQL commands"
+description = """
+    Setup CDC Replication from MongoDB® to SingleStore using SQL commands. """
+icon = "database"
+tags =  ["mongo", "pipeline", "cdc", "ingest", "kai"]
+destinations = ["spaces"]
