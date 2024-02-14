@@ -1,0 +1,8 @@
+[meta]
+title="Semantic Visualization and Vector Datatype"
+description="""\
+    SingleStoreDB leverages vector database processing to enable storage and search of vector data, allowing for semantic similarity-based searches to find content based on meaning rather than exact matches, such as locating related words like "happy" and "joyful." \
+    """
+icon="chart-network"
+tags=["stater", "vectordb", "genai", "huggingface", "semanticsearch"]
+destinations=["spaces"]
