@@ -1,0 +1,10 @@
+[meta]
+title="Getting Started with Fusion SQL"
+description="""\
+    Fusion SQL allows you to manage your SingleStoreDB Cloud
+    resources such as workspace groups, workspaces, and
+    Stage files all from SQL.
+    """
+icon="browser"
+tags=["starter", "fusion", "python"]
+destinations=["spaces"]
