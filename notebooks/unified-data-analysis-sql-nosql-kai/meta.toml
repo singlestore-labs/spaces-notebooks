@@ -1,0 +1,8 @@
+[meta]
+title="Unified Data Analysis: SQL & NoSQL on a Single Database with Kai"
+description="""\
+    Perform both SQL and NoSQL queries on multi-modal relational and JSON data \
+    """
+icon="database"
+tags=["cdc", "mongo", "sql", "nosql", "kai"]
+destinations=["spaces"]
