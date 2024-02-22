@@ -1,0 +1,8 @@
+[meta]
+title="Getting Started With CDC Replication from MongoDB"
+description="""\
+    Setup Zero ETL data replication from MongoDB to SingleStore \
+    """
+icon="pipeline"
+tags=["cdc", "mongo", "kai"]
+destinations=["spaces"]
