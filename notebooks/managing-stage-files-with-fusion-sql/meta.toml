@@ -1,0 +1,9 @@
+[meta]
+title="Managing Stage files with Fusion SQL"
+description="""\
+    Learn how to manage your Stage files in SingleStoreDB
+    Cloud using Fusion SQL.
+    """
+icon="files"
+tags=["starter", "fusion", "python"]
+destinations=["spaces"]
