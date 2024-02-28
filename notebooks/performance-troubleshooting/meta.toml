@@ -1,0 +1,8 @@
+[meta]
+title="Database Performance Troubleshoot Notebook"
+description="""\
+    This notebook will help you perform database performance troubleshoot
+"""
+icon="database"
+tags=["troubleshoot", "performance", "tuning", "starter"]
+
