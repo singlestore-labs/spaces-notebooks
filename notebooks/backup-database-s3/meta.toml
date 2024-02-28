@@ -1,0 +1,8 @@
+[meta]
+title = "Backup Database to AWS S3"
+description = """\
+    Performs backup either single or multiple databases to AWS S3. \
+    """
+icon = "database"
+tags = ["starter", "backup"]
+destinations = ["spaces"]
