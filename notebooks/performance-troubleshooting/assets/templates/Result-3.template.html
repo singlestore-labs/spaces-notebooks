@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipeline Lag Report</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <table
+      style="
+        border: 0;
+        border-spacing: 0;
+        width: 100%;
+        background-color: #03010d;
+      "
+      class="mb-5"
+    >
+      <tr>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            background-color: #03010d;
+            width: 33%;
+            text-align: center;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+            style="height: 200px"
+          />
+        </td>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            width: 66%;
+            background-color: #03010d;
+            text-align: right;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+            style="height: 250px"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <p class="text-center fs-3 my-4 mx-2" style="color: #9900ff">
+      Pipeline Lag
+    </p>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Background</h4>
+      <div id="querycontext" class="block has-text-dark my-3 px-2">
+        <p>
+          Pipeline lag in SingleStore refers to the latency between when data is
+          available in the source system and when it gets loaded into
+          SingleStore via the pipeline.
+        </p>
+        <p>Factors Influencing latency</p>
+        <ol>
+          <li>Network latency</li>
+          <li>Complexity of transformations within the pipeline</li>
+          <li>Batch Interval configuration</li>
+          <li>Overall system load that affects the pipeline's throughput</li>
+        </ol>
+
+        <p>
+          Utilizing the pipeline lag report in SingleStore offers several
+          benefits:
+        </p>
+        <ol>
+          <li>
+            <p>
+              Monitoring Pipeline Health: The lag report can be used to monitor
+              the health of data pipelines, ensuring data is loaded in a timely
+              manner and identifying potential bottlenecks or delays.
+            </p>
+          </li>
+          <li>
+            <p>
+              Performance Insights: It provides insights into pipeline
+              performance metrics, aiding in optimization efforts.
+            </p>
+          </li>
+          <li>
+            <p>
+              Resource Management: The report helps manage resources by showing
+              pipeline impact on system resources.
+            </p>
+          </li>
+          <li>
+            <p>
+              Troubleshooting: It serves as a starting point for troubleshooting
+              performance issues.
+            </p>
+          </li>
+          <li>
+            <p>
+              Real-time Analytics: For applications relying on real-time data,
+              monitoring pipeline lag ensures data freshness for quality
+              insights.
+            </p>
+          </li>
+        </ol>
+        <p>
+          Regularly checking the pipeline lag report ensures efficient pipelines
+          and current data, crucial for real-time analytics and decision-making.
+        </p>
+
+        <p>
+          To diagnose and understand pipeline performance, including potential
+          lag, SingleStore provides several tools and queries PROFILE PIPELINE
+          command can be used to gather resource consumption metrics, like
+          starting and ending times, for operations that a batch processes
+        </p>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Actions</h4>
+      <div id="actions" class="block has-text-black mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <strong class="mr-2">Identify Lagging Pipelines </strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Please use this query to identify the
+            long running pipelines<br />
+
+            <pre class="mt-4 pl-4"><code>
+SELECT DATABASE_NAME, PIPELINE_NAME, BATCH_ID, BATCH_STATE, BATCH_TIME FROM information_schema.PIPELINES_BATCHES_SUMMARY ORDER BY BATCH_TIME desc;</code></pre>
+          </li>
+          <li>
+            <strong class="mr-2">Adjust Pipeline Settings </strong
+            >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; To address pipeline lag, we can
+            modify pipeline configurations for consistent lag
+
+            <pre class="mt-4 pl-4"><code>
+    ALTER PIPELINE mypipeline SET BATCH_INTERVAL milliseconds;
+    ALTER PIPELINE mypipeline SET MAX_PARTITIONS_PER_BATCH max_partitions_per_batch;
+
+    BATCH_INTERVAL the frequency at which the pipeline checks the data source for new data after finishing processing existing data.
+    MAX_PARTITIONS_PER_BATCH  the degree of parallelism and resource usage during the pipeline's execution( lower value reduces system load).
+            </code>
+            </pre>
+          </li>
+          <li>
+            <strong class="mr-2">Set New Offsets </strong>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; useful for addressing lag by skipping
+            records or resetting the reading position after pipeline changes
+            <pre class="mt-4 pl-4"><code>
+    ALTER PIPELINE mypipeline SET OFFSETS LATEST;
+            </code></pre>
+          </li>
+          <li>
+            <strong class="mr-2">Monitor Continuously </strong> You can monitor
+            the pipelines using below views
+            <pre class="mt-4 pl-4"><code>
+    INFORMATION_SCHEMA.PIPELINES_BATCHES_SUMMARY - Provides diagnostic information such as batch processing times.
+    SHOW PIPELINES - Provides current running status.
+    INFORMATION_SCHEMA.PIPELINES_ERRORS - Provides information about any errors occurred.
+            </code></pre>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive" width="100%" height="600">rstable</div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">References</h4>
+      <div id="queryhelp" class="block has-text-white mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <a
+              href="https://docs.singlestore.com/db/v8.5/reference/troubleshooting-reference/pipeline-errors/detect-and-address-slow-performance-and-high-memory-usage-of-pipelines/"
+              >https://docs.singlestore.com/db/v8.5/reference/troubleshooting-reference/pipeline-errors/detect-and-address-slow-performance-and-high-memory-usage-of-pipelines/</a
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <button
+        type="button"
+        class="btn btn-primary my-4"
+        onclick="history.back()"
+        style="background-color: #9900ff"
+      >
+        Back to Index
+      </button>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let table = new DataTable("#rstbl", {
+        paging: true,
+        searching: false,
+        pageLength: 5,
+        scrollX: true,
+        lengthMenu: [
+          [5, 25, 100, 200],
+          [5, 25, 100, 200],
+        ],
+      });
+    </script>
+  </body>
+</html>
