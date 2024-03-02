@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Warnings - Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css" rel="stylesheet" >
+</head>
+
+<body>
+
+    <table style="border: 0; border-spacing: 0; width: 100%; background-color: #03010D" class="mb-5">
+        <tr>
+            <td style="padding: 0; margin: 0; background-color: #03010D; width: 33%; text-align: center">
+                <img src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+                    style="height: 200px;" />
+            </td>
+            <td style="padding: 0; margin: 0; width: 66%; background-color: #03010D; text-align: right">
+                <img src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+                    style="height: 250px" />
+            </td>
+        </tr>
+    </table>
+
+
+    <p class="text-center fs-3 my-4 mx-2" style="color:#9900FF;">Plan Warnings - Analysis</p>
+
+    <div class="container my-5">
+        <h4 class="title is-4" style="color:#9900FF;">Background</h4>
+        <div id="querycontext" class="block has-text-dark my-3 px-2">
+            <p>
+                The plancache in SingleStore is a mechanism that stores compiled and executed query plans along with
+                cumulative execution statistics for each plan.
+            </p>
+               <p> When a query is executed for the first time, following action are performed </p>
+            <ul>
+                <li>code generation</li>
+                <li>optimization</li>
+                <li>translation to machine code</li>
+            </ul>
+
+            <p>Query is then stored in the plancache for later reuse. During this process, singlestore generates warnings, suggestions, It will beneficial to address them to improve performance</p>
+
+            <p>Ignoring plan cache warnings could lead to suboptimal query performance, as these warnings often indicate opportunities to optimize queries or configurations that can improve the overall efficiency of the database operations.</p>
+
+            <p>Using the MV_QUERY_ACTIVITIES_EXTENDED_CUMULATIVE view as a reference, you can monitor various performance metrics, including cpu_time_ms, memory_bs, and plan_warnings, to analyze and identify performance bottlenecks in your queries</p>
+
+            <p>Utilizing plan cache warnings in SingleStore offers several benefits</p>
+            <ol>
+                <li><em>Performance Optimization</em> Addressing plan cache warnings ensures query plans are efficient, improving performance and reducing resource usage.</li>
+
+                <li><em>Insight into Query Plan Stability</em> Identifying parameter-dependent query plans helps stabilize performance.</li>
+
+                <li><em>Resource Management</em> Monitoring warnings helps optimize resource usage and maintain system stability.</li>
+
+                <li><em>Proactive Problem-Solving</em> Plan cache warnings allow for proactive issue identification and resolution.</li>
+
+                <li><em>Query Execution Insights</em> They provide valuable insights for debugging and understanding database engine behavior.</li>
+                </ol>
+                <p>
+Overall, plan cache warnings are crucial for maintaining and enhancing SingleStore database performance, stability, and efficiency.
+                </p>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h4 class="title is-4" style="color:#9900FF;">Actions</h4>
+        <div id="actions" class="block has-text-black mt-3 mb-5 px-2">
+            <ol>
+                <li class="mb-2">
+                    <strong>Review Warnings </strong>Examine warnings in the plan_warnings column of the plancache or
+                    through the
+                    EXPLAIN <query> command
+                </li>
+                <li class="mb-2"><strong>Check Data Types </strong>Validate whether compared data types are expected to
+                    differ; adjust schema
+                    or queries accordingly</li>
+                <li class="mb-2"><strong>Data Types </strong>If necessary, adjust data types of mismatched columns for
+                    compatibility and
+                    effective index usage</li>
+                <li class="mb-2"><strong>Explicit Type Conversion </strong>If changing data types is impractical, add
+                    explicit type conversion
+                    operations using cast operators or conversion fun</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="container">
+        <h4 class="title is-4" style="color:#9900FF;">Results</h4>
+        <div class='table-responsive' width="100%" height="600">
+            rstable
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <h4 class="title is-4" style="color:#9900FF;">References</h4>
+        <div id="queryhelp" class="block has-text-white mt-3 mb-5 px-2">
+            <ol>
+                <li><a
+                        href="https://docs.singlestore.com/cloud/reference/sql-reference/show-commands/show-plancache/">https://docs.singlestore.com/cloud/reference/sql-reference/show-commands/show-plancache/</a>
+                </li>
+            </ol>
+        </div>
+
+    </div>
+
+    <div class="container">
+        <button type="button" class="btn btn-primary my-4" onclick="history.back()" style="background-color:#9900FF;">Back to Index</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        let table = new DataTable("#rstbl", {
+          paging: true,
+          searching: false,
+          pageLength: 5,
+          scrollX: true,
+          lengthMenu: [
+            [5, 25, 100, 200],
+            [5, 25, 100, 200],
+          ],
+        });
+      </script>
+
+</body>
+
+</html>
