@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shard and Sort Key Summary Report</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <table
+      style="
+        border: 0;
+        border-spacing: 0;
+        width: 100%;
+        background-color: #03010d;
+      "
+      class="mb-5"
+    >
+      <tr>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            background-color: #03010d;
+            width: 33%;
+            text-align: center;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+            style="height: 200px"
+          />
+        </td>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            width: 66%;
+            background-color: #03010d;
+            text-align: right;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+            style="height: 250px"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <p class="text-center fs-3 my-4 mx-2" style="color: #9900ff">
+      Shard and Sort Key Summary
+    </p>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Background</h4>
+      <div id="querycontext" class="block has-text-dark my-3 px-2">
+        <p class="mb-3">
+          The shard key in SingleStore is used to distribute data across
+          different partitions in a distributed database system. It is defined
+          on one or more columns of a table to ensure that rows with the same
+          shard key value are stored on the same partition
+        </p>
+
+        <p class="my-3">
+          The sort key is an attribute of columnstore tables in SingleStore that
+          determines the order of rows stored on disk. It is used to group rows
+          into logical segments, optimizing storage for efficient scan in the
+          key order.
+        </p>
+
+        <p>
+          Selecting the right shard key and sort key in SingleStore offers
+          significant performance benefits
+        </p>
+        <ol>
+          <li>
+            <em>Optimized Data Distribution</em> Even distribution across
+            partitions improves query performance and enables parallel
+            processing.
+          </li>
+
+          <li>
+            <em>Reduced Data Skew</em> Minimizes data skew, balancing the
+            workload and ensuring system stability.
+          </li>
+
+          <li>
+            <em>Efficient Query Processing</em> Directs queries to relevant
+            partitions, reducing data scanning and speeding up execution.
+          </li>
+
+          <li>
+            <em>Improved Join Performance</em> Enables local joins, reducing
+            data movement and improving join operation speed.
+          </li>
+
+          <li>
+            <em>Segment Elimination</em> For columnstore tables, allows skipping
+            segments that don't match query filters, reducing I/O.
+          </li>
+
+          <li>
+            <em>Enhanced Compression and Ordered Scans</em> Groups data
+            logically for better compression and faster ordered scans.
+          </li>
+        </ol>
+        <p>
+          Careful selection of shard and sort keys is essential for optimal
+          performance and scalability in SingleStore.
+        </p>
+
+        <p>
+          Choosing the wrong shard key in SingleStore can lead to several
+          downsides
+        </p>
+        <ol>
+          <li>
+            <em>Data Skew</em>: Uneven data distribution across partitions can
+            cause workload imbalances and performance bottlenecks.
+          </li>
+          <li>
+            <em>Performance Degradation</em>: Mismatched shard keys can result
+            in slower query responses and increased cross-partition
+            communication.
+          </li>
+          <li>
+            <em>Inefficient Joins</em>: Incorrect shard keys can lead to less
+            efficient distributed joins, impacting query performance.
+          </li>
+          <li>
+            <em>Difficult Reshuffling</em>: Changing the shard key on an
+            existing table requires table recreation and data redistribution,
+            which is complex and time-consuming.
+          </li>
+        </ol>
+        <p>
+          For sort keys, the following downsides can occur with an incorrect
+          choice
+        </p>
+        <ol>
+          <li>
+            <em>Suboptimal Compression</em>: Poorly chosen sort keys can lead to
+            less efficient compression and increased storage requirements.
+          </li>
+          <li>
+            <em>Reduced Query Efficiency</em>: Ineffective sort keys can
+            minimize the benefits of segment elimination, leading to more I/O
+            operations and slower queries.
+          </li>
+          <li>
+            <em>Impaired Ordered Scans</em>: Sort keys that don't align with
+            query requirements may require additional sort operations,
+            increasing query times.
+          </li>
+        </ol>
+
+        <p>
+          Selecting the right shard and sort keys is crucial for optimizing
+          SingleStore database performance.
+        </p>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Actions</h4>
+      <div id="actions" class="block has-text-black mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <strong>Evaluate Data Distribution </strong>Check for high row_skew
+            and consider schema adjustments for better distribution and
+            performance.
+          </li>
+          <li>
+            <strong>Inspect Memory Usage </strong>Identify tables with high
+            memory usage to address skew or inefficiencies.
+          </li>
+          <li>
+            <strong>Consider Resharding </strong>Reshard with a different shard
+            key for tables with high data or memory skew.
+          </li>
+          <li>
+            <strong>Optimize Storage Type </strong>Change storage types for
+            tables with suboptimal access patterns to improve performance.
+          </li>
+          <li>
+            <strong>Review Table Type </strong>Ensure correct usage of reference
+            and distributed tables to avoid memory bloat or skew.
+          </li>
+          <li>
+            <strong>Manage Table Memory </strong> Adjust memory allocation or
+            purge/archive data for tables with high memory usage.
+          </li>
+          <li>
+            <strong>Analyze Shard Key Design </strong> Revise shard keys for
+            even distribution if necessary.
+          </li>
+          <li>
+            <strong>Monitor Garbage Collection </strong> Ensure efficient memory
+            reclamation for rowstore tables.
+          </li>
+          <li>
+            <strong>Backup and Test </strong> Test schema changes or data
+            redistribution in a staging environment before production.
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive" width="100%" height="600">rstable</div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">References</h4>
+      <div id="queryhelp" class="block has-text-white mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <a
+              href="https://docs.singlestore.com/cloud/create-a-database/understanding-sort-key-selection/"
+              >https://docs.singlestore.com/cloud/create-a-database/understanding-sort-key-selection</a
+            >
+          </li>
+
+          <li>
+            <a
+              href="https://docs.singlestore.com/db/v8.5/create-a-database/understanding-shard-key-selection/"
+              >https://docs.singlestore.com/db/v8.5/create-a-database/understanding-shard-key-selection</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://docs.singlestore.com/cloud/create-a-database/detecting-and-resolving-data-skew/"
+              >https://docs.singlestore.com/cloud/create-a-database/detecting-and-resolving-data-skew/</a
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <button
+        type="button"
+        class="btn btn-primary my-4"
+        onclick="history.back()"
+        style="background-color: #9900ff"
+      >
+        Back to Index
+      </button>
+    </div>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let table = new DataTable("#rstbl", {
+        paging: true,
+        searching: false,
+        pageLength: 5,
+        scrollX: true,
+        lengthMenu: [
+          [5, 25, 100, 200],
+          [5, 25, 100, 200],
+        ],
+      });
+    </script>
+  </body>
+</html>
