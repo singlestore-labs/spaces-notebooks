@@ -1,0 +1,7 @@
+[meta]
+title = "Restore Database from AWS S3"
+description = """\
+    This notebook will help you perform database restore from AWS S3.
+"""
+icon = "database"
+tags = ["starter", "admin", "restore"]
