@@ -33,7 +33,7 @@ from information_schema.PIPELINES_CURSORS
 group by DATABASE_NAME,
          PIPELINE_NAME
 ;"
-4,Query to track amount of repartitioning and broadcasting operations caused by queries,"SELECT mqcu.activity_name,
+4,Query to track Queries with repartitioning or broadcasting operations,"SELECT mqcu.activity_name,
        mqcu.table_name,
        mqa.query_text,
        mqa.database_name,
