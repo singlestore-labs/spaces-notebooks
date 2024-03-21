@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queries with repartitioning or broadcasting operations</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <table
+      style="
+        border: 0;
+        border-spacing: 0;
+        width: 100%;
+        background-color: #03010d;
+      "
+      class="mb-5"
+    >
+      <tr>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            background-color: #03010d;
+            width: 33%;
+            text-align: center;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+            style="height: 200px"
+          />
+        </td>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            width: 66%;
+            background-color: #03010d;
+            text-align: right;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+            style="height: 250px"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <p class="text-center fs-3 my-4 mx-2" style="color: #9900ff">
+      Query to track amount of repartitioning and broadcasting operations caused
+      by queries
+    </p>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Background</h4>
+      <div id="querycontext" class="block has-text-dark my-3 px-2">
+        <p>
+          <strong>Repartitioning</strong> happens during a distributed join when
+          the shard key that matches the join condition is stored on different
+          partitions. In such cases, the query optimizer creates an internal,
+          temporary results table in memory with a shard key that matches the
+          join condition, allowing the join to be performed across the different
+          partitions
+        </p>
+
+        <p>The downsides of repartitioning include</p>
+        <ul>
+          <li>
+            increased network traffic as data is shuffled across nodes, which
+            can lead to higher latency and potential performance bottlenecks
+            during query execution.
+          </li>
+          <li>
+            Additionally, it requires more connections and threads, which can
+            strain system resources if not managed properly by workload
+            management tools1.
+          </li>
+        </ul>
+
+        <p>
+          To avoid repartitioning, you can choose a shard key for your table
+          based on columns that you frequently join or filter on, ensuring that
+          the join operations can be executed locally within the partitions.
+          This minimizes network traffic during query execution and avoids the
+          need for creating temporary results tables in memory for
+          repartitioning
+        </p>
+
+        <p>
+          <strong>Broadcasting</strong> happens during a distributed join when
+          one of the joining tables is small. This allows for the small table to
+          be sent to every node where it is joined with the larger table stored
+          on those nodes
+        </p>
+        <p>Downsides of broadcasting include</p>
+        <ul>
+          <li>
+            Increased network traffic as the small table is sent to every node.
+          </li>
+          <li>
+            Potential memory pressure on nodes if the small table is larger than
+            initially anticipated.
+          </li>
+          <li>
+            Overhead associated with distributing the table to all nodes, which
+            may not be efficient for slightly larger tables.
+          </li>
+        </ul>
+        <p>To avoid broadcasting, you can</p>
+        <ul>
+          <li>
+            Design your schema to ensure that tables you join on share matching
+            shard keys, thus enabling local joins instead of distributed joins.
+          </li>
+          <li>
+            Use reference tables for small, infrequently changing tables that
+            need to be present on every node in the cluster to guarantee local
+            joins.
+          </li>
+          <li>
+            Optimize your queries and schema to minimize the need for
+            broadcasting by considering the shard key selection and whether
+            certain tables should be joined in the first place.
+          </li>
+        </ul>
+
+        <p>
+          To identify if repartitioning and broadcasting are the most expensive
+          operations using a query plan profile, you can follow these steps
+        </p>
+        <ul>
+          <li>
+            Run the problematic query in the SQL Editor and click the Visual
+            Explain icon to display the query plan in a graphical interface 1.
+          </li>
+          <li>
+            Choose the PROFILE option to display further details for each query
+            operation.
+          </li>
+          <li>
+            Look for the presence of Repartitioning in the query plan, as it is
+            a common indicator of reshuffling or repartitioning a lot of data.
+            Also, check for large SELECT costs combined with a Project operator
+            2.
+          </li>
+          <li>
+            Examine the query plan for the Broadcast operation, which occurs
+            when a small table is sent to every node for a join operation 3.
+          </li>
+          <li>
+            By inspecting these elements within the PROFILE, you can determine
+            if repartitioning or broadcasting is contributing significantly to
+            the overall cost of the query.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Actions</h4>
+      <div id="actions" class="block has-text-black mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <strong class="mr-2">Identify High Reshuffles </strong>Find queries
+            and tables with frequent reshuffles, indicating potential
+            performance issues.
+          </li>
+          <li>
+            <strong class="mr-2">Analyze Query Plans </strong>Understand why
+            reshuffles occur by examining query execution plans.
+          </li>
+          <li>
+            <strong class="mr-2">Review Shard Key Design</strong> Ensure the
+            shard key is optimal to minimize reshuffles and data movement.
+          </li>
+          <li>
+            <strong class="mr-2">Adjust Shard Keys </strong> Modify table design
+            to use a more suitable shard key if needed.
+          </li>
+          <li>
+            <strong class="mr-2">Optimize Queries </strong>Rewrite queries to
+            reduce reshuffling, such as matching join conditions to the shard
+            key.
+          </li>
+          <li>
+            <strong class="mr-2">Use Broadcast for Small Tables </strong
+            >Replicate small tables to all nodes for efficiency in join
+            operations.
+          </li>
+          <li>
+            <strong class="mr-2">Assess Workload Management </strong>Ensure
+            workload management handles query concurrency involving
+            repartitioning or broadcasting.
+          </li>
+          <li>
+            <strong class="mr-2">Monitor Performance </strong>Continuously
+            monitor system performance to gauge the impact of changes on
+            reshuffle counts and overall query performance.
+          </li>
+        </ol>
+
+        <p>
+          Addressing these points can enhance data distribution across
+          partitions and optimize distributed query performance in SingleStore.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive" width="100%" height="600">rstable</div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">References</h4>
+      <div id="queryhelp" class="block has-text-white mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <a
+              href="https://docs.singlestore.com/db/v8.5/create-a-database/understanding-shard-key-selection"
+              >https://docs.singlestore.com/db/v8.5/create-a-database/understanding-shard-key-selection</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://docs.singlestore.com/cloud/query-data/query-plan-operations"
+              >https://docs.singlestore.com/cloud/query-data/query-plan-operations</a
+            >
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <button
+        type="button"
+        class="btn btn-primary my-4"
+        onclick="history.back()"
+        style="background-color: #9900ff"
+      >
+        Back to Index
+      </button>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let table = new DataTable("#rstbl", {
+        paging: true,
+        searching: false,
+        pageLength: 5,
+        scrollX: true,
+        lengthMenu: [
+          [5, 25, 100, 200],
+          [5, 25, 100, 200],
+        ],
+      });
+    </script>
+  </body>
+</html>

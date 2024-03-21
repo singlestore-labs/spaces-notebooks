@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SingleStore DB Performance Troubleshoot Summary</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <table
+      style="
+        border: 0;
+        border-spacing: 0;
+        width: 100%;
+        background-color: #03010d;
+      "
+      class="mb-5"
+    >
+      <tr>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            background-color: #03010d;
+            width: 33%;
+            text-align: center;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+            style="height: 200px"
+          />
+        </td>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            width: 66%;
+            background-color: #03010d;
+            text-align: right;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+            style="height: 250px"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <div class="container mb-4">
+      <p class="text-center fs-3 mt-2 mb-4">
+        SingleStore Notebook to identify common performance Issues
+      </p>
+
+      <ul>
+        <li>Query information is loaded for csv file exposed on public url</li>
+        <li>Results are exported into paginated html tables</li>
+        <li>
+          Archive of generated html files is uploaded to SingleStore Stage using
+          SingleStore Python Client
+        </li>
+      </ul>
+    </div>
+
+    <p class="text-center fs-3 my-4 mx-2" style="color: #9900ff">
+      Results Index
+    </p>
+
+    <div class="container my-3 px-2">
+      <table id="indexTbl" class="table table-bordered">
+        <thead>
+          <td
+            class="text-center"
+            style="background-color: #9900ff; color: white"
+          >
+            Query ID
+          </td>
+          <td
+            class="text-center"
+            style="background-color: #9900ff; color: white"
+          >
+            Query Name
+          </td>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><a href="1.html">Plan Warnings</a></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><a href="2.html">Shard and Sort Key Summary</a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><a href="3.html">Pipeline Lag</a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>
+              <a href="4.html"
+                >Queries with repartitioning or broadcasting operations</a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

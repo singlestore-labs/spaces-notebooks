@@ -1,0 +1,8 @@
+[meta]
+title="How to Build a Multi-Agent AI App with AutoGen"
+description="""\
+    Learn how to build a multi-agent group chat with RAG using Autogen and SingleStore   \
+    """
+icon="vector-circle"
+tags=["starter", "autogen", "rag", "multiagent", "groupchat"]
+destinations=["spaces"]

@@ -1,0 +1,46 @@
+QueryID,QueryName,QueryTxt
+1,Plan Warnings,"SELECT plan_id, plan_warnings
+FROM information_schema.plancache
+WHERE plan_warnings LIKE '%mismatched datatypes%' ; "
+2,Shard and Sort Key Summary,"WITH shard_sort AS (SELECT t.TABLE_SCHEMA, t.TABLE_NAME,
+    GROUP_CONCAT(CASE WHEN s.INDEX_TYPE = 'SHARD' THEN s.COLUMN_NAME END) AS SHARD_KEY,
+    GROUP_CONCAT(CASE WHEN s.INDEX_TYPE='CLUSTERED COLUMNSTORE' THEN s.COLUMN_NAME END) AS SORT_KEY,
+    t.STORAGE_TYPE
+FROM information_schema.tables t LEFT JOIN information_schema.STATISTICS s ON (t.TABLE_SCHEMA=s.TABLE_SCHEMA AND t.TABLE_NAME=s.TABLE_NAME)
+WHERE t.table_schema<>'information_schema'
+  AND t.table_type not like '%VIEW%'
+GROUP BY t.TABLE_SCHEMA, t.TABLE_NAME, t.STORAGE_TYPE, s.INDEX_TYPE
+ORDER BY t.TABLE_SCHEMA, t.TABLE_NAME,t.STORAGE_TYPE)
+SELECT s.TABLE_SCHEMA,s.TABLE_NAME, s.SHARD_KEY, s.SORT_KEY,s.STORAGE_TYPE,
+       (CASE WHEN PARTITION_TYPE = 'Reference' THEN 'REFERENCE TABLE' ELSE 'DISTRIBUTED TABLE' END) AS TABLE_TYPE,
+       SUM(t.ROWS) AS TOTAL_ROWS,
+       MIN(t.ROWS) as MIN_ROWS_PER_PARTITION,
+       max(t.ROWS) as MAX_ROWS_PER_PARTITION,
+       FLOOR(AVG(t.ROWS)) AS AVG_ROWS_PER_PARTITION,
+       ROUND(STDDEV(ROWS) / AVG(t.ROWS), 3) * 100 AS ROW_SKEW,
+       MIN(memory_use / 1024 / 1024) as MIN_MEMORY_MB_PER_PARTITION,
+       MAX(memory_use / 1024 / 1024) as MAX_MEMORY_MB_PER_PARTITION,
+       FLOOR(AVG(MEMORY_USE / 1024 / 1024)) AS AVG_MEMORY_MB_PER_PARTITION,
+       ifnull(ROUND(STDDEV(MEMORY_USE) / AVG(MEMORY_USE), 3) * 100, 0) AS MEMORY_SKEW
+  FROM shard_sort s INNER JOIN information_schema.TABLE_STATISTICS t ON (s.TABLE_SCHEMA=t.DATABASE_NAME AND s.TABLE_NAME=t.TABLE_NAME)
+WHERE t.PARTITION_TYPE IN ('Master','Reference')
+GROUP BY s.TABLE_SCHEMA,s.TABLE_NAME, s.SHARD_KEY, s.SORT_KEY,s.STORAGE_TYPE, (CASE WHEN PARTITION_TYPE = 'Reference' THEN 'REFERENCE TABLE' ELSE 'DISTRIBUTED TABLE' END) ;"
+3,Pipeline Lag,"select DATABASE_NAME as db,
+       PIPELINE_NAME as pipeline,
+       SOURCE_PARTITION_ID as partition_with_max_lag,
+       max(LATEST_OFFSET - CURSOR_OFFSET) as lag_val
+from information_schema.PIPELINES_CURSORS
+group by DATABASE_NAME,
+         PIPELINE_NAME
+;"
+4,Query to track Queries with repartitioning or broadcasting operations,"SELECT mqcu.activity_name,
+       mqcu.table_name,
+       mqa.query_text,
+       mqa.database_name,
+       mqcu.reshuffles
+FROM   information_schema.mv_query_column_usage mqcu
+       JOIN information_schema.mv_query_activities mqa
+         ON mqcu.activity_name = mqa.activity_name
+            AND mqcu.reshuffles > 10
+            AND mqcu.activity_name NOT LIKE 'RunPipeline%'
+            AND mqa.database_name <> 'information_schema' ;"
