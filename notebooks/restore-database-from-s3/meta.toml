@@ -5,3 +5,4 @@ description = """\
 """
 icon = "database"
 tags = ["starter", "admin", "restore"]
+destinations=["spaces"]

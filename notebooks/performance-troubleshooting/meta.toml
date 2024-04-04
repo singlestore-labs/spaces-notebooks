@@ -5,3 +5,4 @@ description="""\
 """
 icon="database"
 tags=["troubleshoot", "performance", "tuning", "starter"]
+destinations=["spaces"]
