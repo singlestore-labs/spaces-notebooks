@@ -1,0 +1,9 @@
+[meta]
+title="Using RAG with SingleStoreDB"
+description="""\
+    Leverage the RAG pattern in the context of the generative AI
+    lifecycle patterns.
+    """
+icon="crystal-ball"
+tags=["ai"]
+destinations=["spaces"]

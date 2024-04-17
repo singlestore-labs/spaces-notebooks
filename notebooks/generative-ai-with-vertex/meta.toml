@@ -1,0 +1,9 @@
+[meta]
+title="Building a Generative AI Application with Vertex AI and SingleStoreDB"
+description="""\
+    Learn to build an AI application using Google Cloud's Vertex AI
+    and SingleStoreDB.
+    """
+icon="crystal-ball"
+tags=["ai"]
+destinations=["spaces"]
