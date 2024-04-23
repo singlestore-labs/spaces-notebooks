@@ -44,3 +44,6 @@ FROM   information_schema.mv_query_column_usage mqcu
             AND mqcu.reshuffles > 10
             AND mqcu.activity_name NOT LIKE 'RunPipeline%'
             AND mqa.database_name <> 'information_schema' ;"
+5,Duplicate Columns in Database,"WITH ColumnDetails AS ( SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_TYPE, ROW_NUMBER() OVER(PARTITION BY COLUMN_NAME ORDER BY TABLE_NAME) AS COLUMN_INDEX
+    FROM  information_schema.columns where table_schema <> 'information_schema') SELECT TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_TYPE , COLUMN_INDEX
+    FROM ColumnDetails WHERE COLUMN_INDEX > 1 ORDER BY TABLE_SCHEMA, TABLE_NAME, COLUMN_NAME, COLUMN_TYPE;"

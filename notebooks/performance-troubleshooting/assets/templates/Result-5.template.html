@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duplicate Columns</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.datatables.net/2.0.0/css/dataTables.bootstrap5.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <table
+      style="
+        border: 0;
+        border-spacing: 0;
+        width: 100%;
+        background-color: #03010d;
+      "
+      class="mb-5"
+    >
+      <tr>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            background-color: #03010d;
+            width: 33%;
+            text-align: center;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-vertical.png"
+            style="height: 200px"
+          />
+        </td>
+        <td
+          style="
+            padding: 0;
+            margin: 0;
+            width: 66%;
+            background-color: #03010d;
+            text-align: right;
+          "
+        >
+          <img
+            src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-jupyter.png"
+            style="height: 250px"
+          />
+        </td>
+      </tr>
+    </table>
+
+    <p class="text-center fs-3 my-4 mx-2" style="color: #9900ff">
+      Query to find duplicate columns
+    </p>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Background</h4>
+      <div id="querycontext" class="block has-text-dark my-3 px-2">
+        <p>
+          Duplicate columns in a database schema can lead to several challenges and inefficiencies, impacting both performance and data integrity
+        </p>
+
+        <p>The downsides of duplicate columns include</p>
+        <ul>
+          <li>
+            <strong>Increased Storage Usage</strong>Duplicate columns consume additional storage space unnecessarily. This can be particularly impactful in large-scale databases where storage efficiency is crucial.
+          </li>
+         <li>
+          <strong>Data Redundancy and Inconsistency</strong> Redundancy can lead to inconsistency if the data in these columns is not kept synchronized, potentially leading to anomalies and errors in data retrieval and analysis.
+         </li>
+         <li>
+          <strong>Complicated Queries</strong>Having duplicate columns can complicate query writing and maintenance. Developers might need to remember which column to use for specific queries or might accidentally use the wrong one, leading to incorrect query results.
+        </li>
+        <li>
+          <strong>Performance Overhead</strong> Duplicate columns can cause performance overheads, especially for write operations like INSERT, UPDATE, and DELETE. These operations might take longer to execute as they have to deal with more data than necessary. It can also impact the performance of indexing and other optimization features.
+        </li>
+        <li>
+          <strong>Impact on Backup and Recovery</strong> Duplicate columns can increase the size of backups, making the backup and recovery process take longer. This can be particularly impactful in disaster recovery scenarios where time to restore operations is critical.
+        </li>
+        </ul>
+
+        
+      </div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">Actions</h4>
+      <div id="actions" class="block has-text-black mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <strong class="mr-2">Schema Analysis </strong> Analyze your database schema to identify columns that store similar data across different tables or within the same table.
+          </li>
+          <li>
+            <strong class="mr-2">Data Normalization </strong>Apply normalization principles to redesign the schema. Normalization involves organizing your database to reduce redundancy and improve data integrity
+          </li>
+          <li>
+            <strong class="mr-2">Migrate Data </strong> Once you have a new schema design, migrate the data from your old structure to the new one.
+          </li>
+          <li>
+            <strong class="mr-2">Update Applications </strong> If you have applications or services that interact with the database, you'll need to update them to work with the new schema.
+          </li>
+          <li>
+            <strong class="mr-2">Testing </strong>Thoroughly test the new schema with your applications to ensure that everything functions correctly and performance meets your requirements
+            key.
+          </li>
+          <li>
+            <strong class="mr-2">Performance Tuning </strong>After the schema changes are implemented, monitor the database's performance and adjust indexes, query designs, and configurations as needed to optimize performance. 
+          </li>
+          <li>
+            <strong class="mr-2">Documentation and Maintenance </strong>Document the changes made to the database schema, including the rationale for changes and any implications for database maintenance or application development. Keep this documentation updated as further changes are made.
+          </li>
+        </ol>
+
+        <p>
+          In summary, while specific behaviors and impacts might vary depending on the database system's implementation and the specific schema design, it's generally advisable to avoid duplicate columns in a database schema to maintain efficiency, performance, and data integrity. Always consider normalization
+
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="table-responsive" width="100%" height="600">rstable</div>
+    </div>
+
+    <div class="container my-5">
+      <h4 class="title is-4" style="color: #9900ff">References</h4>
+      <div id="queryhelp" class="block has-text-white mt-3 mb-5 px-2">
+        <ol>
+          <li>
+            <a href="https://docs.singlestore.com/db/v8.5/create-a-database/columnstore/how-the-columnstore-works/">
+              https://docs.singlestore.com/db/v8.5/create-a-database/columnstore/how-the-columnstore-works/</a>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+      <button
+        type="button"
+        class="btn btn-primary my-4"
+        onclick="history.back()"
+        style="background-color: #9900ff"
+      >
+        Back to Index
+      </button>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.datatables.net/2.0.0/js/dataTables.bootstrap5.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      let table = new DataTable("#rstbl", {
+        paging: true,
+        searching: false,
+        pageLength: 5,
+        scrollX: true,
+        lengthMenu: [
+          [5, 25, 100, 200],
+          [5, 25, 100, 200],
+        ],
+      });
+    </script>
+  </body>
+</html>
