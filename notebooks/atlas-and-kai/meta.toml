@@ -6,3 +6,4 @@ description="""\
 icon="database"
 tags=["starter", "mongo", "kai"]
 destinations=["spaces"]
+minimum_tier="free-shared"

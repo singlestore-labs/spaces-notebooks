@@ -5,3 +5,4 @@ description = """
 icon = "confluent-logo"
 tags = ["advanced", "confluent", "kafka", "pipeline", "realtime"]
 destinations = ["spaces"]
+minimum_tier="standard"

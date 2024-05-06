@@ -5,3 +5,4 @@ description = """
 icon = "database"
 tags =  ["mongo", "pipeline", "cdc", "ingest", "kai"]
 destinations = ["spaces"]
+minimum_tier="standard"

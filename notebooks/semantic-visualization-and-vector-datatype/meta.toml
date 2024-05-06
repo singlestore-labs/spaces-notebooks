@@ -6,3 +6,4 @@ description="""\
 icon="chart-network"
 tags=["stater", "vectordb", "genai", "huggingface", "semanticsearch"]
 destinations=["spaces"]
+minimum_tier="free-shared"

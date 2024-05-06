@@ -6,3 +6,4 @@ description="""\
 icon="chart-scatter"
 tags=["vectordb", "realtime"]
 destinations=["spaces"]
+minimum_tier="standard"

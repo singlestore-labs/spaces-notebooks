@@ -4,3 +4,4 @@ description="Ask questions of your unstructured PDFs. In this notebook, Unstruct
 icon="file-export"
 tags=["ingest", "pdf","vector","unstructured"]
 destinations=["spaces"]
+minimum_tier="standard"

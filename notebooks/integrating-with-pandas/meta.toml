@@ -7,3 +7,4 @@ description="""\
 icon="database"
 tags=["starter", "dataframe", "python"]
 destinations=["spaces"]
+minimum_tier="free-shared"

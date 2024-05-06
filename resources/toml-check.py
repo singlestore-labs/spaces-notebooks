@@ -29,6 +29,18 @@ for f in sys.argv[1:]:
     if 'icon' not in meta:
         error(f'No `icon` in `meta` section of {f}')
 
+    if 'minimum_tier' not in meta:
+        error(
+            f'No `minimum_tier` in `meta` section of {f}; '
+            f'it must be set to "free-shared" or "standard"',
+        )
+
+    if meta['minimum_tier'] not in ['free-shared', 'standard']:
+        error(
+            f'`minimum_tier` in `meta` section of {f} '
+            f'must be set to "free-shared" or "standard"',
+        )
+
     # Tags must be all lower-case, ascii letters
     tags = meta.get('tags', [])
 

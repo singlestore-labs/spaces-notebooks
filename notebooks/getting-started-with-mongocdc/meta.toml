@@ -6,3 +6,4 @@ description="""\
 icon="pipeline"
 tags=["cdc", "mongo", "kai"]
 destinations=["spaces"]
+minimum_tier="standard"

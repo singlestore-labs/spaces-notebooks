@@ -6,3 +6,4 @@ description="""\
 icon="crystal-ball"
 tags=["vectordb", "genai", "bedrock", "rag", "starter"]
 destinations=["spaces"]
+minimum_tier="standard"

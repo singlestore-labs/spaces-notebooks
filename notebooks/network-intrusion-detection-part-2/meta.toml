@@ -6,3 +6,4 @@ description="""\
 icon="browser"
 tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
 destinations=["spaces"]
+minimum_tier="standard"

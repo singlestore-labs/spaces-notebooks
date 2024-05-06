@@ -6,3 +6,4 @@ description="""\
 icon="chart-network"
 tags=["pipeline", "s3"]
 destinations=["spaces"]
+minimum_tier="standard"

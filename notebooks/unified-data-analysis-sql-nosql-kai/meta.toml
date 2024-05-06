@@ -6,3 +6,4 @@ description="""\
 icon="database"
 tags=["cdc", "mongo", "sql", "nosql", "kai"]
 destinations=["spaces"]
+minimum_tier="standard"

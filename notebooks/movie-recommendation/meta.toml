@@ -6,3 +6,4 @@ description="""\
 icon="camera-movie"
 tags=["advanced", "vectordb", "genai", "openai"]
 destinations=["spaces"]
+minimum_tier="standard"

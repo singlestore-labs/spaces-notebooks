@@ -6,3 +6,4 @@ description="""\
 icon="vector-circle"
 tags=["starter", "autogen", "rag", "multiagent", "groupchat"]
 destinations=["spaces"]
+minimum_tier="free-shared"

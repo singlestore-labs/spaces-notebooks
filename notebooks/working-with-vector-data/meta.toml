@@ -7,3 +7,4 @@ description="""\
 icon="browser"
 tags=["stater", "vectodb", "genai"]
 destinations=["spaces"]
+minimum_tier="free-shared"

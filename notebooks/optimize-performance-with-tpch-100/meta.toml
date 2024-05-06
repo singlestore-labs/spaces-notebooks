@@ -6,3 +6,4 @@ description="""\
 icon="database"
 tags=["advanced", "performance", "turning", "shardkey", "ingest", "tpch"]
 destinations=["spaces"]
+minimum_tier="standard"

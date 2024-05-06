@@ -6,3 +6,4 @@ description="""\
 icon="chart-network"
 tags=["advanced", "openai", "genai", "vectordb"]
 destinations=["spaces"]
+minimum_tier="standard"

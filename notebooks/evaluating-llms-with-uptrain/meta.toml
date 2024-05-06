@@ -6,3 +6,4 @@ Using Uptrain to evaluate LLMs built with SingleStore as the contextual store. T
 tags=["openai", "llm", "vectordb", "langchain"]
 icon="vector-circle"
 destinations=["spaces"]
+minimum_tier="standard"
