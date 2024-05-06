@@ -6,4 +6,4 @@ description="""\
 icon="notes"
 tags=["starter", "python", "dataframes"]
 destinations=["spaces"]
-minimum_tier="standard"
+minimum_tier="free-shared"
