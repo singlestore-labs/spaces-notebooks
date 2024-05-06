@@ -6,3 +6,4 @@ description="""\
 icon="chart-network"
 tags=["challenge", "haiku", "ascii"]
 destinations=["spaces"]
+minimum_tier="standard"

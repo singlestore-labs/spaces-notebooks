@@ -8,3 +8,4 @@ description="""\
 icon="browser"
 tags=["starter", "fusion", "python"]
 destinations=["spaces"]
+minimum_tier="standard"

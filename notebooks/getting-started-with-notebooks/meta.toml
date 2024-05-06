@@ -7,3 +7,4 @@ description="""\
 icon="notes"
 tags=["starter", "python", "sqrl"]
 destinations=["spaces"]
+minimum_tier="free-shared"

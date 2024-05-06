@@ -7,3 +7,4 @@ description="""\
 icon="files"
 tags=["starter", "fusion", "python"]
 destinations=["spaces"]
+minimum_tier="standard"

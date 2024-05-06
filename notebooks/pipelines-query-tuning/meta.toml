@@ -6,3 +6,4 @@ description="""\
 tags=["beginner", "kafka", "pipeline", "querytuning"]
 icon="database"
 destinations=["spaces"]
+minimum_tier="standard"

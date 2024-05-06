@@ -6,3 +6,4 @@ description="""\
 icon="vector-circle"
 tags=["vectordb", "genai", "langchain"]
 destinations=["spaces"]
+minimum_tier="standard"

@@ -6,3 +6,4 @@ description = """\
 icon = "book-open-cover"
 tags = ["vector", "advanced", "vectordb", "hybridsearch", "rag", "ann"]
 destinations = ["spaces"]
+minimum_tier="standard"

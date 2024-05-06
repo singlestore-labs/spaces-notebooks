@@ -7,6 +7,7 @@ import sys
 import tomllib
 import uuid
 from typing import Any
+from typing import List
 
 
 NOTEBOOK_HEADER = [
@@ -17,6 +18,16 @@ NOTEBOOK_HEADER = [
     '    <div id="text" style="padding: 5px; margin-left: 10px;">\n',
     '        <div id="badge" style="display: inline-block; background-color: rgba(0, 0, 0, 0.15); border-radius: 4px; padding: 4px 8px; align-items: center; margin-top: 6px; margin-bottom: -2px; font-size: 80%">SingleStore Notebooks</div>\n',
     '        <h1 style="font-weight: 500; margin: 8px 0 0 4px;">{title}</h1>\n',
+    '    </div>\n',
+    '</div>',
+]
+
+NOTEBOOK_STARTER_MESSAGE = [
+    '<div class="alert alert-block alert-warning">\n',
+    '    <b class="fa fa-solid fa-exclamation-circle"></b>\n',
+    '    <div>\n',
+    '        <p><b>Note</b></p>\n',
+    '        <p>This notebook can be run on a Free Starter Workspace. To create a Free Starter Workspace navigate to <tt>Start</tt> using the left nav. You can also use your existing Standard or Premium workspace with this Notebook.</p>\n',
     '    </div>\n',
     '</div>',
 ]
@@ -148,6 +159,7 @@ for f in sys.argv[1:]:
         end -= 1
 
     header_id = str(uuid.uuid4())
+    starter_id = str(uuid.uuid4())
     footer_id = str(uuid.uuid4())
 
     # Remove header cell, it will be regenerated later
@@ -158,6 +170,19 @@ for f in sys.argv[1:]:
         if 'id="singlestore-header"' in source:
             header_cell = cells.pop(0)
             header_id = header_cell.get('id', header_id)
+
+    # Remove Free Starter Workspace notification, it will be regenerated later
+    if cells:
+        remove_cells: List[int] = []
+        for i, cell in enumerate(cells):
+            source = cells[i].get('source', [])
+            if not isinstance(source, str):
+                source = ''.join(source)
+            if 'alert-warning' in source and 'can be run on a Free Starter' in source:
+                starter_id = cells[i].get('id', starter_id)
+                remove_cells.insert(0, i)
+        for i in remove_cells:
+            cells.pop(i)
 
     # Remove footer cell, it will be regenerated later
     if cells:
@@ -206,6 +231,9 @@ for f in sys.argv[1:]:
         ) for x in NOTEBOOK_HEADER
     ]
     cells.insert(0, new_markdown_cell(header_id, header))
+
+    if toml_info['meta']['minimum_tier'] == 'free-shared':
+        cells.insert(1, new_markdown_cell(starter_id, NOTEBOOK_STARTER_MESSAGE))
 
     # Add footer cell
     cells.append(new_markdown_cell(footer_id, NOTEBOOK_FOOTER))

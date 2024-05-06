@@ -6,3 +6,4 @@ We demonstrate how to build and host a real-time recommendation engine for free 
 icon="crystal-ball"
 tags=["starter", "openai", "vercel", "realtime", "vectordb"]
 destinations=["spaces"]
+minimum_tier="free-shared"

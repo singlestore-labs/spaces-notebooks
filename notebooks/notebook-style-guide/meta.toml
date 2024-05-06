@@ -4,3 +4,4 @@ description="Become a pro at formatting and organizing your notebooks."
 icon="link"
 tags=[]
 destinations=[]
+minimum_tier="standard"

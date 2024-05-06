@@ -6,3 +6,4 @@ description = """\
 icon = "database"
 tags = ["starter", "backup"]
 destinations = ["spaces"]
+minimum_tier="standard"

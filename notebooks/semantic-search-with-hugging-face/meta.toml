@@ -7,3 +7,4 @@ description="""\
 icon="chart-network"
 tags=["starter", "vectordb", "huggingface"]
 destinations=["spaces"]
+minimum_tier="free-shared"

@@ -6,3 +6,4 @@ description="""\
 icon="chart-network"
 tags=["starter", "openai", "vectordb", "genai"]
 destinations=["spaces"]
+minimum_tier="free-shared"

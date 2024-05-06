@@ -4,3 +4,4 @@ description="Using SingleStoreDB as a vector database and vector database use ca
 tags=["vector", "embeddings"]
 icon="database"
 destinations=["spaces"]
+minimum_tier="standard"

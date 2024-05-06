@@ -7,3 +7,4 @@ description="""\
 tags=["starter", "openai", "genai", "vectordb"]
 icon="vector-circle"
 destinations=["spaces"]
+minimum_tier="free-shared"

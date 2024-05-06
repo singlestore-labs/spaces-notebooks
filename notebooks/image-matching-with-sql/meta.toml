@@ -6,3 +6,4 @@ description="""\
 icon="face-viewfinder"
 tags=["starter", "vectordb", "genai", "facenet"]
 destinations=["spaces"]
+minimum_tier="free-shared"

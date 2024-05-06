@@ -6,3 +6,4 @@ description="""\
 icon="arrows-spin"
 tags=["vectordb", "genai", "openai", "rag"]
 destinations=["spaces"]
+minimum_tier="free-shared"
