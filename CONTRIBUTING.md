@@ -52,7 +52,7 @@ Your `meta.toml` file should have a `[meta]` section with the following keys:
 - description: string (optional)
 - tags: string[] (optional)
 - icon: string. You don't need to reference the extension. See full list of icon names [here](https://github.com/singlestore-labs/spaces-notebooks/tree/master/common/images/header-icons)
-- destinations: string. For now set it to Spaces. 
+- destinations: list of strings. For now set it to ["spaces"].
 minimum_tier: If this notebook can be run on our free shared tier, please use "free-shared". Else use "standard"
 
 Example:
