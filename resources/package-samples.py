@@ -83,7 +83,8 @@ if __name__ == '__main__':
     )
 
     parser.add_argument(
-        'notebooks_directory', metavar='notebooks-directory',
+        'notebooks_directory',
+        metavar='notebooks-directory',
         help='root `notebooks` directory',
     )
     parser.add_argument(
@@ -127,7 +128,7 @@ if __name__ == '__main__':
 
             notebook_path = os.path.join(
                 notebook_directory_path,
-                NOTEBOOK_FILE_NAME
+                NOTEBOOK_FILE_NAME,
             )
 
             # write the whole notebook directory
@@ -147,7 +148,7 @@ if __name__ == '__main__':
                 # write notebook with stripped output
                 destination = os.path.join(
                     notebook_name,
-                    NOTEBOOK_FILE_NAME
+                    NOTEBOOK_FILE_NAME,
                 )
 
                 contents = strip_outputs(notebook_path)
