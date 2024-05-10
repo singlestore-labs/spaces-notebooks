@@ -146,12 +146,8 @@ if __name__ == '__main__':
 
             if args.strip_outputs:
                 # write notebook with stripped output
-                destination = os.path.join(
-                    notebook_name,
-                    NOTEBOOK_FILE_NAME,
-                )
+
+                destination = convert_to_destination_path(notebook_path)
 
                 contents = strip_outputs(notebook_path)
                 out.writestr(destination, contents)
-
-
