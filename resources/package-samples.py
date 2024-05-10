@@ -8,18 +8,21 @@ import tomllib
 from zipfile import ZipFile
 
 
-def clear_outputs(path: str) -> str:
+def read_file(path: str, strip_outputs: bool) -> str:
     """Remove outputs from notebook at path."""
     with open(path, 'r') as infile:
         nb = json.loads(infile.read())
-        for cell in nb['cells']:
-            if 'metadata' in cell:
-                cell['metadata']['execution'] = {}
-            if 'outputs' in cell:
-                cell['outputs'] = []
-            if 'metadata' in nb:
-                if 'singlestore_connection' in nb['metadata']:
-                    nb['metadata']['singlestore_connection'] = {}
+
+        if strip_outputs:
+            for cell in nb['cells']:
+                if 'metadata' in cell:
+                    cell['metadata']['execution'] = {}
+                if 'outputs' in cell:
+                    cell['outputs'] = []
+                if 'metadata' in nb:
+                    if 'singlestore_connection' in nb['metadata']:
+                        nb['metadata']['singlestore_connection'] = {}
+
         return json.dumps(nb, indent=2)
 
 
@@ -44,12 +47,19 @@ if __name__ == '__main__':
         help='name of the output file',
         default='sample-notebooks.zip',
     )
+    parser.add_argument(
+        '-s', '--strip-outputs',
+        help='strip the output cells from the notebooks',
+        default=False,
+        action=argparse.BooleanOptionalAction,
+    )
 
     args = parser.parse_args()
 
     with open(args.toml, 'rb') as f:
         meta = tomllib.load(f)
         files = []
+
         for i, name in enumerate(meta['samples']['display']):
 
             # Verify the notebook file exists
@@ -57,6 +67,7 @@ if __name__ == '__main__':
                 args.notebooks_directory,
                 name, 'notebook.ipynb',
             )
+
             if not os.path.isfile(path):
                 print(
                     f'error: notebook file does not exist at {path}',
@@ -69,6 +80,7 @@ if __name__ == '__main__':
                 args.notebooks_directory,
                 name, 'meta.toml',
             )
+
             if not os.path.isfile(meta_path):
                 print(
                     f'error: metadata file does not exist at {meta_path}',
@@ -93,4 +105,5 @@ if __name__ == '__main__':
     with ZipFile(args.outfile, 'w') as out:
         for path, name in files:
             print(path, ' => ', name)
-            out.writestr(name, clear_outputs(path))
+            contents = read_file(path, strip_outputs=args.strip_outputs)
+            out.writestr(name, contents)
