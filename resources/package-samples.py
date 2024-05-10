@@ -7,9 +7,9 @@ import sys
 import tomllib
 from zipfile import ZipFile
 
-NOTEBOOK_FILE_NAME = "notebook.ipynb"
+NOTEBOOK_FILE_NAME = 'notebook.ipynb'
 
-REQUIRED_FILES = [NOTEBOOK_FILE_NAME, "meta.toml"]
+REQUIRED_FILES = [NOTEBOOK_FILE_NAME, 'meta.toml']
 
 def strip_outputs(path: str) -> str:
     """Remove outputs from notebook at path."""
@@ -34,11 +34,11 @@ def get_valid_notebooks(notebooks: str, notebooks_directory: str) -> list[str]:
 
     notebook_names = []
 
-    if notebooks == "sample":
+    if notebooks == 'sample':
         with open(args.toml, 'rb') as f:
             meta = tomllib.load(f)
             notebook_names = meta['samples']['display']
-    elif notebooks == "all":
+    elif notebooks == 'all':
         # get all
         notebook_names = os.listdir(notebooks_directory)
     else:
@@ -70,10 +70,10 @@ def get_valid_notebooks(notebooks: str, notebooks_directory: str) -> list[str]:
 
 def convert_to_destination_path(path: str) -> str:
     """Remove 'notebooks' from path"""
-    parts = path.split("/")
-    filtered_parts = list(filter(lambda x: x != "notebooks", parts))
+    parts = path.split('/')
+    filtered_parts = list(filter(lambda x: x != 'notebooks', parts))
 
-    return "/".join(filtered_parts)
+    return '/'.join(filtered_parts)
 
 if __name__ == '__main__':
 
