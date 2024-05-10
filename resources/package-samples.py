@@ -139,8 +139,8 @@ if __name__ == '__main__':
 
                     if source == notebook_path and args.strip_outputs:
                         # write notebook with stripped output
-                        contents = strip_outputs(notebook_path)
-                        out.writestr(destination, contents)
+                        stripped_nodebook = strip_outputs(notebook_path)
+                        out.writestr(destination, stripped_nodebook)
                     else:
                         # write file normally
                         out.write(source, arcname=destination)
