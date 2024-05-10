@@ -144,7 +144,7 @@ if __name__ == '__main__':
                     out.write(source, arcname=destination)
 
             if args.strip_outputs:
-                # overwrite notebook file with stripped output version
+                # write notebook with stripped output
                 destination = os.path.join(
                     notebook_name,
                     NOTEBOOK_FILE_NAME
