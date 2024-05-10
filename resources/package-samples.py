@@ -137,17 +137,10 @@ if __name__ == '__main__':
                     source = os.path.join(dirpath, file)
                     destination = convert_to_destination_path(source)
 
-                    if args.strip_outputs and source == notebook_path:
-                        # don't write notebook here, will be written later after
-                        # transformation
-                        continue
-
-                    out.write(source, arcname=destination)
-
-            if args.strip_outputs:
-                # write notebook with stripped output
-
-                destination = convert_to_destination_path(notebook_path)
-
-                contents = strip_outputs(notebook_path)
-                out.writestr(destination, contents)
+                    if source == notebook_path and args.strip_outputs:
+                        # write notebook with stripped output
+                        contents = strip_outputs(notebook_path)
+                        out.writestr(destination, contents)
+                    else:
+                        # write file normally
+                        out.write(source, arcname=destination)
