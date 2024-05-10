@@ -1,10 +1,9 @@
-name: Upload Release Asset
+name: Upload Release Assets
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches:
+      - "master"
 
 jobs:
   build:
