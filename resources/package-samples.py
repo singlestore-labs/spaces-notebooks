@@ -29,7 +29,7 @@ def strip_outputs(path: str) -> str:
         return json.dumps(nb, indent=2)
 
 
-def get_valid_notebooks(notebooks: str | list[str], notebooks_directory: str) -> list[str]:
+def get_valid_notebooks(notebooks: str, notebooks_directory: str) -> list[str]:
     """Return a list of valid notebooks"""
 
     notebook_names = []
@@ -41,9 +41,9 @@ def get_valid_notebooks(notebooks: str | list[str], notebooks_directory: str) ->
     elif notebooks == "all":
         # get all
         notebook_names = os.listdir(notebooks_directory)
-    elif isinstance(object, list):
-        # return
-        notebook_names = notebooks
+    else:
+        # comma-separated list
+        notebook_names = list(map(str.strip, notebooks.split(',')))
 
     valid_notebooks = []
 
