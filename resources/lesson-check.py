@@ -4,14 +4,10 @@ import sys
 import tomllib
 
 
-def check_lesson(lesson):
-    print('Checking ' + lesson)
-    lesson_toml_path = os.path.join(
-        'lessons',
-        lesson,
-    )
+def check_lesson(lesson_path):
+    print('Checking ' + lesson_path)
 
-    with open(lesson_toml_path, 'rb') as f:
+    with open(lesson_path, 'rb') as f:
         meta = tomllib.load(f)
 
         notebooks = meta['meta']['notebooks']
@@ -30,14 +26,7 @@ def check_lesson(lesson):
                 )
                 sys.exit(1)
 
-def check_all_lessons():
-    lessons = os.listdir('lessons')
-
-    for lesson in lessons:
-        check_lesson(lesson)
-
-    print('Passed')
-
 
 if __name__ == '__main__':
-    check_all_lessons()
+    for f in sys.argv[1:]:
+        check_lesson(f)
