@@ -16,7 +16,7 @@ def check_lesson(lesson_path):
             notebook_path = os.path.join(
                 'notebooks',
                 notebook,
-                'notebook.ipynb'
+                'notebook.ipynb',
             )
 
             if not os.path.isfile(notebook_path):
