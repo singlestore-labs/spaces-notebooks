@@ -1,0 +1,10 @@
+[meta]
+title = "IT Threat Detection"
+description="""\
+    Introducing the IT Threat Detection Module! Over three concise lessons, you'll master the art of fortifying your organization's cybersecurity. Learn to identify threats, validate defenses, and seamlessly integrate protective measures. Get set to elevate your digital security prowess!
+    """
+notebooks = [
+    "network-intrusion-detection-part-1",
+    "network-intrusion-detection-part-2",
+    "network-intrusion-detection-part-3"
+]
