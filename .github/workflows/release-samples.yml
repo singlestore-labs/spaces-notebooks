@@ -24,7 +24,6 @@ jobs:
 
       - name: Build notebooks
         run: |
-          python resources/package-samples.py notebooks --strip-output --outfile sample-notebooks.zip --notebooks sample
           python resources/package-samples.py notebooks --strip-output --outfile notebooks-stripped.zip --notebooks all
           python resources/package-samples.py notebooks --outfile notebooks-full.zip --notebooks all
 
@@ -43,16 +42,6 @@ jobs:
       # it's ID to get its outputs object, which include a `upload_url`.
       # See this blog post for more info:
       #   https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-      - name: Upload Sample Asset
-        id: upload-sample-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./sample-notebooks.zip
-          asset_name: sample-notebooks.zip
-          asset_content_type: application/zip
       - name: Upload Stripped Asset
         id: upload-stripped-asset
         uses: actions/upload-release-asset@v1
