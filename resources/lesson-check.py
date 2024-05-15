@@ -5,7 +5,7 @@ import tomllib
 
 
 def check_lesson(lesson):
-    print("Checking " + lesson)
+    print('Checking ' + lesson)
     lesson_toml_path = os.path.join(
         'lessons',
         lesson,
@@ -31,12 +31,12 @@ def check_lesson(lesson):
                 sys.exit(1)
 
 def check_all_lessons():
-    lessons = os.listdir("lessons")
+    lessons = os.listdir('lessons')
 
     for lesson in lessons:
         check_lesson(lesson)
 
-    print("Passed")
+    print('Passed')
 
 
 if __name__ == '__main__':
