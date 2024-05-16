@@ -11,6 +11,7 @@ NOTEBOOK_FILE_NAME = 'notebook.ipynb'
 
 REQUIRED_FILES = [NOTEBOOK_FILE_NAME, 'meta.toml']
 
+
 def strip_outputs(path: str) -> str:
     """Remove outputs from notebook at path."""
 
@@ -74,6 +75,7 @@ def convert_to_destination_path(path: str) -> str:
     filtered_parts = list(filter(lambda x: x != 'notebooks', parts))
 
     return '/'.join(filtered_parts)
+
 
 if __name__ == '__main__':
 
