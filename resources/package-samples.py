@@ -7,11 +7,17 @@ import sys
 import tomllib
 from zipfile import ZipFile
 
+NOTEBOOK_FILE_NAME = 'notebook.ipynb'
 
-def clear_outputs(path: str) -> str:
+REQUIRED_FILES = [NOTEBOOK_FILE_NAME, 'meta.toml']
+
+
+def strip_outputs(path: str) -> str:
     """Remove outputs from notebook at path."""
+
     with open(path, 'r') as infile:
         nb = json.loads(infile.read())
+
         for cell in nb['cells']:
             if 'metadata' in cell:
                 cell['metadata']['execution'] = {}
@@ -20,7 +26,55 @@ def clear_outputs(path: str) -> str:
             if 'metadata' in nb:
                 if 'singlestore_connection' in nb['metadata']:
                     nb['metadata']['singlestore_connection'] = {}
+
         return json.dumps(nb, indent=2)
+
+
+def get_valid_notebooks(notebooks: str, notebooks_directory: str) -> list[str]:
+    """Return a list of valid notebooks"""
+
+    notebook_names = []
+
+    if notebooks == 'sample':
+        with open(args.toml, 'rb') as f:
+            meta = tomllib.load(f)
+            notebook_names = meta['samples']['display']
+    elif notebooks == 'all':
+        # get all
+        notebook_names = os.listdir(notebooks_directory)
+    else:
+        # comma-separated list
+        notebook_names = list(map(str.strip, notebooks.split(',')))
+
+    valid_notebooks = []
+
+    for notebook_name in notebook_names:
+
+        for required_file in REQUIRED_FILES:
+            path = os.path.join(
+                args.notebooks_directory,
+                notebook_name,
+                required_file,
+            )
+
+            if not os.path.isfile(path):
+                print(
+                    f'error: Required file does not exist: {path}',
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+
+        valid_notebooks.append(notebook_name)
+
+    return valid_notebooks
+
+
+def convert_to_destination_path(path: str) -> str:
+    """Remove 'notebooks' from path"""
+    parts = path.split('/')
+    filtered_parts = list(filter(lambda x: x != 'notebooks', parts))
+
+    return '/'.join(filtered_parts)
 
 
 if __name__ == '__main__':
@@ -31,8 +85,15 @@ if __name__ == '__main__':
     )
 
     parser.add_argument(
-        'notebooks_directory', metavar='notebooks-directory',
+        'notebooks_directory',
+        metavar='notebooks-directory',
         help='root `notebooks` directory',
+    )
+    parser.add_argument(
+        '--notebooks',
+        help='which notebooks to package',
+        default='all',
+        required=True,
     )
     parser.add_argument(
         '-t', '--toml',
@@ -44,53 +105,44 @@ if __name__ == '__main__':
         help='name of the output file',
         default='sample-notebooks.zip',
     )
+    parser.add_argument(
+        '-s', '--strip-outputs',
+        help='strip the output cells from the notebooks',
+        default=False,
+        action=argparse.BooleanOptionalAction,
+    )
 
     args = parser.parse_args()
 
-    with open(args.toml, 'rb') as f:
-        meta = tomllib.load(f)
-        files = []
-        for i, name in enumerate(meta['samples']['display']):
-
-            # Verify the notebook file exists
-            path = os.path.join(
-                args.notebooks_directory,
-                name, 'notebook.ipynb',
-            )
-            if not os.path.isfile(path):
-                print(
-                    f'error: notebook file does not exist at {path}',
-                    file=sys.stderr,
-                )
-                sys.exit(1)
-
-            # Verify the metadata file exists
-            meta_path = os.path.join(
-                args.notebooks_directory,
-                name, 'meta.toml',
-            )
-            if not os.path.isfile(meta_path):
-                print(
-                    f'error: metadata file does not exist at {meta_path}',
-                    file=sys.stderr,
-                )
-                sys.exit(1)
-
-            with open(meta_path, 'rb') as meta_toml:
-                nb_meta = tomllib.load(meta_toml)
-
-            try:
-                files.append(
-                    (
-                        path,
-                        f'{i + 1:02} - {nb_meta["meta"]["title"]}.ipynb.json',
-                    ),
-                )
-            except Exception:
-                print(path, ' =>\n    ', nb_meta)
-                raise
+    valid_notebooks = get_valid_notebooks(
+        notebooks=args.notebooks,
+        notebooks_directory=args.notebooks_directory,
+    )
 
     with ZipFile(args.outfile, 'w') as out:
-        for path, name in files:
-            print(path, ' => ', name)
-            out.writestr(name, clear_outputs(path))
+        for notebook_name in valid_notebooks:
+            print(notebook_name)
+
+            notebook_directory_path = os.path.join(
+                args.notebooks_directory,
+                notebook_name,
+            )
+
+            notebook_path = os.path.join(
+                notebook_directory_path,
+                NOTEBOOK_FILE_NAME,
+            )
+
+            # write the whole notebook directory
+            for dirpath, dirs, files in os.walk(notebook_directory_path):
+                for file in files:
+                    source = os.path.join(dirpath, file)
+                    destination = convert_to_destination_path(source)
+
+                    if source == notebook_path and args.strip_outputs:
+                        # write notebook with stripped output
+                        stripped_nodebook = strip_outputs(notebook_path)
+                        out.writestr(destination, stripped_nodebook)
+                    else:
+                        # write file normally
+                        out.write(source, arcname=destination)

@@ -145,12 +145,10 @@ for f in sys.argv[1:]:
 
     cells = nb.get('cells', [])
 
-    # Remove metadata and outputs
+    # Remove metadata
     for i, cell in enumerate(cells):
         if 'metadata' in cell:
             cell['metadata'] = {}
-        if 'outputs' in cell:
-            cell['outputs'] = []
 
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1

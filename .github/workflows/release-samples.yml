@@ -1,10 +1,9 @@
-name: Upload Release Asset
+name: Upload Release Assets
 
 on:
   push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+    branches:
+      - master
 
 jobs:
   build:
@@ -23,9 +22,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
-      - name: Build project
+      - name: Build notebooks
         run: |
-          python resources/package-samples.py notebooks
+          python resources/package-samples.py notebooks --strip-output --outfile notebooks-stripped.zip --notebooks all
+          python resources/package-samples.py notebooks --outfile notebooks-full.zip --notebooks all
 
       - name: Create Release
         id: create_release
@@ -33,22 +33,32 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag_name: ${{ github.sha }}
+          release_name: Release ${{ github.sha }}
           draft: false
           prerelease: false
 
-      - name: Upload Release Asset
-        id: upload-release-asset
+      # This pulls from the CREATE RELEASE step above, referencing
+      # it's ID to get its outputs object, which include a `upload_url`.
+      # See this blog post for more info:
+      #   https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+      - name: Upload Stripped Asset
+        id: upload-stripped-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          # This pulls from the CREATE RELEASE step above, referencing
-          # it's ID to get its outputs object, which include a `upload_url`.
-          # See this blog post for more info:
-          #   https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./sample-notebooks.zip
-          asset_name: sample-notebooks.zip
+          asset_path: ./notebooks-stripped.zip
+          asset_name: notebooks-stripped.zip
+          asset_content_type: application/zip
+      - name: Upload Full Asset
+        id: upload-stripped-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./notebooks-full.zip
+          asset_name: notebooks-full.zip
           asset_content_type: application/zip
