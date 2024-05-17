@@ -23,7 +23,7 @@ jobs:
           python -m pip install --upgrade pip
 
       - name: Set current date as env variable
-        run: echo "DATETIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        run: echo "DATETIME=$(date +'%Y-%m-%dT%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Bump version and push tag
         id: tag_version
