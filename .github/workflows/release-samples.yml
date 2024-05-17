@@ -2,8 +2,6 @@ name: Upload Release Assets
 
 on:
   push:
-    tags:
-      - "v*" # Push events to matching v*, i.e. v1.0, v20.15.10
     branches:
       - master
 
@@ -26,6 +24,13 @@ jobs:
 
       - name: Set current date as env variable
         run: echo "DATETIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.2
+        with:
+          custom_tag: v${{ env.DATETIME }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build notebooks
         run: |
