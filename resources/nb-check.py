@@ -145,10 +145,13 @@ for f in sys.argv[1:]:
 
     cells = nb.get('cells', [])
 
-    # Remove metadata
+    # Remove metadata and outputs
     for i, cell in enumerate(cells):
         if 'metadata' in cell:
             cell['metadata'] = {}
+        # TODO: do not remove outputs once helios has migrated to published zips
+        if 'outputs' in cell:
+            cell['outputs'] = []
 
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1
