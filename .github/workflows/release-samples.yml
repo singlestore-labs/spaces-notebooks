@@ -29,7 +29,7 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.2
         with:
-          custom_tag: v${{ env.DATETIME }}
+          custom_tag: ${{ env.DATETIME }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build notebooks
@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.DATETIME }}
-          release_name: Release ${{ env.DATETIME }}
+          tag_name: v${{ env.DATETIME }}
+          release_name: Release v${{ env.DATETIME }}
           draft: false
           prerelease: false
 
