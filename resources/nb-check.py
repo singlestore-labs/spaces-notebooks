@@ -10,6 +10,7 @@ from typing import Any
 from typing import List
 
 
+
 NOTEBOOK_HEADER = [
     '<div id="singlestore-header" style="display: flex; background-color: {background_color}; padding: 5px;">\n',
     '    <div id="icon-image" style="width: 90px; height: 90px;">\n',
@@ -222,6 +223,10 @@ for f in sys.argv[1:]:
         title = html.escape(toml_info['meta']['title'])
     except KeyError as exc:
         error(f'missing title in {toml_path}')
+
+    difficulty = toml_info['meta'].get('difficulty')
+    if difficulty is not None and difficulty not in ['beginner', 'intermediate', 'advanced']:
+        error(f'invalid difficulty in {toml_path}')
 
     # Add header cell
     header = [

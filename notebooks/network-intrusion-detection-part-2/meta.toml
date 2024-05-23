@@ -4,6 +4,7 @@ description="""\
     Part 2 or Real-time threat Detection - Validate the accuracy of the
     threat detection model with a test dataset"""
 icon="browser"
+difficulty="advanced"
 tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
 destinations=["spaces"]
 minimum_tier="standard"

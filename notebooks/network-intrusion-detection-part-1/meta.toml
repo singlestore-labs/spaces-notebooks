@@ -6,6 +6,7 @@ description="""
     for identifying infrequent occurrences, a common requirement in fields such as cybersecurity
     and fraud detection where only a small percentage of events are potentially malicious."""
 icon="browser"
+difficulty="advanced"
 tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
 destinations=["spaces"]
 minimum_tier="standard"

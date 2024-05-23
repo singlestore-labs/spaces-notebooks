@@ -5,6 +5,7 @@ description="""
     and visualize Threat Detection on incoming logs.
     This notebook requires adjustments to work out of the box."""
 icon="browser"
+difficulty="advanced"
 tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
 destinations=["spaces"]
 minimum_tier="standard"

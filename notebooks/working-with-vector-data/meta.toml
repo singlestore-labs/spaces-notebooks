@@ -5,6 +5,7 @@ description="""\
     vector data from SingleStoreDB using Python.
     """
 icon="browser"
-tags=["stater", "vectodb", "genai"]
+difficulty="beginner"
+tags=["starter", "vectodb", "genai"]
 destinations=["spaces"]
 minimum_tier="free-shared"
