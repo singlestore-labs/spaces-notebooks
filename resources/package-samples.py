@@ -7,6 +7,7 @@ import sys
 import tomllib
 from zipfile import ZipFile
 
+
 NOTEBOOK_FILE_NAME = 'notebook.ipynb'
 
 REQUIRED_FILES = [NOTEBOOK_FILE_NAME, 'meta.toml']

@@ -6,6 +6,7 @@ description="""\
     Stage files all from SQL.
     """
 icon="browser"
+difficulty="beginner"
 tags=["starter", "fusion", "python"]
 destinations=["spaces"]
 minimum_tier="standard"

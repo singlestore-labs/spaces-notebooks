@@ -4,6 +4,7 @@ description="""\
     Run your MongoDB queries on SingleStore Kai with no code change. \
     """
 icon="database"
+difficulty="beginner"
 tags=["starter", "mongo", "kai"]
 destinations=["spaces"]
 minimum_tier="free-shared"

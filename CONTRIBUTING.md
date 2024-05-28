@@ -50,10 +50,11 @@ Your `meta.toml` file should have a `[meta]` section with the following keys:
 
 - title: string
 - description: string (optional)
+- difficulty: "beginner", "intermediate" or "advanced"
 - tags: string[] (optional)
 - icon: string. You don't need to reference the extension. See full list of icon names [here](https://github.com/singlestore-labs/spaces-notebooks/tree/master/common/images/header-icons)
 - destinations: list of strings. For now set it to ["spaces"].
-minimum_tier: If this notebook can be run on our free shared tier, please use "free-shared". Else use "standard"
+- minimum_tier: If this notebook can be run on our free shared tier, please use "free-shared". Else use "standard"
 
 Example:
 
@@ -61,9 +62,11 @@ Example:
 [meta]
 title="Atlas & Kai for Mongo Side-by-Side"
 description="Compare performance on same code from simple to more complex queries"
+difficulty="beginner"
 tags=["mongodb", "kai"]
 destinations=["spaces"]
 icon="database"
+minimum_tier="free-shared"
 ```
 
 

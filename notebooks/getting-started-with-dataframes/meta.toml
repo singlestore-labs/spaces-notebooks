@@ -5,6 +5,7 @@ description="""\
     familiar DataFrame syntax in addition to SQL.
     """
 icon="browser"
+difficulty="beginner"
 tags=["starter", "dataframe", "python"]
 destinations=["spaces"]
 minimum_tier="free-shared"

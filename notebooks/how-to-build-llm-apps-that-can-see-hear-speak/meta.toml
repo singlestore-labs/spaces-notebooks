@@ -4,6 +4,7 @@ description="""\
     Using OpenAI to build an app that can take images, audio, and text data to generate output
     """
 icon="chart-network"
+difficulty="advanced"
 tags=["advanced", "openai", "genai", "vectordb"]
 destinations=["spaces"]
 minimum_tier="standard"

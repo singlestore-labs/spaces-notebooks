@@ -4,6 +4,7 @@ description="""\
     Resume Evaluator using vectors stored in SingleStore to find sutiable resume for your job description. \
     """
 icon="arrows-spin"
-tags=["stater", "vectordb", "genai", "openai"]
+difficulty="beginner"
+tags=["starter", "vectordb", "genai", "openai"]
 destinations=["spaces"]
 minimum_tier="free-shared"
