@@ -4,8 +4,9 @@ import argparse
 import json
 import os
 import sys
-import tomllib
 from zipfile import ZipFile
+
+import tomllib
 
 NOTEBOOK_FILE_NAME = 'notebook.ipynb'
 
