@@ -4,6 +4,7 @@ description="""\
     Perform both SQL and NoSQL queries on multi-modal relational and JSON data \
     """
 icon="database"
+difficulty="intermediate"
 tags=["cdc", "mongo", "sql", "nosql", "kai"]
 destinations=["spaces"]
 minimum_tier="standard"

@@ -1,6 +1,7 @@
 [meta]
 title="A Deep Dive Into Vector Databases"
 description="Using SingleStoreDB as a vector database and vector database use cases."
+difficulty="intermediate"
 tags=["vector", "embeddings"]
 icon="database"
 destinations=["spaces"]

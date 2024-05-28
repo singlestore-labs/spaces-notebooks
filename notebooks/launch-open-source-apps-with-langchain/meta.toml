@@ -4,6 +4,7 @@ description="""\
     LangChain connector to use SingleStoreDB as your vector database for your apps. \
     """
 icon="vector-circle"
+difficulty="intermediate"
 tags=["vectordb", "genai", "langchain"]
 destinations=["spaces"]
 minimum_tier="standard"
