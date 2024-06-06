@@ -3,7 +3,7 @@ name: Trigger bifrost deployment
 on:
   push:
     branches:
-      - fs/trigger-bifrost-pipeline
+      - master
 
 jobs:
   deploy:
