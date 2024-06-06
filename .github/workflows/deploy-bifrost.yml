@@ -1,0 +1,21 @@
+name: pre-commit checks
+
+on:
+  push:
+    branches:
+      - fs/trigger-bifrost-pipeline
+
+jobs:
+  check:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Trigger bifrost pipeline
+        env:
+          GITLAB_API_TOKEN: ${{ secrets.GITLAB_API_TOKEN }}
+        run: |
+          curl --request POST \
+          --form token=$GITLAB_API_TOKEN \
+          --form ref=master \
+          --form variables[CONTENTSTACK_TRIGGER]="production" \
+          https://gitlab.com/api/v4/projects/33388494/ref/master/trigger/pipeline/
