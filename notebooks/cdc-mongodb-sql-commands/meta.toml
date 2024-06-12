@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title = "Ingest data from MONGODB® to SingleStore using SQL commands"
 description = """
     Setup CDC Replication from MongoDB® to SingleStore using SQL commands. """

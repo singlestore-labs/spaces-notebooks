@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Mongo Atlas & SingleStore Kai"
 description="""\
     Run your MongoDB queries on SingleStore Kai with no code change. \

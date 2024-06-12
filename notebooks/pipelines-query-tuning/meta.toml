@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Kafka Pipelines and Query Tuning"
 description="""\
     Create a SingleStore pipeline to track the International Space Station and adjust queries & schema to optimize performance.

@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Semantic Search with OpenAI QA"
 description="""\
     Provide context to chatGPT using data stored in SingleStoreDB. \

@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="InsureGPT: OpenAI and SingleStore for Insurance"
 description="Creating an insurance analysis with OpenAI and vectorizing the results into SingleStore."
 difficulty="intermediate"

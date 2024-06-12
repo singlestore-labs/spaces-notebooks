@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Resume Evaluator"
 description="""\
     Resume Evaluator using vectors stored in SingleStore to find sutiable resume for your job description. \

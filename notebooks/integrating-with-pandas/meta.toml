@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Integrating pandas with SingleStoreDB"
 description="""\
     Moving data to and from pandas DataFrames is demonstrated using

@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Getting Started with Fusion SQL"
 description="""\
     Fusion SQL allows you to manage your SingleStoreDB Cloud

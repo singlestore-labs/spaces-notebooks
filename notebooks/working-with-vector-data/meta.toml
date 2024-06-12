@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Working with Vector Data"
 description="""\
     This example demonstrates the various ways to upload and download

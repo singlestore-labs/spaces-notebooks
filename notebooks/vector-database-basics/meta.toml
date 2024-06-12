@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="A Deep Dive Into Vector Databases"
 description="Using SingleStoreDB as a vector database and vector database use cases."
 difficulty="beginner"

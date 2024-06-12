@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Unified Data Analysis: SQL & NoSQL on a Single Database with Kai"
 description="""\
     Perform both SQL and NoSQL queries on multi-modal relational and JSON data \

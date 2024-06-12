@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Launch Open-Source Apps with LangChain"
 description="""\
     LangChain connector to use SingleStoreDB as your vector database for your apps. \

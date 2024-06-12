@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="IT Threat Detection, Part 1"
 description="""
     Part 1 or Real-time threat Detection - This notebook demonstrates the

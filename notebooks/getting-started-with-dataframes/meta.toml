@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Getting Started with DataFrames in SingleStoreDB"
 description="""\
     Data in SingleStoreDB can be queried and modified using a

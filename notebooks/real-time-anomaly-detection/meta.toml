@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title="Real-Time Anomaly Detection"
 description="""\
     Real-time anomaly detection in IoT sensor data, harnessing the robust capabilities of SingleStoreDB and advanced analytical techniques. \

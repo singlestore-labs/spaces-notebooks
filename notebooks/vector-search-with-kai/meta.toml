@@ -1,5 +1,5 @@
 [meta]
-author="singlestore"
+authors=["singlestore"]
 title = "Vector Search with Kai"
 description = """
     Run Vector Search using MongoDB clients and power GenAI usecases for your MongoDB applications """
