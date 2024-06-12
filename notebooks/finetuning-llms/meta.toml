@@ -1,0 +1,8 @@
+[meta]
+title="Fine-Tuning LLMs with Our Own Custom Data"
+description="""\
+    This example demonstrates on how to fine tune a base model using our own custom data.
+    """
+icon="vector-circle"
+tags=["beginner", "llm"]
+destinations=["spaces"]
