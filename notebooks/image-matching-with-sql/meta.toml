@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Image Matching with SQL"
 description="""\
     Facial recognition using dot_product function on vectors stored in SingleStoreDB. \

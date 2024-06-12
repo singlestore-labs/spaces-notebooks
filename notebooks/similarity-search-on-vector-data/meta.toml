@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Similarity Search on Vector Data"
 description="Example of similarity searches over vector data."
 difficulty="beginner"

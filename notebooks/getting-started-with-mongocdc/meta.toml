@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Getting Started With CDC Replication from MongoDB"
 description="""\
     Setup Zero ETL data replication from MongoDB to SingleStore \

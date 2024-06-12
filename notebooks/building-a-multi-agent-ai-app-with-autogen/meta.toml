@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="How to Build a Multi-Agent AI App with AutoGen"
 description="""\
     Learn how to build a multi-agent group chat with RAG using Autogen and SingleStore   \

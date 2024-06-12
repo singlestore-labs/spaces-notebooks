@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Load JSON files with Pipeline from S3"
 description="""\
     This notebook will help you load JSON files from a public open AWS S3 bucket.

@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Movie Recommendation"
 description="""\
     Movie recommendation engine using vectors stored in SingleStore to find your next watch. \

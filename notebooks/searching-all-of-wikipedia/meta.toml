@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title = "Searching all of Wikipedia"
 description = """\
     Simulate searching through 10 million paragraphs in Wikipedia for information about video games, and generate answers using RAG! \

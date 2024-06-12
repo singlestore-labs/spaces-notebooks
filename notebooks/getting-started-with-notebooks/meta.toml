@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Getting Started with Notebooks"
 description="""\
     SingleStore Notebooks with an AI Copilot (SQrL) for data prototyping, \

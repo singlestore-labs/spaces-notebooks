@@ -1,4 +1,5 @@
 [meta]
+author="singlestore"
 title="Hybrid Search"
 description="""\
     Hybrid search combines keyword search with semantic search,
