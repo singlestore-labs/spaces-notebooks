@@ -48,9 +48,9 @@ repos:
         language: system
         files: \.ipynb$
         exclude: notebooks/notebook-style-guide/notebook.ipynb
-      - id: toml-check
-        name: toml-check
-        entry: resources/toml-check.py
+      - id: nb-meta-check
+        name: nb-meta-check
+        entry: resources/nb-meta-check.py
         language: system
         files: notebooks/.*/meta\.toml
       - id: lesson-check
