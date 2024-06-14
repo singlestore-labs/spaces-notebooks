@@ -62,4 +62,4 @@ repos:
         name: author-check
         entry: resources/author-check.py
         language: system
-        files: authors/*\.toml
+        files: authors/.*\.toml

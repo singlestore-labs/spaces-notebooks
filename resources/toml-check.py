@@ -17,6 +17,7 @@ def error(msg):
 
 for f in sys.argv[1:]:
 
+    print(f"Checking {f}...")
     with open(f, 'r') as infile:
         info = tomllib.loads(infile.read())
 
