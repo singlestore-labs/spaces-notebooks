@@ -59,3 +59,8 @@ repos:
         entry: resources/lesson-check.py
         language: system
         files: lessons/.*\.toml
+      - id: author-check
+        name: author-check
+        entry: resources/author-check.py
+        language: system
+        files: authors/*.toml
