@@ -90,8 +90,8 @@ for f in sys.argv[1:]:
             error(f'Lesson area {lesson_area} not found in preview icons')
 
     # Authors must have a corresponding author entry
-    author_meta_files = os.listdir("authors")
+    author_meta_files = os.listdir('authors')
     for author in meta['authors']:
-        author_filename = f"{author}.toml"
+        author_filename = f'{author}.toml'
         if author_filename not in author_meta_files:
             error(f'Author {author} does not have a corresponding author entry in {f}')

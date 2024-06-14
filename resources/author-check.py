@@ -8,7 +8,7 @@ def error(msg):
     sys.exit(1)
 
 def check_author(author_path):
-    print(f"Checking {author_path}...")
+    print(f'Checking {author_path}...')
 
     with open(author_path, 'rb') as f:
         meta = tomllib.load(f)
@@ -21,8 +21,9 @@ def check_author(author_path):
 
         # Logo is optional, but if defined a corresponding image must exist
         if 'logo' in meta:
-            logo_filename = f"{meta['logo']}.png"
-            logo_path = os.path.join("common/images/author-images", logo_filename)
+            logo_id = meta['logo']
+            logo_filename = f'{logo_id}.png'
+            logo_path = os.path.join('common/images/author-images', logo_filename)
             if not os.path.isfile(logo_path):
                 error(f'Logo image does not exist at {logo_path} for {author_path}')
 
