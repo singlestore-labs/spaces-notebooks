@@ -52,8 +52,7 @@ repos:
         name: toml-check
         entry: resources/toml-check.py
         language: system
-        files: \.toml$
-        exclude: "lessons/.*|^meta.toml"
+        files: notebooks/.*/meta\.toml
       - id: lesson-check
         name: lesson-check
         entry: resources/lesson-check.py
