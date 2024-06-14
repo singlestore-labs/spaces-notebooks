@@ -3,9 +3,11 @@ import os
 import sys
 import tomllib
 
+
 def error(msg):
     print('ERROR:', msg, file=sys.stderr)
     sys.exit(1)
+
 
 def check_author(author_path):
     print(f'Checking {author_path}...')
@@ -26,6 +28,7 @@ def check_author(author_path):
             logo_path = os.path.join('common/images/author-images', logo_filename)
             if not os.path.isfile(logo_path):
                 error(f'Logo image does not exist at {logo_path} for {author_path}')
+
 
 if __name__ == '__main__':
     for f in sys.argv[1:]:
