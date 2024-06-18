@@ -41,6 +41,12 @@ for f in sys.argv[1:]:
             f'must be set to "free-shared" or "standard"',
         )
 
+    if 'lesson_area' not in meta:
+        error(
+            f'No `lesson_area` in `meta` section of {f}; '
+            f'it must be an array of strings (can be empty)',
+        )
+
     # Tags must be all lower-case, ascii letters
     tags = meta.get('tags', [])
 
