@@ -3,7 +3,8 @@ title = "Vector Search with Kai"
 description = """
     Run Vector Search using MongoDB clients and power GenAI usecases for your MongoDB applications """
 icon = "radar"
-difficulty="beginner"
+difficulty="Intermediate"
 tags =  ["mongo", "embeddings", "vector", "genai", "kai", "starter"]
+lesson_areas=["Kai", "AI"]
 destinations = ["spaces"]
 minimum_tier="standard"

@@ -5,7 +5,8 @@ description="""\
     Cloud using Fusion SQL.
     """
 icon="files"
-difficulty="beginner"
+difficulty="Intermediate"
 tags=["starter", "fusion", "python"]
+lesson_areas=["Python SDK", "Ingest"]
 destinations=["spaces"]
 minimum_tier="standard"

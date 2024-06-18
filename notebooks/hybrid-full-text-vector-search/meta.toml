@@ -1,8 +1,9 @@
 [meta]
 title="Hybrid Full-text and Vector Search"
 description="Example of similarity search over vector data and a hybrid search that combines full-text search with an indexed vector search."
-difficulty="beginner"
+difficulty="Intermediate"
 tags=["starter", "openai", "genai", "vectordb"]
+lesson_areas=["AI", "Query Performance"]
 destinations=["spaces"]
 icon="vector-circle"
 minimum_tier="free-shared"

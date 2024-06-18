@@ -4,7 +4,8 @@ description="""\
     Foundational guide to notebooks with essential tips and tricks. \
     """
 icon="notes"
-difficulty="beginner"
+difficulty="Beginner"
 tags=["starter", "python", "dataframes"]
+lesson_areas=["Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"

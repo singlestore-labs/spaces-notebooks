@@ -4,7 +4,8 @@ description="""\
     Runs through the queries to bring data residing in object storage onto disk for a specified database. \
     """
 icon="database"
-difficulty="advanced"
+difficulty="Advanced"
 tags=["advanced", "automation", "tuning"]
+lesson_areas=[]
 destinations=["spaces"]
 minimum_tier="standard"

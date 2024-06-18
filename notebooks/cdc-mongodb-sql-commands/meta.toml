@@ -3,7 +3,8 @@ title = "Ingest data from MONGODB® to SingleStore using SQL commands"
 description = """
     Setup CDC Replication from MongoDB® to SingleStore using SQL commands. """
 icon = "database"
-difficulty="intermediate"
+difficulty="Intermediate"
 tags =  ["mongo", "pipeline", "cdc", "ingest", "kai"]
+lesson_areas=["Data Management"]
 destinations = ["spaces"]
 minimum_tier="standard"

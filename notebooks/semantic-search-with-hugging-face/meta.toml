@@ -5,7 +5,8 @@ description="""\
     using dot product in SingleStoreDB. \
     """
 icon="chart-network"
-difficulty="beginner"
+difficulty="Beginner"
 tags=["starter", "vectordb", "huggingface"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

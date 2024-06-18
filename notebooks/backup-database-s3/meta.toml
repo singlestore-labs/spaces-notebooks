@@ -4,7 +4,8 @@ description = """\
     Performs backup either single or multiple databases to AWS S3. \
     """
 icon = "database"
-difficulty="beginner"
+difficulty="Beginner"
 tags = ["starter", "backup"]
+lesson_areas=["Data Management"]
 destinations = ["spaces"]
 minimum_tier="standard"

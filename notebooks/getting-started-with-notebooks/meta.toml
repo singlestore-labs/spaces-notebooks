@@ -5,7 +5,8 @@ description="""\
     visualization and analysis. \
     """
 icon="notes"
-difficulty="beginner"
+difficulty="Beginner"
 tags=["starter", "python", "sqrl"]
+lesson_areas=["Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"

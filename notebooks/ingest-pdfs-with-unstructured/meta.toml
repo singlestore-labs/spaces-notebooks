@@ -2,7 +2,8 @@
 title="Ask questions of your PDFs with Unstructured"
 description="Ask questions of your unstructured PDFs. In this notebook, Unstructured.io ingests pdfs accurately, then Open AI is used to create embeddings, the vector data is stored in SingleStore and finally ask questions of your PDF data"
 icon="file-export"
-difficulty="intermediate"
+difficulty="Beginner"
 tags=["ingest", "pdf","vector","unstructured"]
+lesson_areas=["AI", "Integrations"]
 destinations=["spaces"]
 minimum_tier="standard"

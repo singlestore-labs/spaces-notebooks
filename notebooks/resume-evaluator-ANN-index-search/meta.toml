@@ -4,7 +4,8 @@ description="""\
     Resume Evaluator using vectors stored in SingleStore to find sutiable resume for your job description, with Indexed ANN search.\
     """
 icon="arrows-spin"
-difficulty="intermediate"
+difficulty="Intermediate"
 tags=["vectordb", "genai", "openai", "rag"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

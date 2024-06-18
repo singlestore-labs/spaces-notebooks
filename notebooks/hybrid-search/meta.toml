@@ -4,8 +4,9 @@ description="""\
     Hybrid search combines keyword search with semantic search,
     aiming to provide more accurate results.
     """
-difficulty="beginner"
+difficulty="Beginner"
 tags=["starter", "openai", "genai", "vectordb"]
+lesson_areas=["AI"]
 icon="vector-circle"
 destinations=["spaces"]
 minimum_tier="free-shared"

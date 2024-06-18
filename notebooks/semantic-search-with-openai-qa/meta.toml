@@ -4,7 +4,8 @@ description="""\
     Provide context to chatGPT using data stored in SingleStoreDB. \
     """
 icon="crystal-ball"
-difficulty="beginner"
+difficulty="Beginner"
 tags=["starter", "openai", "vectordb", "genai"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

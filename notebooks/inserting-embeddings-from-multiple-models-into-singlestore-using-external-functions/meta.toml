@@ -4,7 +4,8 @@ description="""\
     Discover the power of SingleStoreDB's external functions to dynamically fetch and store vector embeddings from leading AI models into your database. This demo highlights leveraging SingleStore's robust vector data type and external functions for efficient management and analysis of machine learning embeddings.\
     """
 icon="vector-circle"
-difficulty="intermediate"
+difficulty="Intermediate"
 tags=["vectordb", "genai", "openai", "rag", "huggingface"]
+lesson_areas=["AI", "Data Management"]
 destinations=["spaces"]
 minimum_tier="standard"

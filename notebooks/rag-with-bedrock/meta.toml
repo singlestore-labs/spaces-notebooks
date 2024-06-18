@@ -4,7 +4,8 @@ description="""\
     Infuse domain-specific knowledge from SingleStoreDB into generative AI models on Amazon Bedrock to showcase Question & Answering using RAG (retrieval-agumented generation) to improve the quality of responses.\
     """
 icon="crystal-ball"
-difficulty="beginner"
+difficulty="Intermediate"
 tags=["vectordb", "genai", "bedrock", "rag", "starter"]
+lesson_areas=["AI", "Integrations"]
 destinations=["spaces"]
 minimum_tier="free-shared"

@@ -1,7 +1,8 @@
 [meta]
 title="InsureGPT: OpenAI and SingleStore for Insurance"
 description="Creating an insurance analysis with OpenAI and vectorizing the results into SingleStore."
-difficulty="intermediate"
+difficulty="Intermediate"
 tags=["openai", "langchain"]
+lesson_areas=["AI"]
 icon="database"
 minimum_tier="standard"
