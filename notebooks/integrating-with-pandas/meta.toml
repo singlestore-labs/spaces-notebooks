@@ -5,7 +5,7 @@ description="""\
     the SingleStoreDB Python library, SQLAlchemy, and Ibis.
     """
 icon="database"
-difficulty="Beginner"
+difficulty="beginner"
 tags=["starter", "dataframe", "python"]
 lesson_areas=["Python SDK"]
 destinations=["spaces"]

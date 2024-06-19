@@ -4,7 +4,7 @@ description="""\
     This notebook will help you perform database performance troubleshoot
 """
 icon="database"
-difficulty="Advanced"
+difficulty="advanced"
 tags=["troubleshoot", "performance", "tuning", "starter"]
 lesson_areas=["Query Performance"]
 destinations=["spaces"]

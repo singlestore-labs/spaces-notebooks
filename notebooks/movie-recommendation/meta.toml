@@ -4,7 +4,7 @@ description="""\
     Movie recommendation engine using vectors stored in SingleStore to find your next watch. \
     """
 icon="camera-movie"
-difficulty="Intermediate"
+difficulty="intermediate"
 tags=["advanced", "vectordb", "genai", "openai"]
 lesson_areas=["AI"]
 destinations=["spaces"]

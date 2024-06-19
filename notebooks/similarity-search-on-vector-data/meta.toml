@@ -1,7 +1,7 @@
 [meta]
 title="Similarity Search on Vector Data"
 description="Example of similarity searches over vector data."
-difficulty="Beginner"
+difficulty="beginner"
 tags=["starter", "openai", "genai", "vectordb"]
 lesson_areas=["AI"]
 destinations=["spaces"]

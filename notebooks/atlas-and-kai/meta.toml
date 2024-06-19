@@ -4,7 +4,7 @@ description="""\
     Run your MongoDB queries on SingleStore Kai with no code change. \
     """
 icon="database"
-difficulty="Beginner"
+difficulty="beginner"
 tags=["starter", "mongo", "kai"]
 lesson_areas=["Kai"]
 destinations=["spaces"]

@@ -4,7 +4,7 @@ description="""\
     This notebook will help you understand how you can take advantage of SingleStoreDB distributed capability using TPCH-100.
 """
 icon="database"
-difficulty="Advanced"
+difficulty="advanced"
 tags=["advanced", "performance", "turning", "shardkey", "ingest", "tpch"]
 lesson_areas=["Query Performance"]
 destinations=["spaces"]

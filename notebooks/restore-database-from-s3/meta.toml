@@ -4,7 +4,7 @@ description = """\
     This notebook will help you perform database restore from AWS S3.
 """
 icon = "database"
-difficulty="Beginner"
+difficulty="beginner"
 tags = ["starter", "admin", "restore"]
 lesson_areas=["Data Management"]
 destinations=["spaces"]

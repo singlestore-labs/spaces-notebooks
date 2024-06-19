@@ -3,7 +3,7 @@ title="Evaluating LLMs with Uptrain"
 description="""\
 Using Uptrain to evaluate LLMs built with SingleStore as the contextual store. This notebook uses OpenAI embedding models and Langchain as a development framework.
     """
-difficulty="Intermediate"
+difficulty="intermediate"
 tags=["openai", "llm", "vectordb", "langchain"]
 lesson_areas=["AI"]
 icon="vector-circle"

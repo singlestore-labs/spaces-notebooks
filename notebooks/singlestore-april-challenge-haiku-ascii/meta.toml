@@ -4,7 +4,7 @@ description="""\
     SingleStore is hosting a challenge inviting participants to craft a unique Haiku or create captivating ASCII art using SingleStore Notebooks. The most creative masterpiece wins a set of Meta RayBan Smart sunglasses and a $500 AWS gift card!" \
     """
 icon="chart-network"
-difficulty="Intermediate"
+difficulty="intermediate"
 tags=["challenge", "haiku", "ascii"]
 lesson_areas=[]
 destinations=["spaces"]

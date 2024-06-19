@@ -4,7 +4,7 @@ description="""\
     Real-time anomaly detection in IoT sensor data, harnessing the robust capabilities of SingleStoreDB and advanced analytical techniques. \
     """
 icon="chart-scatter"
-difficulty="Intermediate"
+difficulty="intermediate"
 tags=["vectordb", "realtime"]
 lesson_areas=["AI", "Real-time"]
 destinations=["spaces"]
