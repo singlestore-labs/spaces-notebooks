@@ -47,6 +47,11 @@ for f in sys.argv[1:]:
             f'it must be an array of strings (can be empty)',
         )
 
+    if not isinstance(meta['lesson_areas'], list):
+        error(
+            f'`lesson_areas` in `meta` section of {f} must be a list'
+        )
+
     # Tags must be all lower-case, ascii letters
     tags = meta.get('tags', [])
 
