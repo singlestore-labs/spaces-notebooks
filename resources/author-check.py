@@ -18,8 +18,8 @@ def check_author(author_path):
         if 'name' not in meta:
             error(f'No `name` in `meta` section of {author_path}')
 
-        if 'description' not in meta:
-            error(f'No `description` in `meta` section of {author_path}')
+        if 'title' not in meta:
+            error(f'No `title` in `meta` section of {author_path}')
 
         if 'external' not in meta:
             error(f'No `external` in `meta` section of {author_path}')
