@@ -32,7 +32,12 @@ for f in sys.argv[1:]:
     if 'description' not in meta:
         error(f'No `description` in `meta` section of {f}')
 
-    if 'authors' not in meta or not meta['authors']:
+    # Authors must be a non-empty list
+    if (
+        'authors' not in meta
+        or not isinstance(meta['authors'], list)
+        or not meta['authors']
+    ):
         error(f'No `authors` in `meta` section of {f}')
 
     if 'icon' not in meta:
