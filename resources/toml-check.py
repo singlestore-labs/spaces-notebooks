@@ -4,8 +4,9 @@ import re
 import sys
 import tomllib
 
-# Naive implementation of kebab case to find icon names from lesson areas
+
 def kebab_case(string):
+    # Naive implementation of kebab case to find icon names from lesson areas
     return re.sub(r'[^a-zA-Z0-9]+', '-', string.strip()).lower()
 
 
@@ -73,7 +74,7 @@ for f in sys.argv[1:]:
     card_icons = os.listdir('common/images/card-header-icons')
     preview_icons = os.listdir('common/images/preview-header-icons')
 
-    for lesson_area in meta["lesson_areas"]:
+    for lesson_area in meta['lesson_areas']:
         expected_icon_name = f'{kebab_case(lesson_area)}.png'
         if expected_icon_name not in card_icons:
             error(f'Lesson area {lesson_area} not found in card icons')
