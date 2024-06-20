@@ -49,7 +49,7 @@ for f in sys.argv[1:]:
 
     if not isinstance(meta['lesson_areas'], list):
         error(
-            f'`lesson_areas` in `meta` section of {f} must be a list'
+            f'`lesson_areas` in `meta` section of {f} must be a list',
         )
 
     # Tags must be all lower-case, ascii letters
