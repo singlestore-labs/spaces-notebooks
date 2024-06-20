@@ -21,6 +21,9 @@ def check_author(author_path):
         if 'description' not in meta:
             error(f'No `description` in `meta` section of {author_path}')
 
+        if 'external' not in meta:
+            error(f'No `external` in `meta` section of {author_path}')
+
         # Logo is optional, but if defined a corresponding image must exist
         if 'logo' in meta:
             logo_id = meta['logo']

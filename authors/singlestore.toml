@@ -1,3 +1,4 @@
 name="SingleStore"
 description="Engineering Team"
 logo="singlestore"
+external=false
