@@ -4,7 +4,8 @@ description = """\
     Simulate searching through 10 million paragraphs in Wikipedia for information about video games, and generate answers using RAG! \
     """
 icon = "book-open-cover"
-difficulty="advanced"
+difficulty="intermediate"
 tags = ["vector", "advanced", "vectordb", "hybridsearch", "rag", "ann"]
+lesson_areas=["AI"]
 destinations = ["spaces"]
 minimum_tier="standard"

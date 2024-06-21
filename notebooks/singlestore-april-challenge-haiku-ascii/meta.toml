@@ -6,5 +6,6 @@ description="""\
 icon="chart-network"
 difficulty="intermediate"
 tags=["challenge", "haiku", "ascii"]
+lesson_areas=[]
 destinations=["spaces"]
 minimum_tier="standard"

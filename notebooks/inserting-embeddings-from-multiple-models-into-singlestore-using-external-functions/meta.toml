@@ -6,5 +6,6 @@ description="""\
 icon="vector-circle"
 difficulty="intermediate"
 tags=["vectordb", "genai", "openai", "rag", "huggingface"]
+lesson_areas=["AI", "Data Management"]
 destinations=["spaces"]
 minimum_tier="standard"

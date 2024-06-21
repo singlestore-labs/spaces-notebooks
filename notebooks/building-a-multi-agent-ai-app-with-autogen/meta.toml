@@ -4,7 +4,8 @@ description="""\
     Learn how to build a multi-agent group chat with RAG using Autogen and SingleStore   \
     """
 icon="vector-circle"
-difficulty="beginner"
+difficulty="intermediate"
 tags=["starter", "autogen", "rag", "multiagent", "groupchat"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

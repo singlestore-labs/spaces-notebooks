@@ -4,7 +4,8 @@ description="""\
     Facial recognition using dot_product function on vectors stored in SingleStoreDB. \
     """
 icon="face-viewfinder"
-difficulty="beginner"
+difficulty="intermediate"
 tags=["starter", "vectordb", "genai", "facenet"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

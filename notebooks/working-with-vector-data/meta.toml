@@ -7,5 +7,6 @@ description="""\
 icon="browser"
 difficulty="beginner"
 tags=["starter", "vectodb", "genai"]
+lesson_areas=["AI", "Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"

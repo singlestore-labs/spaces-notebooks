@@ -4,7 +4,8 @@ description="""\
     This notebook guides you through data ingestion of CSV files from an AWS S3 location into your shared tier workspace. \
     """
 icon="chart-network"
-difficulty="intermediate"
+difficulty="beginner"
 tags=["pipeline", "s3"]
+lesson_areas=["Ingest"]
 destinations=["spaces"]
 minimum_tier="standard"

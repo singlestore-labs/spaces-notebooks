@@ -6,5 +6,6 @@ description = """\
 icon = "database"
 difficulty="beginner"
 tags = ["starter", "backup"]
+lesson_areas=["Data Management"]
 destinations = ["spaces"]
 minimum_tier="standard"

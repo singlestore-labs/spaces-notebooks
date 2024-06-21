@@ -1,7 +1,8 @@
 [meta]
 title="Representing Unstructured Data as Vectors"
 description="Transforming unstructured data into vectors and representing them in a 3-dimensional space to find the distance between them using various techniques"
-difficulty="intermediate"
+difficulty="beginner"
 tags=["vectors", "unstructureddata"]
+lesson_areas=["Python SDK", "AI"]
 icon="vector-circle"
 minimum_tier="standard"

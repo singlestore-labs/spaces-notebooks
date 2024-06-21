@@ -3,6 +3,7 @@ title="Similarity Search on Vector Data"
 description="Example of similarity searches over vector data."
 difficulty="beginner"
 tags=["starter", "openai", "genai", "vectordb"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 icon="vector-circle"
 minimum_tier="free-shared"

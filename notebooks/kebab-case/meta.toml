@@ -6,5 +6,6 @@ description="""\
 icon="database"
 difficulty="advanced"
 tags=["advanced", "automation", "tuning"]
+lesson_areas=[]
 destinations=["spaces"]
 minimum_tier="standard"

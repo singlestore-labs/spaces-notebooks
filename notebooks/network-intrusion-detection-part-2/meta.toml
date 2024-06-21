@@ -6,5 +6,6 @@ description="""\
 icon="browser"
 difficulty="advanced"
 tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
+lesson_areas=["AI", "Real-time"]
 destinations=["spaces"]
 minimum_tier="standard"

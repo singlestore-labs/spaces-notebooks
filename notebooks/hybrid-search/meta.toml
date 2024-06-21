@@ -6,6 +6,7 @@ description="""\
     """
 difficulty="beginner"
 tags=["starter", "openai", "genai", "vectordb"]
+lesson_areas=["AI"]
 icon="vector-circle"
 destinations=["spaces"]
 minimum_tier="free-shared"

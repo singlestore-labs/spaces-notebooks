@@ -6,5 +6,6 @@ description="""\
 icon="chart-network"
 difficulty="beginner"
 tags=["starter", "openai", "vectordb", "genai"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

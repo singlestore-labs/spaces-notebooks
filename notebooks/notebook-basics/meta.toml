@@ -6,5 +6,6 @@ description="""\
 icon="notes"
 difficulty="beginner"
 tags=["starter", "python", "dataframes"]
+lesson_areas=["Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"

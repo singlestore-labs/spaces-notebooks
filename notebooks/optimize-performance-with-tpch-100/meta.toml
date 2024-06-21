@@ -6,5 +6,6 @@ description="""\
 icon="database"
 difficulty="advanced"
 tags=["advanced", "performance", "turning", "shardkey", "ingest", "tpch"]
+lesson_areas=["Query Performance"]
 destinations=["spaces"]
 minimum_tier="standard"

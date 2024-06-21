@@ -4,7 +4,8 @@ description="""\
     This notebook will help you load JSON files from a public open AWS S3 bucket.
     """
 icon="chart-network"
-difficulty="advanced"
+difficulty="beginner"
 tags=["advanced", "pipeline", "json", "s3"]
+lesson_areas=["Ingest"]
 destinations=["spaces"]
 minimum_tier="standard"

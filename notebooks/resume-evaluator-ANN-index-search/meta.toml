@@ -6,5 +6,6 @@ description="""\
 icon="arrows-spin"
 difficulty="intermediate"
 tags=["vectordb", "genai", "openai", "rag"]
+lesson_areas=["AI"]
 destinations=["spaces"]
 minimum_tier="free-shared"

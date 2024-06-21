@@ -6,5 +6,6 @@ description="""\
 icon="chart-network"
 difficulty="beginner"
 tags=["starter", "vectordb", "genai", "huggingface", "semanticsearch"]
+lesson_areas=["AI", "Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"

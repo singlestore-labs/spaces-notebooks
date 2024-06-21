@@ -8,5 +8,6 @@ description="""\
 icon="browser"
 difficulty="beginner"
 tags=["starter", "fusion", "python"]
+lesson_areas=["Data Management", "Python SDK"]
 destinations=["spaces"]
 minimum_tier="standard"

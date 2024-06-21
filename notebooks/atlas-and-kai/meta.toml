@@ -6,5 +6,6 @@ description="""\
 icon="database"
 difficulty="beginner"
 tags=["starter", "mongo", "kai"]
+lesson_areas=["Kai"]
 destinations=["spaces"]
 minimum_tier="free-shared"
