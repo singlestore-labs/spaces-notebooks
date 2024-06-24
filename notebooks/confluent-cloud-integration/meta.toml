@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title = "Ingest data from Confluent Cloud (Kafka)"
 description = """
     A step-by-step guide on seamlessly ingesting data from Confluent Cloud (Kafka) into your SingleStoreDB database using a robust pipeline. """

@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title="Learn how to Optimize Performance with TPCH 100"
 description="""\
     This notebook will help you understand how you can take advantage of SingleStoreDB distributed capability using TPCH-100.

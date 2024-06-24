@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title="IT Threat Detection, Part 3"
 description="""
     Part 3 of Real-time threat Detection - Integrate with Kafka, run

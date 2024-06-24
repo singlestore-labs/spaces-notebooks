@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title="Representing Unstructured Data as Vectors"
 description="Transforming unstructured data into vectors and representing them in a 3-dimensional space to find the distance between them using various techniques"
 difficulty="beginner"

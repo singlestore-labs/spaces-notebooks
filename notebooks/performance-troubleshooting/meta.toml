@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title="Database Performance Troubleshoot Notebook"
 description="""\
     This notebook will help you perform database performance troubleshoot

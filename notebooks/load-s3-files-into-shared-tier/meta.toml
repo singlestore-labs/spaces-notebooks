@@ -1,4 +1,5 @@
 [meta]
+authors=["singlestore"]
 title="Load files from S3 into Shared Tier"
 description="""\
     This notebook guides you through data ingestion of CSV files from an AWS S3 location into your shared tier workspace. \
