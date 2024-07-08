@@ -250,6 +250,12 @@ for f in sys.argv[1:]:
             cell['execution_count'] = code_idx
             code_idx += 1
 
+            if 'outputs' in cell and len(cell['outputs']) > 0:
+                for output in cell['outputs']:
+                    if 'execution_count' in output:
+                        output['execution_count'] = code_idx
+                        code_idx += 1
+
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))
         outfile.write('\n')
