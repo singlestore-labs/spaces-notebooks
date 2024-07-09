@@ -254,7 +254,6 @@ for f in sys.argv[1:]:
                 for output in cell['outputs']:
                     if 'execution_count' in output:
                         output['execution_count'] = code_idx
-                        code_idx += 1
 
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))
