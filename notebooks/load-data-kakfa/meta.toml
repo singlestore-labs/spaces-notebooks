@@ -6,7 +6,7 @@ description="""\
     """
 difficulty="beginner"
 tags=["starter", "loaddata", "kafka"]
-lesson_areas=["loaddata"]
-icon="kafka"
+lesson_areas=["Ingest"]
+icon="database"
 destinations=["spaces"]
 minimum_tier="free-shared"
