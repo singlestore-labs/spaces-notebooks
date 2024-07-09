@@ -145,13 +145,10 @@ for f in sys.argv[1:]:
 
     cells = nb.get('cells', [])
 
-    # Remove metadata and outputs
+    # Remove metadata
     for i, cell in enumerate(cells):
         if 'metadata' in cell:
             cell['metadata'] = {}
-        # TODO: do not remove outputs once helios has migrated to published zips
-        if 'outputs' in cell:
-            cell['outputs'] = []
 
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1
@@ -252,6 +249,11 @@ for f in sys.argv[1:]:
         if cell.get('cell_type', '') == 'code':
             cell['execution_count'] = code_idx
             code_idx += 1
+
+            if 'outputs' in cell and len(cell['outputs']) > 0:
+                for output in cell['outputs']:
+                    if 'execution_count' in output:
+                        output['execution_count'] = code_idx
 
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))
