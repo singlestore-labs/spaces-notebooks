@@ -1,5 +1,5 @@
 [meta]
-authors=["singlestore"]
+authors=["chetan-thote"]
 title="Sales Data Analysis Dataset From Amazon S3"
 description="""\
     The Sales Data Analysis use case demonstrates how to utilize Singlestore's powerful querying capabilities to analyze sales data stored in a CSV file."""
