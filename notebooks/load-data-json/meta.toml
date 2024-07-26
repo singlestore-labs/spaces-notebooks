@@ -1,0 +1,12 @@
+[meta]
+authors=["chetan-thote"]
+title="Employee Data Analysis JSON Dataset"
+description="""\
+    Employee Data Analysis use case illustrates how to leverage Singlestore's capabilities to process and analyze JSON data from a Amazon S3 data source.
+    """
+difficulty="beginner"
+tags=["starter", "loaddata", "json"]
+lesson_areas=["Ingest"]
+icon="database"
+destinations=["spaces"]
+minimum_tier="free-shared"
