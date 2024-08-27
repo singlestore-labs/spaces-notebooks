@@ -1,0 +1,10 @@
+[meta]
+authors=["singlestore"]
+title="Getting Started with SingleStore"
+description="Test Drive SingleStore Multi-Model Examples in One Notebook"
+icon="database"
+difficulty="beginner"
+lesson_areas=["Data Management"]
+tags=["starter", "sql", "vectors", "fulltext", "json", "geospatial", "timeseries"]
+destinations=["spaces"]
+minimum_tier="free-shared"
