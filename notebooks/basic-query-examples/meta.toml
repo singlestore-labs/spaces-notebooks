@@ -1,0 +1,12 @@
+[meta]
+authors=["singlestore"]
+title="Basic Query Examples"
+description="""\
+    Examples of basic SQL queries covering various database operations include index scans, full-table scans, joins, and aggregations. \
+    """
+icon="notes"
+difficulty="beginner"
+tags=["starter", "sql"]
+lesson_areas=["Query Performance"]
+destinations=["spaces"]
+minimum_tier="free-shared"
