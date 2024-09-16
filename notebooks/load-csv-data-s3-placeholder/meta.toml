@@ -1,0 +1,11 @@
+[meta]
+authors=["chetan-thote"]
+title="Importing Data from S3 into SingleStore using Pipelines"
+description="""\
+    This notebook demonstrates how to create a sample table in SingleStore, set up a pipeline to import data from an Amazon S3 bucket."""
+difficulty="beginner"
+tags=["starter", "loaddata", "s3"]
+lesson_areas=["Ingest"]
+icon="database"
+destinations=["spaces"]
+minimum_tier="free-shared"
