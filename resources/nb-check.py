@@ -167,7 +167,8 @@ for f in sys.argv[1:]:
             source = ''.join(source)
         if 'id="singlestore-header"' in source:
             header_cell = cells.pop(0)
-            header_id = header_cell.get('id', header_id)
+            if header_cell.get('id', None):
+                header_id = header_cell['id']
 
     # Remove Free Starter Workspace notification, it will be regenerated later
     if cells:
@@ -177,7 +178,8 @@ for f in sys.argv[1:]:
             if not isinstance(source, str):
                 source = ''.join(source)
             if 'alert-warning' in source and 'can be run on a Free Starter' in source:
-                starter_id = cells[i].get('id', starter_id)
+                if cells[i].get('id', None):
+                    starter_id = cells[i]['id']
                 remove_cells.insert(0, i)
         for i in remove_cells:
             cells.pop(i)
@@ -189,7 +191,8 @@ for f in sys.argv[1:]:
             source = ''.join(source)
         if 'id="singlestore-footer"' in source:
             footer_cell = cells.pop(-1)
-            footer_id = footer_cell.get('id', footer_id)
+            if footer_cell.get('id', None):
+                footer_id = footer_cell['id']
 
     for cell in cells:
 
@@ -206,6 +209,10 @@ for f in sys.argv[1:]:
         # Remove "attachments": null (not sure how they get in there)
         if 'attachments' in cell and cell['attachments'] is None:
             cell['attachments'] = {}
+
+        # Remove empty IDs
+        if 'id' in cell and not cell['id']:
+            del cell['id']
 
     # Prepare parameter substitutions for header
     try:
