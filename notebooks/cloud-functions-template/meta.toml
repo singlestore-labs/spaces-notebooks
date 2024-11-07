@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Publish your first SingleStore Cloud function"
 description="""\
-    Learn how to connect to SingleStoreDB and perform basic 
+    Learn how to connect to SingleStoreDB and perform basic\
     CRUD operations and finally deploy these functions as callable API endpoints.
     """
 icon="browser"
