@@ -1,9 +1,9 @@
 [meta]
 authors=["singlestore"]
-title="Publish your first SingleStore Cloud function"
+title="Publish your first SingleStore DashApp"
 description="""\
-    Learn how to connect to SingleStoreDB and perform basic 
-    CRUD operations and finally deploy these functions as callable API endpoints.
+    Leran how to connect to SingleStoreDB 
+    and publish an interactive Dashboard .
     """
 icon="browser"
 difficulty="beginner"
