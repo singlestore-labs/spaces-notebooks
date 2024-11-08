@@ -4,11 +4,10 @@ import html
 import json
 import os
 import sys
+import tomllib
 import uuid
 from typing import Any
 from typing import List
-
-import tomllib
 
 
 NOTEBOOK_HEADER = [
