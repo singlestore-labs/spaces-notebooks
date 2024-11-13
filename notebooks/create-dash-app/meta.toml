@@ -1,0 +1,13 @@
+[meta]
+authors=["singlestore"]
+title="Publish your first SingleStore DashApp"
+description="""\
+    Learn how to connect to SingleStoreDB\
+    and publish an interactive Dashboard.
+    """
+icon="browser"
+difficulty="beginner"
+tags=["starter", "notebooks", "python"]
+lesson_areas=[]
+destinations=["spaces"]
+minimum_tier="free-shared"
