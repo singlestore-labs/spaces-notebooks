@@ -77,7 +77,7 @@ The CI pipeline in this repo runs a bunch of validation checks and code reformat
 You will need to develop your notebooks using Python 3.11 or higher. By default, Notebooks developed on SingleStore will be using this version of Python. This is required for the pre-commit checks to run:
 
 ```bash
-pip3 install pre-commit
+pip3 install pre-commit==3.7.1
 pre-commit install
 ```
 

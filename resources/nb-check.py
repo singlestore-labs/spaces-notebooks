@@ -10,6 +10,34 @@ from typing import Any
 from typing import List
 
 
+DEFAULT_NOTEBOOK_METADATA = {
+    'metadata': {
+        'jupyterlab': {
+            'notebooks': {
+                'version_major': 6,
+                'version_minor': 4,
+            },
+        },
+        'kernelspec': {
+            'display_name': 'Python 3 (ipykernel)',
+            'language': 'python',
+            'name': 'python3',
+        },
+        'language_info': {
+            'codemirror_mode': {
+                'name': 'ipython',
+                'version': 3,
+            },
+            'file_extension': '.py',
+            'mimetype': 'text/x-python',
+            'name': 'python',
+            'nbconvert_exporter': 'python',
+            'pygments_lexer': 'ipython3',
+            'version': '3.11.6',
+        },
+    },
+}
+
 NOTEBOOK_HEADER = [
     '<div id="singlestore-header" style="display: flex; background-color: {background_color}; padding: 5px;">\n',
     '    <div id="icon-image" style="width: 90px; height: 90px;">\n',
@@ -137,11 +165,14 @@ for f in sys.argv[1:]:
         error(f'notebook must be named `notebook.ipynb`: {f}')
 
     # Clear out SingleStore metadata
-    metadata = nb.get('metadata', {})
+    metadata = nb.get('metadata', DEFAULT_NOTEBOOK_METADATA)
 
     for k in list(metadata.keys()):
         if k.startswith('singlestore'):
             del metadata[k]
+
+    # Make sure notebook has a metadata field
+    nb['metadata'] = metadata
 
     cells = nb.get('cells', [])
 
