@@ -6,8 +6,11 @@ import os
 import sys
 import tomllib
 import uuid
+import warnings
 from typing import Any
 from typing import List
+
+import nbformat
 
 
 DEFAULT_NOTEBOOK_METADATA = {
@@ -119,6 +122,18 @@ ICON_COLORS = {
 }
 
 
+IDS = set()
+
+
+def generate_corpus_id():
+    """Generate a corpus id."""
+    while True:
+        id = uuid.uuid4().hex[:8]
+        if id not in IDS:
+            IDS.add(id)
+            return id
+
+
 def error(msg: str) -> None:
     """Print an error message and end the program."""
     print('ERROR:', msg, file=sys.stderr)
@@ -132,7 +147,7 @@ def new_markdown_cell(cell_id: str, content: list[str]) -> dict[str, Any]:
     Parameters
     ----------
     cell_id : str
-        The UUID to use for the cell ID
+        ID to apply
     content : list[str]
         The list of strings that make up the cell contents
 
@@ -142,8 +157,8 @@ def new_markdown_cell(cell_id: str, content: list[str]) -> dict[str, Any]:
 
     """
     return dict(
-        cell_type='markdown',
         id=cell_id,
+        cell_type='markdown',
         metadata={},
         source=content,
     )
@@ -181,15 +196,37 @@ for f in sys.argv[1:]:
         if 'metadata' in cell:
             cell['metadata'] = {}
 
+    nbversion = nb.get('nbformat', 4)
+    nbversion_minor = max(nb.get('nbformat_minor', 0), 5)
+
+    nb['nbformat'] = nbversion
+    nb['nbformat_minor'] = nbversion_minor
+
+    for i, cell in enumerate(cells):
+        # Remove duplicate IDs
+        if 'id' in cell and cell['id'] in IDS:
+            del cell['id']
+        # Remove invalid IDs
+        if 'id' in cell and len(cell['id']) != 8:
+            del cell['id']
+        # Add ID to cache
+        if 'id' in cell:
+            IDS.add(cell['id'])
+
+    # Generate IDs for cells that need it
+    for i, cell in enumerate(cells):
+        if 'id' not in cell:
+            cell['id'] = generate_corpus_id()
+
     # Remove empty cells at the end of the notebook
     end = len(cells) - 1
     while end > 0 and 'source' in cells[end] and not cells[end]['source']:
         cells.pop(end)
         end -= 1
 
-    header_id = str(uuid.uuid4())
-    starter_id = str(uuid.uuid4())
-    footer_id = str(uuid.uuid4())
+    header_id = generate_corpus_id()
+    footer_id = generate_corpus_id()
+    starter_id = generate_corpus_id()
 
     # Remove header cell, it will be regenerated later
     if cells:
@@ -198,8 +235,7 @@ for f in sys.argv[1:]:
             source = ''.join(source)
         if 'id="singlestore-header"' in source:
             header_cell = cells.pop(0)
-            if header_cell.get('id', None):
-                header_id = header_cell['id']
+            header_id = header_cell.get('id', header_id)
 
     # Remove Free Starter Workspace notification, it will be regenerated later
     if cells:
@@ -209,11 +245,10 @@ for f in sys.argv[1:]:
             if not isinstance(source, str):
                 source = ''.join(source)
             if 'alert-warning' in source and 'can be run on a Free Starter' in source:
-                if cells[i].get('id', None):
-                    starter_id = cells[i]['id']
                 remove_cells.insert(0, i)
         for i in remove_cells:
-            cells.pop(i)
+            starter_cell = cells.pop(i)
+            starter_id = starter_cell.get('id', starter_id)
 
     # Remove footer cell, it will be regenerated later
     if cells:
@@ -222,8 +257,7 @@ for f in sys.argv[1:]:
             source = ''.join(source)
         if 'id="singlestore-footer"' in source:
             footer_cell = cells.pop(-1)
-            if footer_cell.get('id', None):
-                footer_id = footer_cell['id']
+            footer_id = footer_cell.get('id', footer_id)
 
     for cell in cells:
 
@@ -240,10 +274,6 @@ for f in sys.argv[1:]:
         # Remove "attachments": null (not sure how they get in there)
         if 'attachments' in cell and cell['attachments'] is None:
             cell['attachments'] = {}
-
-        # Remove empty IDs
-        if 'id' in cell and not cell['id']:
-            del cell['id']
 
     # Prepare parameter substitutions for header
     try:
@@ -292,6 +322,8 @@ for f in sys.argv[1:]:
                 for output in cell['outputs']:
                     if 'execution_count' in output:
                         output['execution_count'] = code_idx
+
+    nbformat.validate(nb)
 
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))

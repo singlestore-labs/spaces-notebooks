@@ -44,9 +44,10 @@ repos:
       - id: nb-check
         name: nb-check
         entry: resources/nb-check.py
-        language: system
+        language: python
         files: \.ipynb$
         exclude: notebooks/notebook-style-guide/notebook.ipynb
+        additional_dependencies: [nbformat==5.10.4]
       - id: nb-meta-check
         name: nb-meta-check
         entry: resources/nb-meta-check.py
