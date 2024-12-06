@@ -1,0 +1,13 @@
+[meta]
+authors=["singlestore"]
+title="Executing Notebooks from Another Notebook with Fusion SQL"
+description="""\
+    Learn how to execute Notebooks from another Notebook
+    in SingleStoreDB Cloud using Fusion SQL.
+    """
+icon="files"
+difficulty="intermediate"
+tags=["notebooks", "jobs", "python", "fusion", "starter"]
+lesson_areas=["Python SDK"]
+destinations=["spaces"]
+minimum_tier="standard"
