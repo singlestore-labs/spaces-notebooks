@@ -8,4 +8,4 @@ tags=["loaddata", "kafka"]
 lesson_areas=["Ingest"]
 icon="database"
 destinations=["spaces"]
-minimum_tier="free-shared"
+minimum_tier="standard"
