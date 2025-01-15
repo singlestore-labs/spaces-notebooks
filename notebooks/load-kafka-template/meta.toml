@@ -4,8 +4,8 @@ title="Importing Data from Kafka into SingleStore using Pipelines"
 description="""\
     This notebook demonstrates how to create a sample table in SingleStore, set up a pipeline to import data from Kafka topic."""
 difficulty="beginner"
-tags=["starter", "loaddata", "kafka"]
+tags=["loaddata", "kafka"]
 lesson_areas=["Ingest"]
 icon="database"
 destinations=["spaces"]
-minimum_tier="free-shared"
+minimum_tier="standard"
