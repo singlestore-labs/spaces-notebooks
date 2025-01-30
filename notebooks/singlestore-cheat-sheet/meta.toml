@@ -1,0 +1,10 @@
+[meta]
+authors=["madhukar-kumar"]
+title = "Singlestore Cheat Sheet"
+description = "Get started with SingleStore quickyl with common commands"
+icon = "radar"
+difficulty="beginner"
+tags =  ["starter"]
+lesson_areas=[]
+destinations = ["spaces"]
+minimum_tier="free-shared"
