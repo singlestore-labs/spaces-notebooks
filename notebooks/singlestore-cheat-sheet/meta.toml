@@ -1,7 +1,7 @@
 [meta]
 authors=["madhukar-kumar"]
-title = "Singlestore Cheat Sheet"
-description = "Get started with SingleStore quickyl with common commands"
+title = "SingleStore Cheat Sheet"
+description = "Get started with SingleStore quickly with common commands"
 icon = "radar"
 difficulty="beginner"
 tags =  ["starter"]
