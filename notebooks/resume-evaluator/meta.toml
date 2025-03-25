@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Resume Evaluator"
 description="""\
-    Resume Evaluator using vectors stored in SingleStore to find sutiable resume for your job description. \
+    Resume Evaluator using vectors stored in SingleStore to find suitable resumes for your job description. \
     """
 icon="arrows-spin"
 difficulty="intermediate"
