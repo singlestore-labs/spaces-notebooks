@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Run your first Python UDF"
+description="""\
+    Learn how to connect to create and\
+    publish a python UDF and call it in SQL.
+    """
+icon="browser"
+difficulty="beginner"
+tags=["starter", "notebooks", "python"]
+lesson_areas=[]
+destinations=["spaces"]
+minimum_tier="free-shared"
