@@ -1,0 +1,14 @@
+[meta]
+authors=["singlestore"]
+title="Upgrade Your Virtual Workspace"
+description="""\
+    Learn how to upgrade Your VirtualWorkspace\
+    to a fullfledged Workspace in a dedicated
+    Workspace Group.
+    """
+icon="browser"
+difficulty="medium"
+tags=["starter", "notebooks", "fusion"]
+lesson_areas=[]
+destinations=["spaces"]
+minimum_tier="free-shared"
