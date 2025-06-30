@@ -7,7 +7,7 @@ description="""\
     Workspace Group.
     """
 icon="browser"
-difficulty="medium"
+difficulty="intermediate"
 tags=["starter", "notebooks", "fusion"]
 lesson_areas=[]
 destinations=["spaces"]
