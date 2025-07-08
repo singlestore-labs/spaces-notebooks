@@ -8,7 +8,7 @@ description="""\
     """
 icon="browser"
 difficulty="intermediate"
-tags=["starter", "notebooks", "fusion"]
+tags=["starter", "notebooks"]
 lesson_areas=[]
 destinations=["spaces"]
 minimum_tier="free-shared"
