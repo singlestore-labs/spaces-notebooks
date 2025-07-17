@@ -1,8 +1,8 @@
 [meta]
 authors=["singlestore"]
-title="Upgrade Your Virtual Workspace"
+title="Migrate Your Virtual Workspace"
 description="""\
-    Learn how to upgrade Your VirtualWorkspace\
+    Learn how to migrate Your VirtualWorkspace\
     to a fullfledged Workspace in a dedicated
     Workspace Group.
     """
