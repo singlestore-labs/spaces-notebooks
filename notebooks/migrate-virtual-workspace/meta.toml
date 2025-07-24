@@ -1,0 +1,14 @@
+[meta]
+authors=["singlestore"]
+title="Migrate Your Virtual Workspace"
+description="""\
+    Learn how to migrate Your VirtualWorkspace\
+    to a fullfledged Workspace in a dedicated
+    Workspace Group.
+    """
+icon="browser"
+difficulty="intermediate"
+tags=["starter", "notebooks"]
+lesson_areas=[]
+destinations=["spaces"]
+minimum_tier="standard"
