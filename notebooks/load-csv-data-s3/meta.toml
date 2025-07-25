@@ -2,7 +2,7 @@
 authors=["chetan-thote"]
 title="Sales Data Analysis Dataset From Amazon S3"
 description="""\
-    The Sales Data Analysis use case demonstrates how to utilize Singlestore's powerful querying capabilities to analyze sales data stored in a CSV file."""
+    The Sales Data Analysis use case demonstrates how to utilize SingleStore's powerful querying capabilities to analyze sales data stored in a CSV file."""
 difficulty="beginner"
 tags=["starter", "loaddata", "s3"]
 lesson_areas=["Ingest"]
