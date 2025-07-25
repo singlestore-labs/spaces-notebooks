@@ -1,8 +1,8 @@
 [meta]
 authors=["chetan-thote"]
-title = "Singlestore Now 2024 Raffle"
+title = "SingleStore Now 2024 Raffle"
 description = """
-    "Explore the power of SingleStore in this interactive notebook by creating an account, loading data, and running queries for a chance to win the SignleStore Now 2024 Raffle!" """
+    "Explore the power of SingleStore in this interactive notebook by creating an account, loading data, and running queries for a chance to win the SingleStore Now 2024 Raffle!" """
 icon = "radar"
 difficulty="intermediate"
 tags =  ["mongo", "embeddings", "vector", "genai", "kai", "starter"]
