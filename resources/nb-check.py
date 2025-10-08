@@ -3,6 +3,7 @@
 import html
 import json
 import os
+import subprocess
 import sys
 import tomllib
 import uuid
@@ -328,3 +329,8 @@ for f in sys.argv[1:]:
     with open(f, 'w') as outfile:
         outfile.write(json.dumps(nb, indent=2))
         outfile.write('\n')
+
+    res = subprocess.run(['git', 'diff', f], capture_output=True, text=True)
+    if res.stdout:
+        print('--- ' + f + ' ---')
+        print(res.stdout)

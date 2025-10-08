@@ -1,9 +1,9 @@
 [meta]
 authors=["bharath-swamy"]
-title="Demonstrate some common AI function usecases"
+title="Demonstrate ML function Classify"
 description="""\
-    Learn how to connect to use \
-    pre configured AI Functions.
+    Learn how to train an ML Classify \
+    model and run it to predict the class of an input row.
     """
 icon="browser"
 difficulty="beginner"
