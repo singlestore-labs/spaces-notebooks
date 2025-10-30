@@ -1,9 +1,9 @@
 [meta]
 authors=["bharath-swamy"]
-title="Python UDF to process images"
+title="Demonstrate ML function Anomaly Detect"
 description="""\
-    Learn how to integrate with Multimodal LLMs \
-    and run it from a Python UDF.
+    Learn how to train an ML Anomaly Detect \
+    model and run it to predict the class of a set of time series inputs.
     """
 icon="browser"
 difficulty="beginner"
