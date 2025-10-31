@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Python UDF to process images"
+description="""\
+    Learn how to integrate with Multimodal LLMs \
+    and run it from a Python UDF.
+    """
+icon="browser"
+difficulty="beginner"
+tags=["advanced", "notebooks", "python"]
+lesson_areas=["AI"]
+destinations=["spaces"]
+minimum_tier="standard"
