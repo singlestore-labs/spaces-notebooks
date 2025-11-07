@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Demonstrate ML function Anomaly Detect"
+description="""\
+    Learn how to train an ML Anomaly Detect \
+    model and run it to predict the class of a set of time series inputs.
+    """
+icon="browser"
+difficulty="beginner"
+tags=["advanced", "notebooks", "python"]
+lesson_areas=["AI"]
+destinations=["spaces"]
+minimum_tier="standard"
