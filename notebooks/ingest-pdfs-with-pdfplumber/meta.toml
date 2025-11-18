@@ -1,0 +1,10 @@
+[meta]
+authors=["singlestore"]
+title="Ask questions of your PDFs with PDFPlumber"
+description="Ask questions of your unstructured PDFs. In this notebook, PDFPlumber ingests pdfs, then Open AI is used to create embeddings, the vector data is stored in SingleStore and finally ask questions of your PDF data"
+icon="file-export"
+difficulty="beginner"
+tags=["ingest", "pdf","vector","pdfplumber"]
+lesson_areas=["AI", "Integrations"]
+destinations=["spaces"]
+minimum_tier="standard"
