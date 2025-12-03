@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python 3.11
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
@@ -58,39 +58,12 @@ jobs:
           python resources/package-samples.py notebooks --strip-output --outfile notebooks-stripped.zip --notebooks all
           python resources/package-samples.py notebooks --outfile notebooks-full.zip --notebooks all
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - name: Create Release and Upload Assets
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: v${{ env.DATETIME }}
-          release_name: Release v${{ env.DATETIME }}
-          draft: false
-          prerelease: false
-
-      # This pulls from the CREATE RELEASE step above, referencing
-      # it's ID to get its outputs object, which include a `upload_url`.
-      # See this blog post for more info:
-      #   https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-      - name: Upload Stripped Asset
-        id: upload-stripped-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./notebooks-stripped.zip
-          asset_name: notebooks-stripped.zip
-          asset_content_type: application/zip
-
-      - name: Upload Full Asset
-        id: upload-full-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./notebooks-full.zip
-          asset_name: notebooks-full.zip
-          asset_content_type: application/zip
+        run: |
+          gh release create "v${{ env.DATETIME }}" \
+            notebooks-stripped.zip \
+            notebooks-full.zip \
+            --title "Release v${{ env.DATETIME }}" \
+            --notes "Automated release of notebook samples"
