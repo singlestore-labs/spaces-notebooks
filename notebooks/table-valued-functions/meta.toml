@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Table-Valued Python UDFs to demonstrate JSON Expansion"
+description="""\
+    Learn how to how to use table-valued Python UDFs to expand \
+    nested JSON data into normalized relational rows
+    """
+icon="browser"
+difficulty="beginner"
+tags=["advanced", "notebooks", "python"]
+lesson_areas=["AI"]
+destinations=["spaces"]
+minimum_tier="standard"
