@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Vector search with AI Function EMBED_TEXT"
+description="""\
+    Learn how to use EMBED_TEXT AI Function in Vector Search and \
+    deploy it as a SingleStore CloudFunction
+    """
+icon="clouds"
+difficulty="beginner"
+tags=["notebooks", "python"]
+lesson_areas=["AI"]
+destinations=["spaces"]
+minimum_tier="standard"
