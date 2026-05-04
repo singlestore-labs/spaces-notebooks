@@ -10,4 +10,4 @@ difficulty="advanced"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]
 destinations=["spaces"]
-minimum_tier="free-shared"
+minimum_tier="standard"
