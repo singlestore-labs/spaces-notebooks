@@ -1,0 +1,13 @@
+[meta]
+authors=["bharath-swamy"]
+title="Build and Deploy a Custom MCP Server on SingleStore Cloud Functions"
+description="""\
+    Learn how to write a custom MCP server and deploy it remotely\
+    using singlestore cloud functions.
+    """
+icon="browser"
+difficulty="advanced"
+tags=["advanced", "notebooks", "python"]
+lesson_areas=["AI"]
+destinations=["spaces"]
+minimum_tier="standard"
