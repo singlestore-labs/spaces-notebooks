@@ -2,9 +2,8 @@
 authors=["singlestore"]
 title="Getting Started with Fusion SQL"
 description="""\
-    Fusion SQL allows you to manage your SingleStoreDB Cloud
-    resources such as workspace groups, workspaces, and
-    Stage files all from SQL.
+    Fusion SQL allows you to manage your SingleStore Cloud
+    resources such as clusters and Stage files all from SQL.
     """
 icon="browser"
 difficulty="beginner"
