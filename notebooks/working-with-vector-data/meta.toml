@@ -2,12 +2,13 @@
 authors=["singlestore"]
 title="Working with Vector Data"
 description="""\
-    This example demonstrates the various ways to upload and download
-    vector data from SingleStoreDB using Python.
+    Learn what a vector is, how to measure similarity correctly, and how to
+    search 10,000 real support questions by meaning using the native VECTOR
+    type, DOT_PRODUCT and a vector index.
     """
-icon="browser"
+icon="vector-circle"
 difficulty="beginner"
-tags=["starter", "vectodb", "genai"]
+tags=["starter", "vectordb", "genai"]
 lesson_areas=["AI", "Python SDK"]
 destinations=["spaces"]
 minimum_tier="free-shared"
