@@ -9,4 +9,4 @@ difficulty="intermediate"
 tags=["vectordb", "realtime"]
 lesson_areas=["AI", "Real-time"]
 destinations=["spaces"]
-minimum_tier="standard"
+minimum_tier="free-shared"
