@@ -10,4 +10,4 @@ tags=["vectordb", "fulltext", "hybridsearch", "genai", "pipelines"]
 lesson_areas=["AI"]
 icon="vector-circle"
 destinations=["spaces"]
-minimum_tier="free-shared"
+minimum_tier="standard"
