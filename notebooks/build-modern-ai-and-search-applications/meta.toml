@@ -1,0 +1,13 @@
+[meta]
+authors=["singlestore"]
+title="Build Modern AI and Search Applications"
+description="""\
+    Demonstrate F16 vectors, full-text search, index merging, and
+    improved full-text index manageability.
+    """
+difficulty="intermediate"
+tags=["vectordb", "fulltext", "hybridsearch", "genai", "pipelines"]
+lesson_areas=["AI"]
+icon="vector-circle"
+destinations=["spaces"]
+minimum_tier="standard"
