@@ -7,6 +7,6 @@ description="""\
 difficulty="Beginner"
 tags=["branch", "database", "clone"]
 lesson_areas=["Data Management"]
-icon="data-management"
+icon="database"
 destinations=["spaces"]
 minimum_tier="standard"
