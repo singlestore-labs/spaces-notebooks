@@ -51,15 +51,18 @@ repos:
       - id: nb-meta-check
         name: nb-meta-check
         entry: resources/nb-meta-check.py
-        language: system
+        language: python
+        additional_dependencies: [tomli==2.2.1]
         files: notebooks/.*/meta\.toml
       - id: lesson-check
         name: lesson-check
         entry: resources/lesson-check.py
-        language: system
+        language: python
+        additional_dependencies: [tomli==2.2.1]
         files: lessons/.*\.toml
       - id: author-check
         name: author-check
         entry: resources/author-check.py
-        language: system
+        language: python
+        additional_dependencies: [tomli==2.2.1]
         files: authors/.*\.toml

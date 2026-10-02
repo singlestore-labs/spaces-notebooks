@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 import os
 import sys
-import tomllib
+try:
+    import tomllib
+except ImportError:
+    import tomli as tomllib  # type: ignore[no-redef]
 
 
 def check_lesson(lesson_path):
