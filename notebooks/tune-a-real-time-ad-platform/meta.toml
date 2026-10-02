@@ -1,0 +1,14 @@
+[meta]
+authors=["singlestore"]
+title="Tune a Real-Time Ad Platform with Resource Pools, RETURNING and Projections"
+description="""\
+    Measure four SingleStore 10.4 features on a real-time ad platform: \
+    UPDATE and DELETE ... RETURNING, projections, DROP PROJECTION IF EXISTS \
+    and CPU resource pools that fence reports and AI agents away from ad serving.
+    """
+icon="bolt"
+difficulty="intermediate"
+tags=["starter", "performance", "tuning", "sql", "realtime"]
+lesson_areas=["Query Performance", "Real-time"]
+destinations=["spaces"]
+minimum_tier="free-shared"
