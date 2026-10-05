@@ -9,7 +9,7 @@ description="""\
     """
 icon="database"
 difficulty="intermediate"
-tags=["sequences","autoincrement","digitalmarketing","transactions","schemadesign"]
+tags=["15minutes"]
 lesson_areas=["Data Management"]
 destinations=["spaces"]
 minimum_tier="standard"
