@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Protect and Recover Production Workloads"
 description="""\
-    SinhleStore Helios SmartDR, continuous backups, and self-service point-in-time recovery.
+    SingleStore Helios SmartDR, continuous backups, and self-service point-in-time recovery.
     """
 difficulty="beginner"
 tags=["smartdr", "backup", "restore", "dr", "continuous", "pitr"]
