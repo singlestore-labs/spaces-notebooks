@@ -1,0 +1,15 @@
+[meta]
+authors=["singlestore"]
+title="Build an Application-Ready Marketing Transactions Schema with Sequences"
+description="""\
+    Use Real-Time Digital Marketing purchase events as source data to build
+    an application-owned transactions layer backed by SingleStore Sequences.
+    Learn why MAX(id)+1 is unsafe and how AUTO_INCREMENT AS SEQUENCE generates
+    compact, unique identifiers for transactions and orders.
+    """
+icon="database"
+difficulty="intermediate"
+tags=["15minutes"]
+lesson_areas=["Data Management"]
+destinations=["spaces"]
+minimum_tier="standard"

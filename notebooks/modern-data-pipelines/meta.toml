@@ -1,0 +1,15 @@
+[meta]
+authors=["singlestore"]
+title="Ingest and Operate Modern Data Pipelines"
+description="""\
+    Walk through production-ready pipeline patterns using the Real-Time Digital
+    Marketing dataset: load complex Parquet types, modify a live pipeline with
+    ALTER LINK, profile ingestion performance with SHOW PROFILE PIPELINE, and
+    use event-driven S3 file discovery via Kinesis for low-latency ingest.
+    """
+icon="pipeline"
+difficulty="intermediate"
+tags=["20minutes"]
+lesson_areas=["Ingest"]
+destinations=["spaces"]
+minimum_tier="standard"
