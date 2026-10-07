@@ -9,4 +9,4 @@ tags=["smartdr", "backup", "restore", "dr", "continuous", "pitr"]
 lesson_areas=["Data Management"]
 icon="database"
 destinations=["spaces"]
-minimum_tier="standard"
+minimum_tier="enterprise"

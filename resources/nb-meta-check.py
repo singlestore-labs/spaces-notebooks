@@ -49,13 +49,13 @@ for f in sys.argv[1:]:
     if 'minimum_tier' not in meta:
         error(
             f'No `minimum_tier` in `meta` section of {f}; '
-            f'it must be set to "free-shared" or "standard"',
+            f'it must be set to "free-shared" or "standard" or "enterprise"',
         )
 
-    if meta['minimum_tier'] not in ['free-shared', 'standard']:
+    if meta['minimum_tier'] not in ['free-shared', 'standard', 'enterprise']:
         error(
             f'`minimum_tier` in `meta` section of {f} '
-            f'must be set to "free-shared" or "standard"',
+            f'must be set to "free-shared" or "standard" or "enterprise"',
         )
 
     if 'lesson_areas' not in meta:
