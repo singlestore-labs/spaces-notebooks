@@ -7,6 +7,6 @@ description="""\
 icon="database"
 difficulty="intermediate"
 tags=["cdc", "mongo", "sql", "nosql", "kai"]
-lesson_areas=["Kai"]
+lesson_areas=[]
 destinations=["spaces"]
 minimum_tier="standard"
