@@ -1,0 +1,12 @@
+[meta]
+authors=["singlestore"]
+title="Operationalize Integrations with Flow and Connectors"
+description="""\
+    Demonstrate console setup, Flow APIs, automation, CDC, \
+    and commonly used source connectors."""
+difficulty="intermediate"
+tags=["advanced", "flow", "cdc", "ingest", "connectors", "mysql", "postgres", "sqlserver", "oracle"]
+lesson_areas=["Integrations"]
+icon="arrows-spin"
+destinations=["spaces"]
+minimum_tier="standard"
