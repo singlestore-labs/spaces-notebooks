@@ -1,0 +1,15 @@
+[meta]
+authors=["singlestore"]
+title="IT Threat Detection with Vector Search"
+description="""\
+    A pet insurer's first security engineer has one weekend to prove the \
+    database can watch the network. Load two days of real intrusion-detection \
+    traffic from S3 with pipelines, turn every network flow into a vector in \
+    SQL, catch a penetration test with a two-stage nearest-neighbour detector, \
+    and grade it honestly at the real attack rate."""
+icon="radar"
+difficulty="intermediate"
+tags=["cybersecurity", "vectordb", "pipeline", "s3", "realtime"]
+lesson_areas=["AI", "Real-time", "Ingest"]
+destinations=["spaces"]
+minimum_tier="free-shared"
