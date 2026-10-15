@@ -1,0 +1,13 @@
+[meta]
+authors=["singlestore"]
+title="Scale Read Workloads with Smart Attach Read Replicas"
+description="""\
+    Isolate read and write workloads, independently size readers, \
+    and make new writes available in near real time.
+    """
+icon="database"
+difficulty="intermediate"
+tags=["smartattach", "replica", "scaling", "realtime", "isolation"]
+lesson_areas=["Data Management", "Real-time"]
+destinations=["spaces"]
+minimum_tier="enterprise"
