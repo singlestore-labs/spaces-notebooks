@@ -1,0 +1,13 @@
+[meta]
+authors=["singlestore"]
+title="Extend Real-Time Ingestion with Kafka Connect"
+description="""\
+    Use Kafka Connect pipelines and Kinesis to connect directly to
+    additional streaming sources without intermediate infrastructure.
+    """
+difficulty="intermediate"
+tags=["pipelines", "kafka", "kinesis", "aws", "streaming", "realtime"]
+lesson_areas=["Ingest"]
+icon="pipeline"
+destinations=["spaces"]
+minimum_tier="standard"
