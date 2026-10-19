@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Retrieval Augmented Question & Answering with Amazon Bedrock"
 description="""\
-    Infuse domain-specific knowledge from SingleStoreDB into generative AI models on Amazon Bedrock to showcase Question & Answering using RAG (retrieval-agumented generation) to improve the quality of responses.\
+    Infuse domain-specific knowledge from SingleStore into generative AI models on Amazon Bedrock to showcase Question & Answering using RAG (retrieval-agumented generation) to improve the quality of responses.\
     """
 icon="crystal-ball"
 difficulty="intermediate"

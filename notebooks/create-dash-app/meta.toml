@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Publish your first SingleStore DashApp"
 description="""\
-    Learn how to connect to SingleStoreDB\
+    Learn how to connect to SingleStore\
     and publish an interactive Dashboard.
     """
 icon="browser"
