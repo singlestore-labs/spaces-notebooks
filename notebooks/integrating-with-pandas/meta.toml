@@ -1,9 +1,9 @@
 [meta]
 authors=["singlestore"]
-title="Integrating pandas with SingleStoreDB"
+title="Integrating pandas with SingleStore"
 description="""\
     Moving data to and from pandas DataFrames is demonstrated using
-    the SingleStoreDB Python library, SQLAlchemy, and Ibis.
+    the SingleStore Python library, SQLAlchemy, and Ibis.
     """
 icon="database"
 difficulty="beginner"

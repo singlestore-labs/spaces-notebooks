@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Learn how to Optimize Performance with TPCH 100"
 description="""\
-    This notebook will help you understand how you can take advantage of SingleStoreDB distributed capability using TPCH-100.
+    This notebook will help you understand how you can take advantage of SingleStore distributed capability using TPCH-100.
 """
 icon="database"
 difficulty="advanced"

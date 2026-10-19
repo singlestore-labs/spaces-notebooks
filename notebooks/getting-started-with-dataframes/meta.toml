@@ -1,8 +1,8 @@
 [meta]
 authors=["singlestore"]
-title="Getting Started with DataFrames in SingleStoreDB"
+title="Getting Started with DataFrames in SingleStore"
 description="""\
-    Data in SingleStoreDB can be queried and modified using a
+    Data in SingleStore can be queried and modified using a
     familiar DataFrame syntax in addition to SQL.
     """
 icon="browser"

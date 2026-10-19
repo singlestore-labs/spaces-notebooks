@@ -3,7 +3,7 @@ authors=["singlestore"]
 title="Semantic Search with Hugging Face Models and Datasets"
 description="""\
     Use Hugging Face to create embeddings and run semantic search \
-    using dot product in SingleStoreDB. \
+    using dot product in SingleStore. \
     """
 icon="chart-network"
 difficulty="beginner"

@@ -3,7 +3,7 @@ authors=["singlestore"]
 title="Running Notebooks from Another Notebook with Fusion SQL"
 description="""\
     Learn how to run Notebooks from another Notebook
-    in SingleStoreDB Cloud using Fusion SQL.
+    in SingleStore Cloud using Fusion SQL.
     """
 icon="files"
 difficulty="intermediate"
