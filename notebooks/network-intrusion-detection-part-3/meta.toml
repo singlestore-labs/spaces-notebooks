@@ -7,7 +7,7 @@ description="""
     This notebook requires adjustments to work out of the box."""
 icon="browser"
 difficulty="advanced"
-tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
-lesson_areas=["AI", "Real-time"]
+tags=["advanced"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

@@ -7,7 +7,7 @@ description="""\
     """
 icon="notes"
 difficulty="beginner"
-tags=["starter", "python", "sqrl"]
-lesson_areas=["Python SDK"]
+tags=["starter"]
+lesson_areas=["App Dev"]
 destinations=["spaces"]
 minimum_tier="free-shared"

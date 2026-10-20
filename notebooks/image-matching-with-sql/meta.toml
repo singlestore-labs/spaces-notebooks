@@ -6,7 +6,7 @@ description="""\
     """
 icon="face-viewfinder"
 difficulty="intermediate"
-tags=["starter", "vectordb", "genai", "facenet"]
-lesson_areas=["AI"]
+tags=["starter"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="free-shared"

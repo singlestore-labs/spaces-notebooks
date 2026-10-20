@@ -5,8 +5,8 @@ description="""\
     SingleStore Helios SmartDR, continuous backups, and self-service point-in-time recovery.
     """
 difficulty="beginner"
-tags=["smartdr", "backup", "restore", "dr", "continuous", "pitr"]
-lesson_areas=["Data Management"]
+tags=[]
+lesson_areas=["App Dev"]
 icon="database"
 destinations=["spaces"]
 minimum_tier="enterprise"

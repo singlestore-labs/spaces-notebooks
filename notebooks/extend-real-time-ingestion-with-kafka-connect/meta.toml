@@ -6,8 +6,8 @@ description="""\
     additional streaming sources without intermediate infrastructure.
     """
 difficulty="intermediate"
-tags=["pipelines", "kafka", "kinesis", "aws", "streaming", "realtime"]
-lesson_areas=["Ingest"]
+tags=[]
+lesson_areas=["Integration"]
 icon="pipeline"
 destinations=["spaces"]
 minimum_tier="standard"

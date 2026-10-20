@@ -6,7 +6,7 @@ description="""\
     """
 icon="crystal-ball"
 difficulty="intermediate"
-tags=["vectordb", "genai", "bedrock", "rag", "starter"]
-lesson_areas=["AI", "Integrations"]
+tags=["starter"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="free-shared"

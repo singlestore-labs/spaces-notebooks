@@ -6,7 +6,7 @@ description="""\
     threat detection model with a test dataset"""
 icon="browser"
 difficulty="advanced"
-tags=["advanced", "cybersecurity", "vectordb", "iot", "ai"]
-lesson_areas=["AI", "Real-time"]
+tags=["advanced"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

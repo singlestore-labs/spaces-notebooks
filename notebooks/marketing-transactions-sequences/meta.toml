@@ -9,7 +9,7 @@ description="""\
     """
 icon="database"
 difficulty="intermediate"
-tags=["15minutes"]
-lesson_areas=["Data Management"]
+tags=[]
+lesson_areas=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

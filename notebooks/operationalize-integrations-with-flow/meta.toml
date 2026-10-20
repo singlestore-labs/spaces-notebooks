@@ -5,8 +5,8 @@ description="""\
     Demonstrate console setup, Flow APIs, automation, CDC, \
     and commonly used source connectors."""
 difficulty="intermediate"
-tags=["advanced", "flow", "cdc", "ingest", "connectors", "mysql", "postgres", "sqlserver", "oracle"]
-lesson_areas=["Integrations"]
+tags=["advanced"]
+lesson_areas=["Integration"]
 icon="arrows-spin"
 destinations=["spaces"]
 minimum_tier="standard"

@@ -5,7 +5,7 @@ description = """
     A step-by-step guide on seamlessly ingesting data from Confluent Cloud (Kafka) into your SingleStore database using a robust pipeline. """
 icon = "confluent-logo"
 difficulty="intermediate"
-tags = ["advanced", "confluent", "kafka", "pipeline", "realtime"]
-lesson_areas=["Integrations"]
+tags=["advanced"]
+lesson_areas=["Integration"]
 destinations = ["spaces"]
 minimum_tier="standard"

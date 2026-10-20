@@ -6,8 +6,8 @@ description="""\
     improved full-text index manageability.
     """
 difficulty="intermediate"
-tags=["vectordb", "fulltext", "hybridsearch", "genai", "pipelines"]
-lesson_areas=["AI"]
+tags=[]
+lesson_areas=["AI & Search"]
 icon="vector-circle"
 destinations=["spaces"]
 minimum_tier="standard"

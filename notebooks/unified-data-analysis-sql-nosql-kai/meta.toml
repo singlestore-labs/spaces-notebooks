@@ -6,7 +6,7 @@ description="""\
     """
 icon="database"
 difficulty="intermediate"
-tags=["cdc", "mongo", "mysql", "sql", "nosql", "json", "pipeline"]
-lesson_areas=[]
+tags=[]
+lesson_areas=["Integration"]
 destinations=["spaces"]
 minimum_tier="standard"
