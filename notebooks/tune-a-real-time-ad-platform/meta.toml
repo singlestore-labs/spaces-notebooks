@@ -8,7 +8,7 @@ description="""\
     """
 icon="bolt"
 duration="TBD"
-tags=[]
+tags=["starter"]
 lesson_areas=["App Dev"]
 destinations=["spaces"]
 minimum_tier="free-shared"
