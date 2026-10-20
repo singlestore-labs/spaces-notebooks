@@ -2,7 +2,7 @@
 authors=["singlestore"]
 title="Similarity Search on Vector Data"
 description="Example of similarity searches over vector data."
-difficulty="beginner"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]
 destinations=["spaces"]

@@ -6,7 +6,7 @@ description="""\
     publish a python UDF and call it in SQL.
     """
 icon="browser"
-difficulty="beginner"
+duration="TBD"
 tags=["starter", "notebooks", "python"]
 lesson_areas=[]
 destinations=["spaces"]

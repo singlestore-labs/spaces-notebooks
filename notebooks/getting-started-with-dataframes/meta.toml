@@ -6,7 +6,7 @@ description="""\
     familiar DataFrame syntax in addition to SQL.
     """
 icon="browser"
-difficulty="beginner"
+duration="TBD"
 tags=["starter", "dataframe", "python"]
 lesson_areas=["Python SDK"]
 destinations=["spaces"]

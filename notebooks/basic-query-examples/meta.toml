@@ -5,7 +5,7 @@ description="""\
     Examples of basic SQL queries covering various database operations include index scans, full-table scans, joins, and aggregations. \
     """
 icon="notes"
-difficulty="beginner"
+duration="TBD"
 tags=["starter", "sql"]
 lesson_areas=["Query Performance"]
 destinations=["spaces"]

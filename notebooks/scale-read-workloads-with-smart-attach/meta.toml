@@ -6,7 +6,7 @@ description="""\
     and make new writes available in near real time.
     """
 icon="database"
-difficulty="intermediate"
+duration="TBD"
 tags=[]
 lesson_areas=["App Dev"]
 destinations=["spaces"]

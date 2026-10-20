@@ -5,7 +5,7 @@ description="""\
     Facial recognition using dot_product function on vectors stored in SingleStore. \
     """
 icon="face-viewfinder"
-difficulty="intermediate"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]
 destinations=["spaces"]

@@ -6,7 +6,7 @@ description="""\
     using singlestore cloud functions.
     """
 icon="browser"
-difficulty="advanced"
+duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]
 destinations=["spaces"]

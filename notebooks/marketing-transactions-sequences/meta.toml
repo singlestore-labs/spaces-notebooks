@@ -8,7 +8,7 @@ description="""\
     compact, unique identifiers for transactions and orders.
     """
 icon="database"
-difficulty="intermediate"
+duration="TBD"
 tags=[]
 lesson_areas=["App Dev"]
 destinations=["spaces"]

@@ -6,7 +6,7 @@ description="""\
     resources such as clusters and Stage files all from SQL.
     """
 icon="browser"
-difficulty="beginner"
+duration="TBD"
 tags=["starter", "fusion", "python"]
 lesson_areas=["Data Management", "Python SDK"]
 destinations=["spaces"]

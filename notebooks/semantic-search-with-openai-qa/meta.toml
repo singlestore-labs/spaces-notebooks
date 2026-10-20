@@ -5,7 +5,7 @@ description="""\
     Provide context to chatGPT using data stored in SingleStore. \
     """
 icon="crystal-ball"
-difficulty="beginner"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]
 destinations=["spaces"]

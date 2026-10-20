@@ -7,7 +7,7 @@ description="""\
     type, DOT_PRODUCT and a vector index.
     """
 icon="vector-circle"
-difficulty="beginner"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]
 destinations=["spaces"]

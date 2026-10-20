@@ -5,7 +5,7 @@ description="""\
     Replicate MySQL and MongoDB data, load S3 files, and analyze relational and JSON data together with SQL \
     """
 icon="database"
-difficulty="intermediate"
+duration="TBD"
 tags=[]
 lesson_areas=["Integration"]
 destinations=["spaces"]

@@ -7,7 +7,7 @@ description="""\
     and CPU resource pools that fence reports and AI agents away from ad serving.
     """
 icon="bolt"
-difficulty="intermediate"
+duration="TBD"
 tags=[]
 lesson_areas=["App Dev"]
 destinations=["spaces"]

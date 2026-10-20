@@ -4,7 +4,7 @@ title="Employee Data Analysis JSON Dataset"
 description="""\
     Employee Data Analysis use case illustrates how to leverage SingleStore's capabilities to process and analyze JSON data from a Amazon S3 data source.
     """
-difficulty="beginner"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["App Dev"]
 icon="database"

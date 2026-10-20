@@ -6,7 +6,7 @@ description="""\
     visualization and analysis. \
     """
 icon="notes"
-difficulty="beginner"
+duration="TBD"
 tags=["starter"]
 lesson_areas=["App Dev"]
 destinations=["spaces"]

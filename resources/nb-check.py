@@ -294,11 +294,11 @@ for f in sys.argv[1:]:
         error(f'missing title in {toml_path}')
 
     try:
-        difficulty = toml_info['meta']['difficulty']
-        if difficulty not in ['beginner', 'intermediate', 'advanced']:
-            error(f'invalid difficulty in {toml_path}')
+        duration = toml_info['meta']['duration']
+        if duration not in ['10 min', '20 min', '30 min', '>30 min']:
+            error(f'invalid duration in {toml_path}')
     except KeyError as exc:
-        error(f'missing difficulty in {toml_path}')
+        error(f'missing duration in {toml_path}')
 
     # Add header cell
     header = [

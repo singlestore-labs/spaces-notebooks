@@ -8,7 +8,7 @@ description="""\
     SQL, catch a penetration test with a two-stage nearest-neighbour detector, \
     and grade it honestly at the real attack rate."""
 icon="radar"
-difficulty="intermediate"
+duration="TBD"
 tags=["cybersecurity", "vectordb", "pipeline", "s3", "realtime"]
 lesson_areas=["AI", "Real-time", "Ingest"]
 destinations=["spaces"]
