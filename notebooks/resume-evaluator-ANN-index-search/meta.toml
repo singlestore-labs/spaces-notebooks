@@ -6,7 +6,7 @@ description="""\
     """
 icon="arrows-spin"
 duration="TBD"
-tags=[]
+tags=["starter"]
 lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="free-shared"
