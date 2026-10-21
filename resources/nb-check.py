@@ -48,8 +48,8 @@ NOTEBOOK_HEADER = [
     '        <img width="100%" height="100%" src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/header-icons/brand/{icon_name}.png" />\n',
     '    </div>\n',
     '    <div id="text" style="padding: 5px; margin-left: 10px;">\n',
-    '        <div id="badge" style="display: inline-block; background-color: rgba(0, 0, 0, 0.15); border-radius: 4px; padding: 4px 8px; align-items: center; margin-top: 6px; margin-bottom: -2px; font-size: 80%">SingleStore Notebooks</div>\n',
-    '        <h1 style="font-weight: 500; margin: 8px 0 0 4px;">{title}</h1>\n',
+    '        <div id="badge" style="display: inline-block; background-color: rgba(0, 0, 0, 0.15); border-radius: 4px; padding: 4px 8px; align-items: center; margin-top: 6px; margin-bottom: -2px; font-size: 80%; color: #FFFFFF;">SingleStore Notebooks</div>\n',
+    '        <h1 style="font-weight: 500; margin: 8px 0 0 4px; color: #FFFFFF;">{title}</h1>\n',
     '    </div>\n',
     '</div>',
 ]
@@ -69,9 +69,9 @@ NOTEBOOK_FOOTER = [
     '<div><img src="https://raw.githubusercontent.com/singlestore-labs/spaces-notebooks/master/common/images/singlestore-logo-grey.png" style="padding: 0px; margin: 0px; height: 24px"/></div>',
 ]
 
-# Every header uses the SingleStore Black 100 (#F2F2F2) background behind the Purple 500 icon tiles.
+# Every header uses the SingleStore Black 600 (#525252) background, with white text, behind the Purple 500 icon tiles.
 # The dict still lists the valid icon names.
-BRAND_HEADER_COLOR = '#F2F2F2'
+BRAND_HEADER_COLOR = '#525252'
 
 ICON_COLORS = {
     'arrow-up-right-dots': BRAND_HEADER_COLOR,
