@@ -6,6 +6,7 @@ description="""\
     """
 icon="notes"
 difficulty="beginner"
+duration="TBD"
 tags=["starter", "python", "dataframes"]
 lesson_areas=["Python SDK"]
 destinations=["spaces"]

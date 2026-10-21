@@ -5,6 +5,7 @@ description="""\
     Create a SingleStore pipeline to track the International Space Station and adjust queries & schema to optimize performance.
     """
 difficulty="advanced"
+duration="TBD"
 tags=["beginner", "kafka", "pipeline", "querytuning"]
 lesson_areas=["Query Performance", "Ingest"]
 icon="database"

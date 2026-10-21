@@ -6,6 +6,7 @@ description="""\
 """
 icon="database"
 difficulty="advanced"
+duration="TBD"
 tags=["troubleshoot", "performance", "tuning", "starter"]
 lesson_areas=["Query Performance"]
 destinations=["spaces"]

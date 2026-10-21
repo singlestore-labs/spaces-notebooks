@@ -6,7 +6,8 @@ description="""\
 """
 icon="database"
 difficulty="advanced"
-tags=["advanced", "performance", "turning", "shardkey", "ingest", "tpch"]
-lesson_areas=["Query Performance"]
+duration="TBD"
+tags=["advanced"]
+lesson_areas=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

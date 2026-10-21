@@ -9,7 +9,8 @@ description="""\
     """
 icon="pipeline"
 difficulty="intermediate"
-tags=["20minutes"]
-lesson_areas=["Ingest"]
+duration="TBD"
+tags=[]
+lesson_areas=["Integration"]
 destinations=["spaces"]
 minimum_tier="standard"

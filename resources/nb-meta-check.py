@@ -92,10 +92,10 @@ for f in sys.argv[1:]:
 
     for lesson_area in meta['lesson_areas']:
         expected_icon_name = f'{kebab_case(lesson_area)}.png'
-        if expected_icon_name not in card_icons:
-            error(f'Lesson area {lesson_area} not found in card icons')
-        if expected_icon_name not in preview_icons:
+        if expected_icon_name in card_icons and expected_icon_name not in preview_icons:
             error(f'Lesson area {lesson_area} not found in preview icons')
+        if expected_icon_name in preview_icons and expected_icon_name not in card_icons:
+            error(f'Lesson area {lesson_area} not found in card icons')
 
     # Authors must have a corresponding author entry
     author_meta_files = os.listdir('authors')

@@ -6,7 +6,8 @@ description="""\
     """
 icon="chart-scatter"
 difficulty="intermediate"
-tags=["vectordb", "realtime"]
-lesson_areas=["AI", "Real-time"]
+duration="TBD"
+tags=["starter"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="free-shared"

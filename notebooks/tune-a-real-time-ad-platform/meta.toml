@@ -8,7 +8,8 @@ description="""\
     """
 icon="bolt"
 difficulty="intermediate"
-tags=["starter", "performance", "tuning", "sql", "realtime"]
-lesson_areas=["Query Performance", "Real-time"]
+duration="TBD"
+tags=["starter"]
+lesson_areas=["App Dev"]
 destinations=["spaces"]
 minimum_tier="free-shared"

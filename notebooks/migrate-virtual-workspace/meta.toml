@@ -4,6 +4,7 @@ title="Migrate Your Virtual Cluster"
 description="Learn how to migrate Your VirtualCluster to a full-fledged Cluster in a dedicated Cluster Group."
 icon="browser"
 difficulty="intermediate"
+duration="TBD"
 tags=["starter", "notebooks"]
 lesson_areas=[]
 destinations=["spaces"]

@@ -300,6 +300,13 @@ for f in sys.argv[1:]:
     except KeyError as exc:
         error(f'missing difficulty in {toml_path}')
 
+    try:
+        duration = toml_info['meta']['duration']
+        if duration not in ['10 min', '20 min', '30 min', '>30 min', 'TBD']:
+            error(f'invalid duration in {toml_path}')
+    except KeyError as exc:
+        error(f'missing duration in {toml_path}')
+
     # Add header cell
     header = [
         x.format(

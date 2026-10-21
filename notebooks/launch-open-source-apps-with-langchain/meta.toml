@@ -6,6 +6,7 @@ description="""\
     """
 icon="vector-circle"
 difficulty="beginner"
+duration="TBD"
 tags=["vectordb", "genai", "langchain"]
 lesson_areas=["AI"]
 destinations=["spaces"]

@@ -6,6 +6,7 @@ description="""\
     """
 icon="chart-network"
 difficulty="beginner"
+duration="TBD"
 tags=["advanced", "pipeline", "json", "s3"]
 lesson_areas=["Ingest"]
 destinations=["spaces"]

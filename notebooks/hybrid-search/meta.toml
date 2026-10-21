@@ -6,6 +6,7 @@ description="""\
     aiming to provide more accurate results.
     """
 difficulty="beginner"
+duration="TBD"
 tags=["starter", "openai", "genai", "vectordb"]
 lesson_areas=["AI"]
 icon="vector-circle"

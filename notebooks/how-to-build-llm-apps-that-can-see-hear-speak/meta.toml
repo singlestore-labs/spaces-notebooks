@@ -6,7 +6,8 @@ description="""\
     """
 icon="chart-network"
 difficulty="intermediate"
-tags=["advanced", "openai", "genai", "vectordb"]
-lesson_areas=["AI"]
+duration="TBD"
+tags=["advanced"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

@@ -9,7 +9,8 @@ description="""\
     and grade it honestly at the real attack rate."""
 icon="radar"
 difficulty="intermediate"
-tags=["cybersecurity", "vectordb", "pipeline", "s3", "realtime"]
-lesson_areas=["AI", "Real-time", "Ingest"]
+duration="TBD"
+tags=["starter"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="free-shared"

@@ -5,8 +5,9 @@ description="""\
     Create instant, independent database clones for testing, prototyping, and performance tuning without duplicating storage.
     """
 difficulty="beginner"
-tags=["branch", "database", "clone"]
-lesson_areas=["Data Management"]
+duration="TBD"
+tags=[]
+lesson_areas=["App Dev"]
 icon="database"
 destinations=["spaces"]
 minimum_tier="standard"

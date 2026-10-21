@@ -5,8 +5,9 @@ description="""\
     The Real-Time Event Monitoring use case illustrates how to leverage SingleStore's capabilities to process and analyze streaming data from a Kafka data source.
     """
 difficulty="beginner"
-tags=["starter", "loaddata", "kafka"]
-lesson_areas=["Ingest"]
+duration="TBD"
+tags=["starter"]
+lesson_areas=["Integration"]
 icon="database"
 destinations=["spaces"]
 minimum_tier="free-shared"

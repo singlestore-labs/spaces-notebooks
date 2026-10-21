@@ -6,7 +6,8 @@ description="""\
     """
 icon="camera-movie"
 difficulty="intermediate"
-tags=["advanced", "vectordb", "genai", "openai"]
-lesson_areas=["AI"]
+duration="TBD"
+tags=["advanced"]
+lesson_areas=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

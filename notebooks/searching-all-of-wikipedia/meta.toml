@@ -6,7 +6,8 @@ description = """\
     """
 icon = "book-open-cover"
 difficulty="intermediate"
-tags = ["vector", "advanced", "vectordb", "hybridsearch", "rag", "ann"]
-lesson_areas=["AI"]
+duration="TBD"
+tags=["advanced"]
+lesson_areas=["AI & Search"]
 destinations = ["spaces"]
 minimum_tier="standard"
