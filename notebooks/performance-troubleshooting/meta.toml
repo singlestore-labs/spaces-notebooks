@@ -9,5 +9,6 @@ difficulty="advanced"
 duration="TBD"
 tags=["troubleshoot", "performance", "tuning", "starter"]
 lesson_areas=["Query Performance"]
+topics=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

@@ -9,5 +9,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["vectordb", "genai", "langchain"]
 lesson_areas=["AI"]
+topics=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

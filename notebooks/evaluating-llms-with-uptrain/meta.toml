@@ -8,6 +8,7 @@ difficulty="intermediate"
 duration="TBD"
 tags=["openai", "llm", "vectordb", "langchain"]
 lesson_areas=["AI"]
+topics=["AI & Search"]
 icon="vector-circle"
 destinations=["spaces"]
 minimum_tier="standard"

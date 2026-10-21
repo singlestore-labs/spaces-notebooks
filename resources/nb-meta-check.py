@@ -69,6 +69,25 @@ for f in sys.argv[1:]:
             f'`lesson_areas` in `meta` section of {f} must be a list',
         )
 
+    if 'topics' not in meta:
+        error(
+            f'No `topics` in `meta` section of {f}; '
+            f'it must be an array of strings (can be empty)',
+        )
+
+    if not isinstance(meta['topics'], list):
+        error(
+            f'`topics` in `meta` section of {f} must be a list',
+        )
+
+    valid_topics = ['AI & Search', 'Integration', 'App Dev']
+    for topic in meta['topics']:
+        if topic not in valid_topics:
+            error(
+                f'Invalid topic "{topic}" in {f}; '
+                f'must be one of {valid_topics}',
+            )
+
     # Tags must be all lower-case, ascii letters
     tags = meta.get('tags', [])
 

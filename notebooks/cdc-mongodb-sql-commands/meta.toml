@@ -8,5 +8,6 @@ difficulty="intermediate"
 duration="TBD"
 tags =  ["mongo", "pipeline", "cdc", "ingest", "kai"]
 lesson_areas=["Data Management"]
+topics=["App Dev"]
 destinations = ["spaces"]
 minimum_tier="standard"

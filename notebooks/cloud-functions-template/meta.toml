@@ -10,5 +10,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["starter", "notebooks", "python"]
 lesson_areas=[]
+topics=[]
 destinations=["spaces"]
 minimum_tier="free-shared"

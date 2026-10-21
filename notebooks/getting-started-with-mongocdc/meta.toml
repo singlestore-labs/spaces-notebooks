@@ -9,5 +9,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["cdc", "mongo", "kai"]
 lesson_areas=["Data Management"]
+topics=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

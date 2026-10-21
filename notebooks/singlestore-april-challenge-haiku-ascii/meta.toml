@@ -9,5 +9,6 @@ difficulty="intermediate"
 duration="TBD"
 tags=["challenge", "haiku", "ascii"]
 lesson_areas=[]
+topics=[]
 destinations=["spaces"]
 minimum_tier="standard"
