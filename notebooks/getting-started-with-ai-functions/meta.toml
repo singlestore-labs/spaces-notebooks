@@ -6,6 +6,7 @@ description="""\
     pre configured AI Functions.
     """
 icon="browser"
+difficulty="beginner"
 duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]

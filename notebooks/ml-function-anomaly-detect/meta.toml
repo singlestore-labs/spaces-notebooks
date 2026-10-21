@@ -6,6 +6,7 @@ description="""\
     model and run it to predict the class of a set of time series inputs.
     """
 icon="browser"
+difficulty="beginner"
 duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]

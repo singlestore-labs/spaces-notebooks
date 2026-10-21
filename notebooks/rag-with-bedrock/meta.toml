@@ -5,6 +5,7 @@ description="""\
     Infuse domain-specific knowledge from SingleStore into generative AI models on Amazon Bedrock to showcase Question & Answering using RAG (retrieval-agumented generation) to improve the quality of responses.\
     """
 icon="crystal-ball"
+difficulty="intermediate"
 duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]

@@ -6,6 +6,7 @@ description="""\
     model and run it to predict the class of an input row.
     """
 icon="browser"
+difficulty="beginner"
 duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]

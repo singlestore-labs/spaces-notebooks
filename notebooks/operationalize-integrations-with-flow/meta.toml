@@ -4,6 +4,7 @@ title="Operationalize Integrations with Flow and Connectors"
 description="""\
     Demonstrate console setup, Flow APIs, automation, CDC, \
     and commonly used source connectors."""
+difficulty="intermediate"
 duration="TBD"
 tags=["advanced"]
 lesson_areas=["Integration"]

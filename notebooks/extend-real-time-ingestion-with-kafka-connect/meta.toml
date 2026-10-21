@@ -5,6 +5,7 @@ description="""\
     Use Kafka Connect pipelines and Kinesis to connect directly to
     additional streaming sources without intermediate infrastructure.
     """
+difficulty="intermediate"
 duration="TBD"
 tags=[]
 lesson_areas=["Integration"]

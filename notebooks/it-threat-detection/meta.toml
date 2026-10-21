@@ -8,6 +8,7 @@ description="""\
     SQL, catch a penetration test with a two-stage nearest-neighbour detector, \
     and grade it honestly at the real attack rate."""
 icon="radar"
+difficulty="intermediate"
 duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]

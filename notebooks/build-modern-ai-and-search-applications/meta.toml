@@ -5,6 +5,7 @@ description="""\
     Demonstrate F16 vectors, full-text search, index merging, and
     improved full-text index manageability.
     """
+difficulty="intermediate"
 duration="TBD"
 tags=[]
 lesson_areas=["AI & Search"]

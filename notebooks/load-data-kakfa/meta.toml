@@ -4,6 +4,7 @@ title="Real-Time Event Monitoring Dataset From Kafka"
 description="""\
     The Real-Time Event Monitoring use case illustrates how to leverage SingleStore's capabilities to process and analyze streaming data from a Kafka data source.
     """
+difficulty="beginner"
 duration="TBD"
 tags=["starter"]
 lesson_areas=["Integration"]

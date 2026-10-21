@@ -4,6 +4,7 @@ title="Protect and Recover Production Workloads"
 description="""\
     SingleStore Helios SmartDR, continuous backups, and self-service point-in-time recovery.
     """
+difficulty="beginner"
 duration="TBD"
 tags=[]
 lesson_areas=["App Dev"]

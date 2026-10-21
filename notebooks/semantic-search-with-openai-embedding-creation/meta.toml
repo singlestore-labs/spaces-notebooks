@@ -5,6 +5,7 @@ description="""\
     Generate embeddings and run semantic search in your database in SQL. \
     """
 icon="chart-network"
+difficulty="beginner"
 duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]

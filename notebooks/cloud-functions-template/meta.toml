@@ -6,6 +6,7 @@ description="""\
     CRUD operations and finally deploy these functions as callable API endpoints.
     """
 icon="browser"
+difficulty="beginner"
 duration="TBD"
 tags=["starter", "notebooks", "python"]
 lesson_areas=[]

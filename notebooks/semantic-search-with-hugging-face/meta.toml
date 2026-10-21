@@ -6,6 +6,7 @@ description="""\
     using dot product in SingleStore. \
     """
 icon="chart-network"
+difficulty="beginner"
 duration="TBD"
 tags=["starter"]
 lesson_areas=["AI & Search"]

@@ -4,6 +4,7 @@ title="Develop Safely with Database Branching"
 description="""\
     Create instant, independent database clones for testing, prototyping, and performance tuning without duplicating storage.
     """
+difficulty="beginner"
 duration="TBD"
 tags=[]
 lesson_areas=["App Dev"]

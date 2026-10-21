@@ -8,6 +8,7 @@ description="""\
     use event-driven S3 file discovery via Kinesis for low-latency ingest.
     """
 icon="pipeline"
+difficulty="intermediate"
 duration="TBD"
 tags=[]
 lesson_areas=["Integration"]

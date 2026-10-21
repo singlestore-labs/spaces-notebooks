@@ -294,6 +294,13 @@ for f in sys.argv[1:]:
         error(f'missing title in {toml_path}')
 
     try:
+        difficulty = toml_info['meta']['difficulty']
+        if difficulty not in ['beginner', 'intermediate', 'advanced']:
+            error(f'invalid difficulty in {toml_path}')
+    except KeyError as exc:
+        error(f'missing difficulty in {toml_path}')
+
+    try:
         duration = toml_info['meta']['duration']
         if duration not in ['10 min', '20 min', '30 min', '>30 min', 'TBD']:
             error(f'invalid duration in {toml_path}')

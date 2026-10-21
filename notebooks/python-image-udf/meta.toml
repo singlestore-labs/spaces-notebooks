@@ -6,6 +6,7 @@ description="""\
     and run it from a Python UDF.
     """
 icon="browser"
+difficulty="beginner"
 duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]

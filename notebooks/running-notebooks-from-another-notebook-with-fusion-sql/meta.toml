@@ -6,6 +6,7 @@ description="""\
     in SingleStore Cloud using Fusion SQL.
     """
 icon="files"
+difficulty="intermediate"
 duration="TBD"
 tags=["notebooks", "jobs", "python", "fusion", "starter"]
 lesson_areas=["Python SDK"]
