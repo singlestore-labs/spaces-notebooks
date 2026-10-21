@@ -9,5 +9,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["starter", "python", "dataframes"]
 lesson_areas=["Python SDK"]
+topics=["App Dev"]
 destinations=["spaces"]
 minimum_tier="free-shared"

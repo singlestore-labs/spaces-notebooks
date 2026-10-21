@@ -9,6 +9,7 @@ difficulty="beginner"
 duration="TBD"
 tags=["starter", "openai", "genai", "vectordb"]
 lesson_areas=["AI"]
+topics=["AI & Search"]
 icon="vector-circle"
 destinations=["spaces"]
 minimum_tier="free-shared"

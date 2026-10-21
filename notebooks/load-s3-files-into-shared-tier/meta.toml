@@ -9,5 +9,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["pipeline", "s3"]
 lesson_areas=["Ingest"]
+topics=["Integration"]
 destinations=["spaces"]
 minimum_tier="standard"

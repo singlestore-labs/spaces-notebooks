@@ -8,6 +8,7 @@ difficulty="advanced"
 duration="TBD"
 tags=["beginner", "kafka", "pipeline", "querytuning"]
 lesson_areas=["Query Performance", "Ingest"]
+topics=["App Dev", "Integration"]
 icon="database"
 destinations=["spaces"]
 minimum_tier="standard"

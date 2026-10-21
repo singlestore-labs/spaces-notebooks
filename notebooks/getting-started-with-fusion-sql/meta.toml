@@ -10,5 +10,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["starter", "fusion", "python"]
 lesson_areas=["Data Management", "Python SDK"]
+topics=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

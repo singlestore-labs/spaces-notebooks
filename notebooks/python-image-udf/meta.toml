@@ -10,5 +10,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["advanced", "notebooks", "python"]
 lesson_areas=["AI"]
+topics=["AI & Search"]
 destinations=["spaces"]
 minimum_tier="standard"

@@ -9,5 +9,6 @@ difficulty="beginner"
 duration="TBD"
 tags=["starter", "vectordb", "genai", "huggingface", "semanticsearch"]
 lesson_areas=["AI", "Python SDK"]
+topics=["AI & Search", "App Dev"]
 destinations=["spaces"]
 minimum_tier="free-shared"

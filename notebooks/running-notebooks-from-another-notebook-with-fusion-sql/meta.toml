@@ -10,5 +10,6 @@ difficulty="intermediate"
 duration="TBD"
 tags=["notebooks", "jobs", "python", "fusion", "starter"]
 lesson_areas=["Python SDK"]
+topics=["App Dev"]
 destinations=["spaces"]
 minimum_tier="standard"

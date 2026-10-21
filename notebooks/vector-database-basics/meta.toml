@@ -6,6 +6,7 @@ difficulty="beginner"
 duration="TBD"
 tags=["vector", "embeddings"]
 lesson_areas=["AI"]
+topics=["AI & Search"]
 icon="database"
 destinations=["spaces"]
 minimum_tier="standard"

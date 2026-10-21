@@ -6,6 +6,7 @@ difficulty="intermediate"
 duration="TBD"
 tags=["starter", "openai", "genai", "vectordb"]
 lesson_areas=["AI", "Query Performance"]
+topics=["AI & Search", "App Dev"]
 destinations=["spaces"]
 icon="vector-circle"
 minimum_tier="free-shared"

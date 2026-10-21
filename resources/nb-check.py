@@ -302,7 +302,7 @@ for f in sys.argv[1:]:
 
     try:
         duration = toml_info['meta']['duration']
-        if duration not in ['10 min', '20 min', '30 min', '>30 min', 'TBD']:
+        if duration not in ['10_min', '20_min', '30_min', '>30_min', 'TBD']:
             error(f'invalid duration in {toml_path}')
     except KeyError as exc:
         error(f'missing duration in {toml_path}')

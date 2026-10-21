@@ -9,5 +9,6 @@ difficulty="advanced"
 duration="TBD"
 tags=["advanced", "automation", "tuning"]
 lesson_areas=[]
+topics=[]
 destinations=["spaces"]
 minimum_tier="standard"
